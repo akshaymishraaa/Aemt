@@ -3,15 +3,18 @@ import Select from 'react-select';
 
 
 export default function ReactSelect(props: any) {
+    console.log(props, "6..")
     return (
         <div className='reactSelect'>
 
             <Select
-                options={[{ value: 'chocolate', label: 'Chocolate' },
-                { value: 'otion2', label: 'otion2' },
-                { value: 'option3', label: 'option3' },]}
-                placeholder={"Select City"}
+                id={props.id}
+                name={props.name}
+                options={props.options}
+                placeholder={props.placeHolder}
                 isSearchable={true}
+                onChange={props.onChange}
+                value={props.values?.value === "" ? [] : props.values}
             />
         </div>
     )
