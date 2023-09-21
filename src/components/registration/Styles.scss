@@ -10,66 +10,12 @@
         text-align: center;
     }
 
-    // .formContainer {
-    //     background-color: rgba(113, 164, 218, 255);
-    //     margin-left: 25%;
-    //     margin-top: 15%;
-    //     margin-right: 15%;
-    //     vertical-align: middle;
-    //     height: auto;
-    //     color: aliceblue;
-    //     padding: 10px 30px;
-    //     // padding-left: 30px;
-    //     // padding-top: 20px;
-    //     width: 50%;
-    //     // display: flex;
-
-    //     .fieldErr {
-    //         border: 2px solid red;
-    //     }
-
-    //     .formSubmission {
-    //         display: flex;
-    //         margin-top: 10px;
-    //         justify-content: center;
-
-    //         button {
-    //             padding: 5px;
-    //             background: rgba(11, 73, 130, 255);
-    //         }
-    //     }
-
-    //     .formField {
-    //         display: inline-block;
-    //         width: 50%;
-    //         margin-top: 10px;
-
-    //         input {
-    //             padding: 6px;
-    //             width: 70%;
-    //             margin-left: 3px;
-    //         }
-
-    //         label {
-    //             display: inline-block;
-    //             width: 30%;
-    //         }
-
-    //         .reactSelect {
-    //             display: inline-block;
-    //             width: 60%;
-    //             margin-left: 3px;
-    //             color: black;
-    //         }
-    //     }
-    // }
     .formContainer {
         display: flex;
         justify-content: center;
         height: 90vh;
         flex-direction: column;
         align-items: center;
-
 
         .form {
             background-color: rgba(113, 164, 218, 255);
@@ -87,6 +33,10 @@
                     text-align: start;
                 }
 
+                .fieldErr {
+                    border: 2px solid red;
+                }
+
                 input {
                     padding: 10px 15px;
                     display: block;
@@ -95,8 +45,20 @@
 
                 }
 
+                input[type=number]::-webkit-inner-spin-button,
+                input[type=number]::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    margin: 0;
+                }
+
                 .reactSelect {
                     width: 88%;
+
+                    #react-select-2-placeholder {
+                        font-size: 14px;
+                    }
                 }
 
 
