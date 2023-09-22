@@ -26,10 +26,11 @@ function Registration() {
           onSubmit={values => {
             console.log(values, "25....");
           }}>
-          {({ errors, touched, setFieldValue, values }) => {
-            // { console.log(errors, values) }
+          {({ errors, touched, setFieldValue, values, handleBlur, isSubmitting }) => {
+            { console.log(Object.keys(errors), isSubmitting, "30....") }
             return (
               <Form className='form'>
+                {(Object.keys(errors)?.length === 0) ? (isSubmitting) ? <p className='regSuccess'> * Organization Registered Successfully</p> : <p className="InitialNote">* All The Field Are Mandatory For Registration</p> : <p className='errorsNote'>* Please Check Some Of Mandatory Fields Are Not Appropriate As Req</p>}
                 <div className='formField'>
                   <label htmlFor='orgName'> Org Name :</label>
 
@@ -40,6 +41,7 @@ function Registration() {
                     placeHolder={"Enter Organzation Name"}
                     className={((touched?.orgName && errors.orgName) ? "fieldErr" : "")}
                     onChange={(e: any) => { setFieldValue("orgName", e.target.value) }}
+                    onBlur={handleBlur}
                   />
                 </div>
                 <div className='formField'>
@@ -52,6 +54,7 @@ function Registration() {
                     placeHolder={"Enter Organzation Mail"}
                     className={(touched?.orgMail && errors.orgMail ? "fieldErr" : "")}
                     onChange={(e: any) => { setFieldValue("orgMail", e.target.value) }}
+                    onBlur={handleBlur}
                   />
                 </div>
                 <div className='formField'>
@@ -63,6 +66,7 @@ function Registration() {
                     placeHolder={"Org Contact No :"}
                     onChange={(e: any) => { setFieldValue("orgContactNumber", e.target.value) }}
                     className={(touched?.orgContactNumber && errors.orgContactNumber ? "fieldErr" : "")}
+                    onBlur={handleBlur}
                   />
                 </div>
                 <div className='formField'>
@@ -75,6 +79,9 @@ function Registration() {
                     placeHolder={"Organization Type"}
                     options={orgTypeOptions}
                     values={orgType}
+                    className={(touched?.orgType && errors.orgType ? "fieldErr" : "")}
+                    onBlur={handleBlur}
+
                     id={"orgType"}
                   />
                 </div>
@@ -88,7 +95,11 @@ function Registration() {
                     onChange={(e: any) => {
                       setFieldValue("countryName", e.value)
                       setCountry(e)
-                    }} />
+                    }}
+                    className={(touched?.countryName && errors.countryName ? "fieldErr" : "")}
+                    onBlur={handleBlur}
+
+                  />
                 </div>
 
                 <div className='formField'>
@@ -102,6 +113,9 @@ function Registration() {
                       setFieldValue("stateName", e.value)
                       setState(e)
                     }}
+                    className={(touched?.stateName && errors.stateName ? "fieldErr" : "")}
+                    onBlur={handleBlur}
+
                   />
                 </div>
                 <div className='formField'>
@@ -116,6 +130,9 @@ function Registration() {
                       setFieldValue("cityName", e.value)
                       setCity(e)
                     }}
+                    className={(touched?.cityName && errors.cityName ? "fieldErr" : "")}
+                    onBlur={handleBlur}
+
                   />
                 </div>
                 <div className='formField'>
@@ -141,6 +158,9 @@ function Registration() {
                       setFieldValue("registeredBy", e.value)
                       setEmpID(e)
                     }}
+                    className={(touched?.registeredBy && errors.registeredBy ? "fieldErr" : "")}
+                    onBlur={handleBlur}
+
                   />
                 </div>
                 <div className='formSubmission'>

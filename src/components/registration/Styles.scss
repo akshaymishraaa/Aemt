@@ -22,6 +22,19 @@
             width: 60%;
             padding: 30px;
 
+            .errorsNote,
+            .InitialNote {
+                color: red;
+                background: none;
+                text-align: start;
+            }
+
+            .regSuccess {
+                color: green;
+                background: none;
+                text-align: start;
+            }
+
             .formField {
                 display: inline-block;
                 width: 50%;

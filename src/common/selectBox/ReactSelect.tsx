@@ -15,6 +15,8 @@ export default function ReactSelect(props: any) {
                 isSearchable={true}
                 onChange={props.onChange}
                 value={props.values?.value === "" ? [] : props.values}
+                className={props.className}
+                onBlur={props.onBlur}
             />
         </div>
     )
