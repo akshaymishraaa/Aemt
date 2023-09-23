@@ -16,8 +16,8 @@ function Login() {
   return (
     <React.Fragment>
       {/* <div className="container"> */}
-        <div className="row h-100 mt-5">
-          <div className="col-4 m-auto">
+        <div className="h-100 mt-5">
+          <div className="col-4 mx-auto">
             <div className="card">
               <div className="card-body">
                 <h5>Sign In</h5>
