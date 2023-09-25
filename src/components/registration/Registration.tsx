@@ -10,11 +10,15 @@ import { orgTypeOptions, CountryOption, StateOption, CityOption, EmpOption } fro
 
 
 function Registration() {
-  const [orgType, setOrgType] = useState<{ value: string, label: string }>({ value: "", label: "" })
-  const [country, setCountry] = useState<{ value: string, label: string }>({ value: "", label: "" })
-  const [state, setState] = useState<{ value: string, label: string }>({ value: "", label: "" })
-  const [city, setCity] = useState<{ value: string, label: string }>({ value: "", label: "" })
-  const [empID, setEmpID] = useState<{ value: string, label: string }>({ value: "", label: "" })
+  const [formStates, setformStates] = useState<{ orgType: String, country: String, state: String, city: String, empId: String, formSubmitted: Boolean }>
+    ({
+      orgType: "",
+      country: "",
+      state: "",
+      city: "",
+      empId: "",
+      formSubmitted: false
+    })
   return (
     <div className='RegistrationPageMain'>
       <p>ORGANIZATION REGISTRATION</p>
@@ -26,11 +30,13 @@ function Registration() {
           onSubmit={values => {
             console.log(values, "25....");
           }}>
-          {({ errors, touched, setFieldValue, values, handleBlur, isSubmitting }) => {
-            { console.log(Object.keys(errors), isSubmitting, "30....") }
+          {({ errors, touched, setFieldValue, values, handleBlur, isSubmitting, setFieldTouched }) => {
+            { console.log(Object.keys(errors), touched, "30....") }
             return (
               <Form className='form'>
-                {(Object.keys(errors)?.length === 0) ? (isSubmitting) ? <p className='regSuccess'> * Organization Registered Successfully</p> : <p className="InitialNote">* All The Field Are Mandatory For Registration</p> : <p className='errorsNote'>* Please Check Some Of Mandatory Fields Are Not Appropriate As Req</p>}
+                {(Object.keys(errors)?.length === 0 && formStates?.formSubmitted && isSubmitting) ?
+                  <p className='regSuccess'> * Organization Registered Successfully</p>: (formStates?.formSubmitted && Object.keys(errors)?.length !== 0) ? <p className='errorsNote'>* Please Check Some Of Mandatory Fields Are Not Appropriate As Req</p> : <p className="InitialNote">* All The Field Are Mandatory For Registration</p>}
+                {/* //  (isSubmitting) ? : : >} */}
                 <div className='formField'>
                   <label htmlFor='orgName'> Org Name :</label>
 
@@ -72,17 +78,20 @@ function Registration() {
                 <div className='formField'>
                   <label htmlFor='orgType'> Organiation Type:</label>
                   <ReactSelect name={"OrgType"}
+                    id={"orgType"}
                     onChange={(e: any) => {
+                      console.log("76...")
                       setFieldValue("orgType", e.value)
-                      setOrgType(e)
+                      setformStates({ ...formStates, orgType: e })
                     }}
                     placeHolder={"Organization Type"}
                     options={orgTypeOptions}
-                    values={orgType}
+                    values={formStates?.orgType}
                     className={(touched?.orgType && errors.orgType ? "fieldErr" : "")}
-                    onBlur={handleBlur}
+                    onBlur={(e: any) => {
+                      setFieldTouched("orgType", true)
+                    }}
 
-                    id={"orgType"}
                   />
                 </div>
                 <div className='formField'>
@@ -91,13 +100,15 @@ function Registration() {
                     id={"countryName"}
                     placeHolder={"country"}
                     options={CountryOption}
-                    values={country}
+                    values={formStates?.country}
                     onChange={(e: any) => {
                       setFieldValue("countryName", e.value)
-                      setCountry(e)
+                      setformStates({ ...formStates, country: e })
                     }}
                     className={(touched?.countryName && errors.countryName ? "fieldErr" : "")}
-                    onBlur={handleBlur}
+                    onBlur={(e: any) => {
+                      setFieldTouched("countryName", true)
+                    }}
 
                   />
                 </div>
@@ -108,13 +119,15 @@ function Registration() {
                     id={"stateName"}
                     placeHolder={"State"}
                     options={StateOption}
-                    values={state}
+                    values={formStates?.state}
                     onChange={(e: any) => {
                       setFieldValue("stateName", e.value)
-                      setState(e)
+                      setformStates({ ...formStates, state: e })
                     }}
                     className={(touched?.stateName && errors.stateName ? "fieldErr" : "")}
-                    onBlur={handleBlur}
+                    onBlur={(e: any) => {
+                      setFieldTouched("stateName", true)
+                    }}
 
                   />
                 </div>
@@ -125,14 +138,15 @@ function Registration() {
                     id={"cityName"}
                     placeHolder={"City"}
                     options={CityOption}
-                    values={city}
+                    values={formStates?.city}
                     onChange={(e: any) => {
                       setFieldValue("cityName", e.value)
-                      setCity(e)
+                      setformStates({ ...formStates, city: e })
                     }}
                     className={(touched?.cityName && errors.cityName ? "fieldErr" : "")}
-                    onBlur={handleBlur}
-
+                    onBlur={(e: any) => {
+                      setFieldTouched("cityName", true)
+                    }}
                   />
                 </div>
                 <div className='formField'>
@@ -153,18 +167,19 @@ function Registration() {
                     id={"registeredBy"}
                     placeHolder={"Registered EmployeeID"}
                     options={EmpOption}
-                    values={empID}
+                    values={formStates?.empId}
                     onChange={(e: any) => {
                       setFieldValue("registeredBy", e.value)
-                      setEmpID(e)
+                      setformStates({ ...formStates, empId: e })
                     }}
                     className={(touched?.registeredBy && errors.registeredBy ? "fieldErr" : "")}
-                    onBlur={handleBlur}
-
+                    onBlur={(e: any) => {
+                      setFieldTouched("registeredBy", true)
+                    }}
                   />
                 </div>
                 <div className='formSubmission'>
-                  <Button variant="contained" type={'submit'}>Register</Button>
+                  <Button variant="contained" type={'submit'} onClick={(e: any) => { setformStates({ ...formStates, formSubmitted: true }) }}>Register</Button>
                 </div>
 
 
