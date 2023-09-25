@@ -6,6 +6,7 @@ import './Styles.scss'
 import { ValidateRegistration } from './ValidationSchema';
 import Button from '@mui/material/Button';
 import ReactSelect from '../../common/selectBox/ReactSelect';
+import axios from 'axios';
 import { orgTypeOptions, CountryOption, StateOption, CityOption, EmpOption } from './selectStaticOptions';
 
 
@@ -27,15 +28,24 @@ function Registration() {
         <Formik
           initialValues={RegistrationModal}
           validationSchema={ValidateRegistration}
-          onSubmit={values => {
-            console.log(values, "25....");
+          onSubmit={(values: any) => {
+            axios.post('http://localhost:3001/api/registerUser', {
+              data: values
+            })
+              .then((response: any) => {
+                console.log(response.data);
+                // Handle data
+              })
+              .catch((error: any) => {
+                console.log(error);
+              })
           }}>
           {({ errors, touched, setFieldValue, values, handleBlur, isSubmitting, setFieldTouched }) => {
             { console.log(Object.keys(errors), touched, "30....") }
             return (
               <Form className='form'>
                 {(Object.keys(errors)?.length === 0 && formStates?.formSubmitted && isSubmitting) ?
-                  <p className='regSuccess'> * Organization Registered Successfully</p>: (formStates?.formSubmitted && Object.keys(errors)?.length !== 0) ? <p className='errorsNote'>* Please Check Some Of Mandatory Fields Are Not Appropriate As Req</p> : <p className="InitialNote">* All The Field Are Mandatory For Registration</p>}
+                  <p className='regSuccess'> * Organization Registered Successfully</p> : (formStates?.formSubmitted && Object.keys(errors)?.length !== 0) ? <p className='errorsNote'>* Please Check Some Of Mandatory Fields Are Not Appropriate As Req</p> : <p className="InitialNote">* All The Field Are Mandatory For Registration</p>}
                 {/* //  (isSubmitting) ? : : >} */}
                 <div className='formField'>
                   <label htmlFor='orgName'> Org Name :</label>
