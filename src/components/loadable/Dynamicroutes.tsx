@@ -22,7 +22,7 @@ const Register = Loadable(lazy(() => import("../registration/Registration")));
 //  * HOME PAGE
 // const Home = Loadable(lazy(() => import("../dashboard/Dashboard")));
 
-const   dynamicRoutes = [
+const dynamicRoutes = [
   {
     name:'Home',
     pathName:'/home',
