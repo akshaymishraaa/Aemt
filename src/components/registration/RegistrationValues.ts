@@ -7,7 +7,7 @@ export const RegistrationModal: RegistraionModelTypes = {
     city: "",
     state: "",
     country: "",
-    zipCode: 0,
-    contactNumber: 0,
+    zipCode: null,
+    contactNumber: null,
     regEmpId: ""
 }
