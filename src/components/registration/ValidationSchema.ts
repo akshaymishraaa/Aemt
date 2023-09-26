@@ -5,10 +5,11 @@ export const ValidateRegistration = Yup.object().shape({
   organizationType: Yup.string().required("required"),
   country: Yup.string().required("required"),
   state: Yup.string().required("required"),
-  city: Yup.string().required("reqired"),
-  zipCode: Yup.number().required("required"),
-  contactNumber: Yup.number()
+  contactNumber: Yup.number().nullable()
     .required("required")
     .test('len', 'Max 6 numbers', (val: any) => val.toString().length <= 10),
+  city: Yup.string().required("reqired"),
   regEmpId: Yup.string().required("required"),
+  zipCode: Yup.number().required("required"),
+  address: Yup.string().required("required")
 });

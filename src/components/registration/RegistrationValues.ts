@@ -9,5 +9,6 @@ export const RegistrationModal: RegistraionModelTypes = {
     country: "",
     zipCode: null,
     contactNumber: null,
-    regEmpId: ""
+    regEmpId: "",
+    address: "",
 }

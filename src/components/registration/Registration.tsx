@@ -160,17 +160,6 @@ function Registration() {
                   />
                 </div>
                 <div className='formField'>
-                  <label htmlFor='zipCode'>PinCode:</label>
-                  <Field type={"number"}
-                    name="zipCode"
-                    value={values.zipCode}
-                    id="zipCode"
-                    placeHolder={"zipCode "}
-                    className={(touched?.zipCode && errors.zipCode ? "fieldErr" : "")}
-                    onChange={(e: any) => { setFieldValue("zipCode", parseInt(e.target.value)) }}
-                  />
-                </div>
-                <div className='formField'>
                   <label htmlFor='regEmpId'> Registered By:</label>
                   <ReactSelect
                     name={"regEmpId"}
@@ -188,6 +177,29 @@ function Registration() {
                     }}
                   />
                 </div>
+                <div className='formField'>
+                  <label htmlFor='zipCode'>PinCode:</label>
+                  <Field type={"number"}
+                    name="zipCode"
+                    value={values.zipCode}
+                    id="zipCode"
+                    placeHolder={"zipCode "}
+                    className={(touched?.zipCode && errors.zipCode ? "fieldErr" : "")}
+                    onChange={(e: any) => { setFieldValue("zipCode", parseInt(e.target.value)) }}
+                  />
+                </div>
+                <div className='formField'>
+                  <label htmlFor='address'>Full Address:</label>
+                  <Field type={"text"}
+                    name="address"
+                    value={values.address}
+                    id="address"
+                    placeHolder={"Full address "}
+                    className={(touched?.address && errors.address ? "fieldErr" : "")}
+                    onChange={(e: any) => { setFieldValue("address", e.target.value) }}
+                  />
+                </div>
+
                 <div className='formSubmission'>
                   <Button variant="contained" type={'submit'} onClick={(e: any) => { setformStates({ ...formStates, formSubmitted: true }) }}>Register</Button>
                 </div>
