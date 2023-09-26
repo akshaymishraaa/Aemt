@@ -1,5 +1,5 @@
 const initialState={
-isAuthenticated:false,
+isAuthenticated:true,
 }
 
 export const application = (state:object = initialState, action:any) => {

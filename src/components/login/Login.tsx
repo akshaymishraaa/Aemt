@@ -11,7 +11,7 @@ function Login() {
   const navigate = useNavigate();
 
   const register = () => {
-    navigate("/Register");
+    navigate("/registration");
   };
   return (
     <React.Fragment>
