@@ -7,5 +7,6 @@ export type RegistraionModelTypes = {
   country?: String | null;
   zipCode?: Number | null;
   contactNumber?: Number | null;
-  regEmpId?: String | null
+  regEmpId?: String | null;
+  address?: String ;
 };
