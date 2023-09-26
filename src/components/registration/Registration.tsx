@@ -11,9 +11,9 @@ import { orgTypeOptions, CountryOption, StateOption, CityOption, EmpOption } fro
 
 
 function Registration() {
-  const [formStates, setformStates] = useState<{ orgType: String, country: String, state: String, city: String, empId: String, formSubmitted: Boolean }>
+  const [formStates, setformStates] = useState<{ organizationType: String, country: String, state: String, city: String, empId: String, formSubmitted: Boolean }>
     ({
-      orgType: "",
+      organizationType: "",
       country: "",
       state: "",
       city: "",
@@ -37,154 +37,154 @@ function Registration() {
                 // Handle data
               })
               .catch((error: any) => {
-                console.log(error);
+                console.log(error, "40...");
               })
           }}>
           {({ errors, touched, setFieldValue, values, handleBlur, isSubmitting, setFieldTouched }) => {
-            { console.log(Object.keys(errors), touched, "30....") }
+            { console.log(errors, touched, "30....") }
             return (
               <Form className='form'>
                 {(Object.keys(errors)?.length === 0 && formStates?.formSubmitted && isSubmitting) ?
                   <p className='regSuccess'> * Organization Registered Successfully</p> : (formStates?.formSubmitted && Object.keys(errors)?.length !== 0) ? <p className='errorsNote'>* Please Check Some Of Mandatory Fields Are Not Appropriate As Req</p> : <p className="InitialNote">* All The Field Are Mandatory For Registration</p>}
                 {/* //  (isSubmitting) ? : : >} */}
                 <div className='formField'>
-                  <label htmlFor='orgName'> Org Name :</label>
+                  <label htmlFor='organizationName'> Org Name :</label>
 
                   <Field type={"text"}
-                    name="orgName"
-                    value={values.orgName}
-                    id="orgName"
+                    name="organizationName"
+                    value={values.organizationName}
+                    id="organizationName"
                     placeHolder={"Enter Organzation Name"}
-                    className={((touched?.orgName && errors.orgName) ? "fieldErr" : "")}
-                    onChange={(e: any) => { setFieldValue("orgName", e.target.value) }}
+                    className={((touched?.organizationName && errors.organizationName) ? "fieldErr" : "")}
+                    onChange={(e: any) => { setFieldValue("organizationName", e.target.value) }}
                     onBlur={handleBlur}
                   />
                 </div>
                 <div className='formField'>
-                  <label htmlFor='orgMail'> Org MailId :</label>
+                  <label htmlFor='organizationEmailId'> Org MailId :</label>
 
                   <Field type={"email"}
-                    name="orgMail"
-                    value={values.orgMail}
-                    id="orgMail"
+                    name="organizationEmailId"
+                    value={values.organizationEmailId}
+                    id="organizationEmailId"
                     placeHolder={"Enter Organzation Mail"}
-                    className={(touched?.orgMail && errors.orgMail ? "fieldErr" : "")}
-                    onChange={(e: any) => { setFieldValue("orgMail", e.target.value) }}
+                    className={(touched?.organizationEmailId && errors.organizationEmailId ? "fieldErr" : "")}
+                    onChange={(e: any) => { setFieldValue("organizationEmailId", e.target.value) }}
                     onBlur={handleBlur}
                   />
                 </div>
                 <div className='formField'>
-                  <label htmlFor='orgContactNumber'>Contact No:</label>
+                  <label htmlFor='contactNumber'>Contact No:</label>
                   <Field type={"number"}
-                    name="orgContactNumber"
-                    value={values.orgContactNumber}
-                    id="orgContactNumber"
+                    name="contactNumber"
+                    value={values.contactNumber}
+                    id="contactNumber"
                     placeHolder={"Org Contact No :"}
-                    onChange={(e: any) => { setFieldValue("orgContactNumber", e.target.value) }}
-                    className={(touched?.orgContactNumber && errors.orgContactNumber ? "fieldErr" : "")}
+                    onChange={(e: any) => { setFieldValue("contactNumber", parseInt(e.target.value)) }}
+                    className={(touched?.contactNumber && errors.contactNumber ? "fieldErr" : "")}
                     onBlur={handleBlur}
                   />
                 </div>
                 <div className='formField'>
-                  <label htmlFor='orgType'> Organiation Type:</label>
-                  <ReactSelect name={"OrgType"}
-                    id={"orgType"}
+                  <label htmlFor='organizationType'> Organiation Type:</label>
+                  <ReactSelect name={"OrgTyporganizationType"}
+                    id={"organizationType"}
                     onChange={(e: any) => {
                       console.log("76...")
-                      setFieldValue("orgType", e.value)
-                      setformStates({ ...formStates, orgType: e })
+                      setFieldValue("organizationType", e.value)
+                      setformStates({ ...formStates, organizationType: e })
                     }}
                     placeHolder={"Organization Type"}
                     options={orgTypeOptions}
-                    values={formStates?.orgType}
-                    className={(touched?.orgType && errors.orgType ? "fieldErr" : "")}
+                    values={formStates?.organizationType}
+                    className={(touched?.organizationType && errors.organizationType ? "fieldErr" : "")}
                     onBlur={(e: any) => {
-                      setFieldTouched("orgType", true)
+                      setFieldTouched("organizationType", true)
                     }}
 
                   />
                 </div>
                 <div className='formField'>
-                  <label htmlFor='countryName'>CountryName:</label>
-                  <ReactSelect name={"countryName"}
-                    id={"countryName"}
+                  <label htmlFor='country'>CountryName:</label>
+                  <ReactSelect name={"country"}
+                    id={"country"}
                     placeHolder={"country"}
                     options={CountryOption}
                     values={formStates?.country}
                     onChange={(e: any) => {
-                      setFieldValue("countryName", e.value)
+                      setFieldValue("country", e.value)
                       setformStates({ ...formStates, country: e })
                     }}
-                    className={(touched?.countryName && errors.countryName ? "fieldErr" : "")}
+                    className={(touched?.country && errors.country ? "fieldErr" : "")}
                     onBlur={(e: any) => {
-                      setFieldTouched("countryName", true)
+                      setFieldTouched("country", true)
                     }}
 
                   />
                 </div>
 
                 <div className='formField'>
-                  <label htmlFor='stateName'> State Name:</label>
-                  <ReactSelect name={"stateName"}
-                    id={"stateName"}
+                  <label htmlFor='state'> State Name:</label>
+                  <ReactSelect name={"state"}
+                    id={"state"}
                     placeHolder={"State"}
                     options={StateOption}
                     values={formStates?.state}
                     onChange={(e: any) => {
-                      setFieldValue("stateName", e.value)
+                      setFieldValue("state", e.value)
                       setformStates({ ...formStates, state: e })
                     }}
-                    className={(touched?.stateName && errors.stateName ? "fieldErr" : "")}
+                    className={(touched?.state && errors.state ? "fieldErr" : "")}
                     onBlur={(e: any) => {
-                      setFieldTouched("stateName", true)
+                      setFieldTouched("state", true)
                     }}
 
                   />
                 </div>
                 <div className='formField'>
-                  <label htmlFor='cityName'> City Name:</label>
+                  <label htmlFor='city'> City Name:</label>
                   <ReactSelect
-                    name={"cityName"}
-                    id={"cityName"}
+                    name={"city"}
+                    id={"city"}
                     placeHolder={"City"}
                     options={CityOption}
                     values={formStates?.city}
                     onChange={(e: any) => {
-                      setFieldValue("cityName", e.value)
+                      setFieldValue("city", e.value)
                       setformStates({ ...formStates, city: e })
                     }}
-                    className={(touched?.cityName && errors.cityName ? "fieldErr" : "")}
+                    className={(touched?.city && errors.city ? "fieldErr" : "")}
                     onBlur={(e: any) => {
-                      setFieldTouched("cityName", true)
+                      setFieldTouched("city", true)
                     }}
                   />
                 </div>
                 <div className='formField'>
-                  <label htmlFor='orgPinCode'>PinCode:</label>
+                  <label htmlFor='zipCode'>PinCode:</label>
                   <Field type={"number"}
-                    name="orgPinCode"
-                    value={values.orgPinCode}
-                    id="orgPinCode"
-                    placeHolder={"Org PinCode :"}
-                    className={(touched?.orgPinCode && errors.orgPinCode ? "fieldErr" : "")}
-                    onChange={(e: any) => { setFieldValue("orgPinCode", e.target.value) }}
+                    name="zipCode"
+                    value={values.zipCode}
+                    id="zipCode"
+                    placeHolder={"zipCode "}
+                    className={(touched?.zipCode && errors.zipCode ? "fieldErr" : "")}
+                    onChange={(e: any) => { setFieldValue("zipCode", parseInt(e.target.value)) }}
                   />
                 </div>
                 <div className='formField'>
-                  <label htmlFor='registeredBy'> Registered By:</label>
+                  <label htmlFor='regEmpId'> Registered By:</label>
                   <ReactSelect
-                    name={"registeredBy"}
-                    id={"registeredBy"}
+                    name={"regEmpId"}
+                    id={"regEmpId"}
                     placeHolder={"Registered EmployeeID"}
                     options={EmpOption}
                     values={formStates?.empId}
                     onChange={(e: any) => {
-                      setFieldValue("registeredBy", e.value)
+                      setFieldValue("regEmpId", e.value)
                       setformStates({ ...formStates, empId: e })
                     }}
-                    className={(touched?.registeredBy && errors.registeredBy ? "fieldErr" : "")}
+                    className={(touched?.regEmpId && errors.regEmpId ? "fieldErr" : "")}
                     onBlur={(e: any) => {
-                      setFieldTouched("registeredBy", true)
+                      setFieldTouched("regEmpId", true)
                     }}
                   />
                 </div>
