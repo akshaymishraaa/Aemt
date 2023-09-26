@@ -19,7 +19,7 @@ function Login() {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const register = () => {
-    navigate("/Register");
+    navigate("/registration");
   };
   return (
     <React.Fragment>
