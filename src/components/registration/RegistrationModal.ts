@@ -1,11 +1,11 @@
-export type RegistraionModelTypes = {
-  organizationEmailId: String;
-  organizationName: String;
-  organizationType: String;
-  city: String;
-  state: String;
-  country: String;
-  zipCode: Number;
-  contactNumber: Number;
-  regEmpId: String;
-};
+export type RegistraionModelTypes= {
+    orgMail: String,
+    orgName: String,
+    orgType: String,
+    cityName: String,
+    stateName: String,
+    countryName: String,
+    orgPinCode: String,
+    orgContactNumber: String,
+    registeredBy: String,
+}
