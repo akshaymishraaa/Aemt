@@ -7,4 +7,4 @@ const Register = Loadable(
 );
 
 //  * HOME PAGE
-const Home = Loadable(lazy(() => import('../dashboard/Dashboard')));
+// const Home = Loadable(lazy(() => import('../dashboard/Dashboard')));
