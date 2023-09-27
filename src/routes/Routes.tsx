@@ -13,6 +13,8 @@ import PublicRoute from "./PublicRoute";
 import { useSelector } from "react-redux";
 import dynamicRoutes from "../components/loadable/Dynamicroutes";
 import PrivateRoute from "./PrivateRoute";
+// import Dashboard from "../components/dashboard";
+import Dashboard from "../components/dashboard/Dashboard";
 function Routes() {
   const { isAuthenticated } = useSelector((state: any) => state.application);
   return (
@@ -28,14 +30,21 @@ function Routes() {
             }
           ></Route>
           <Route
-            path="/registration"
+            path="/registration"  
             element={
               <PublicRoute to="/register">
                 <Registration />
               </PublicRoute>
             }
           ></Route>
-          <>
+          <Route path="/dashboard" element={
+            <PrivateRoute isAuthenticated={isAuthenticated} to="/">
+              <Dashboard />
+            </PrivateRoute>
+          }>
+
+          </Route>
+          {/* <>
             {dynamicRoutes?.map((item: any, index: number) => {
               return (
                 <Route
@@ -64,7 +73,8 @@ function Routes() {
                 ></Route>
               );
             })}
-          </>
+          </> */}
+
         </Routing>
       </Suspense>
     </BrowserRouter>

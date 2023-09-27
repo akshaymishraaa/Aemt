@@ -1,0 +1,22 @@
+[
+    {
+        "label": "Dashboard",
+        "icon": "DashboardIcon"
+    },
+    {
+        "label": "User management",
+        "icon": "ManageAccountsIcon"
+    },
+    {
+        "label": "Application Setting",
+        "icon": "TuneIcon"
+    },
+    {
+        "label": "User profile",
+        "icon": "AccountCircleIcon"
+    },
+    {
+        "label": "Audit logs",
+        "icon": "MenuBookIcon"
+    }
+]
