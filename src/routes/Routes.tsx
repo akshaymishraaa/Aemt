@@ -6,13 +6,13 @@ import {
   BrowserRouter,
 } from "react-router-dom";
 import Registration from "../components/registration/Registration";
-import routes from "../components/loadable/Dynamicroutes";
 import Login from "../components/login/Login";
 import LoadingScreen from "../components/loadable/LoadingScreen";
 import PublicRoute from "./PublicRoute";
 import { useSelector } from "react-redux";
-import dynamicRoutes from "../components/loadable/Dynamicroutes";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../components/dashboard";
+import { privateRoutes } from "../constants/lazyRoutes";
 function Routes() {
   const { isAuthenticated } = useSelector((state: any) => state.application);
   return (
@@ -28,15 +28,22 @@ function Routes() {
             }
           ></Route>
           <Route
-            path="/registration"
+            path="/registration"  
             element={
               <PublicRoute to="/register">
                 <Registration />
               </PublicRoute>
             }
           ></Route>
+          {/* <Route path="/dashboard" element={
+            <PrivateRoute isAuthenticated={isAuthenticated} to="/">
+              <Dashboard />
+            </PrivateRoute>
+          }>
+
+          </Route> */}
           <>
-            {dynamicRoutes?.map((item: any, index: number) => {
+            {privateRoutes?.map((item: any, index: number) => {
               return (
                 <Route
                   key={index}
@@ -57,7 +64,7 @@ function Routes() {
                           );
                         })
                       ) : (
-                        <item.Component />
+                        <item.component />
                       )}
                     </PrivateRoute>
                   }
@@ -65,6 +72,7 @@ function Routes() {
               );
             })}
           </>
+
         </Routing>
       </Suspense>
     </BrowserRouter>
