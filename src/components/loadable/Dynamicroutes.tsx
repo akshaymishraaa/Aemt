@@ -5,9 +5,9 @@ import type { RouteObject } from "react-router";
 // import MainLayout from './MainLayout';
 import React, { Suspense, lazy } from "react";
 import LoadingScreen from "./LoadingScreen";
-import MainLayout from "./MainLayout";
-import AuthGuard from "./AuthGuard";
-import GuestGuard from "./GuestGuard";
+// import MainLayout from "./MainLayout";
+// import AuthGuard from "./AuthGuard";
+// import GuestGuard from "./GuestGuard";
 
 const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) =>
 (
