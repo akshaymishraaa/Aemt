@@ -49,7 +49,7 @@ function Routes() {
                   key={index}
                   path={item.pathName}
                   element={
-                    <PrivateRoute isAuthenticated={isAuthenticated} to="/">
+                    <PrivateRoute isAuthenticated={isAuthenticated} to="/" >
                       {item?.children && item?.renderChild ? (
                         item?.children?.map((child: any, childIndex: any) => {
                           return (
