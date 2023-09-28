@@ -9,11 +9,12 @@ interface Props {
 
 export default function PrivateRoute(props: Props):any {
   const { children, isAuthenticated, to = "/" } = props;
-  const { pathname } = useLocation();
-
+  // const { pathname } = useLocation();
+  // console.log("15...",pathname,to)
   return isAuthenticated ? (
     children
   ) : (
-    <Navigate state={{ redirect: pathname, isAuthenticated }} to={to} />
+    // <Navigate state={{ redirect: pathname, isAuthenticated }} to={to} />
+    <Navigate to={to} />
   );
 }

@@ -35,7 +35,7 @@ function Login() {
                   password: "",
                 }}
                 onSubmit={(values: any) => {
-                 navigate('/dashboard')
+                 navigate('/home')
                 }}
               >
                 <div className=" d-flex justify-content-center">

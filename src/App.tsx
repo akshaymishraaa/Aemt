@@ -10,8 +10,8 @@ import Navbar from "./components/navbar/navbar";
 function App() {
   return (
     <React.Fragment>
-      <Navbar />
-      {/* <Routes /> */}
+      {/* <Navbar /> */}
+      <Routes />
     </React.Fragment>
   );
 }

@@ -178,7 +178,6 @@ export default function Navbar() {
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
-                <Routes />
             </Box>
         </Box>
     );
