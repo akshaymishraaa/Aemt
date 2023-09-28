@@ -1,4 +1,4 @@
-import * as Yup from "yup";
+import * as Yup from 'yup'
 export const ValidateRegistration = Yup.object().shape({
   organizationName: Yup.string().required("required"),
   organizationEmailId: Yup.string().required("required").email("invalid Email"),

@@ -11,7 +11,7 @@ import LoadingScreen from "../components/loadable/LoadingScreen";
 import PublicRoute from "./PublicRoute";
 import { useSelector } from "react-redux";
 import PrivateRoute from "./PrivateRoute";
-import Dashboard from "../components/dashboard";
+// import Dashboard from "../components/dashboard";
 import { privateRoutes } from "../constants/lazyRoutes";
 function Routes() {
   const { isAuthenticated } = useSelector((state: any) => state.application);
