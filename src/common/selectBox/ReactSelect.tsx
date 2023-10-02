@@ -17,6 +17,7 @@ export default function ReactSelect(props: any) {
                 value={props.values?.value === "" ? [] : props.values}
                 className={props.className}
                 onBlur={props.onBlur}
+                isDisabled={props.disabled}
             />
         </div>
     )
