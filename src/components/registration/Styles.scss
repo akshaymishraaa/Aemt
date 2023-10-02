@@ -1,86 +1,151 @@
 .RegistrationPageMain {
-    background-color: rgba(11, 73, 130, 255);
+    background-color: rgba(42, 42, 104, 255);
     height: 100vh;
     width: 100%;
+    color: aliceblue;
 
-    p {
-        margin: 0px;
-        background-color: white;
-        padding: 10px;
+    .mainHeading {
+        background-color: aliceblue;
         text-align: center;
+        margin: 0px;
+        padding: 5px;
+        color: black;
+
     }
 
     .formContainer {
+        margin: 15px 15px 0px 15px;
         display: flex;
+        flex: column;
         justify-content: center;
-        height: 90vh;
-        flex-direction: column;
         align-items: center;
+        height: 380px;
 
         .form {
-            background-color: rgba(113, 164, 218, 255);
-            width: 60%;
-            padding: 30px;
+            background-color: rgba(191, 181, 153);
+            margin: 5px;
+            padding: 10px 15px;
 
-            .errorsNote,
-            .InitialNote {
-                color: red;
-                background: none;
-                text-align: start;
+            .formSubmission {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 15px;
+
+                button {
+                    margin-left: 20px;
+                }
             }
 
-            .regSuccess {
-                color: green;
-                background: none;
-                text-align: start;
-            }
+            .fieldsRow {
+                margin-left: 5px;
+                margin-right: 5px;
 
-            .formField {
-                display: inline-block;
-                width: 50%;
+                .formField {
+                    margin-bottom: 10px;
 
-                label {
-                    color: white;
-                    display: block;
-                    width: 80%;
-                    text-align: start;
+                    .fieldIcon {
+                        // background-color: rgba(2, 126, 193, 255);
+                        padding: 3px;
+                        // color: black;
+                        margin-right: 1px;
+                    }
+
+                    .fieldErr {
+                        border-bottom: 1px solid red;
+                    }
+
+                    ::placeholder {
+                        color: black;
+                    }
+
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        appearance: none;
+                        margin: 0;
+                    }
+
+                    input {
+                        background: none;
+                        border: none;
+                        border-bottom: 1.5px solid lightskyblue;
+                        padding: 3px;
+                        color: aliceblue;
+                        width: 85%;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
                 }
 
-                .fieldErr {
-                    border: 2px solid red;
-                }
+                .formField-select {
+                    display: flex;
+                    margin-bottom: 10px;
 
-                input {
-                    padding: 5px 15px;
-                    display: block;
-                    width: 80%;
+                    .fieldErr {
+                        border-bottom: 1px solid red;
+                    }
 
+                    .reactSelect {
+                        width: 90%;
 
-                }
+                        .css-b62m3t-container {
+                            .css-13cymwt-control {
+                                background: none;
+                                border: none;
+                                border-bottom: 1.5px solid lightskyblue;;
 
-                input[type=number]::-webkit-inner-spin-button,
-                input[type=number]::-webkit-outer-spin-button {
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    appearance: none;
-                    margin: 0;
-                }
+                                .css-1fdsijx-ValueContainer {
+                                    .css-1dimb5e-singleValue {
+                                        color: white;
+                                    }
 
-                .reactSelect {
-                    width: 88%;
+                                    .css-1jqq78o-placeholder {
+                                        color: black;
+                                    }
 
-                    #react-select-2-placeholder {
-                        font-size: 14px;
+                                    .css-qbdosj-Input {
+                                        background: none;
+                                    }
+                                }
+
+                                &:focus {
+                                    .css-1fdsijx-ValueContainer {
+                                        background: none !important;
+                                    }
+                                }
+                            }
+
+                            .css-1nmdiq5-menu {
+                                color: black;
+                            }
+                        }
                     }
                 }
             }
 
-            .formSubmission {
-                text-align: center;
-                margin-top: 10px;
+            .regSuccess {
+                color: green;
             }
 
+            .errorsNote {
+                color: red;
+            }
 
+            .InitialNote {
+                color: blue;
+            }
         }
     }
+
+    // p {
+    //     margin: 0px;
+    //     // background-color: white;
+    //     padding: 5px;
+    //     text-align: center;
+    //     color: black;
+    // }
+
 }

@@ -1,14 +1,16 @@
 import { RegistraionModelTypes } from "./RegistrationModal";
 
 export const RegistrationModal: RegistraionModelTypes = {
-    organizationEmailId: "",
     organizationName: "",
-    organizationType: "",
-    city: "",
-    state: "",
-    country: "",
-    zipCode: null,
+    organizationEmailId: "",
     contactNumber: null,
+    organizationType: "",
+    country: "",
+    state: "",
+    city: "",
     regEmpId: "",
+    zipCode: null,
     address: "",
+    password: "",
+    confirmPassword: "",
 }
