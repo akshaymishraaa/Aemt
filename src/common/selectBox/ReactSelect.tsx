@@ -9,6 +9,7 @@ export default function ReactSelect(props: any) {
 
             <Select
                 id={props.id}
+                styles={props.styles}
                 name={props.name}
                 options={props.options}
                 placeholder={props.placeHolder}

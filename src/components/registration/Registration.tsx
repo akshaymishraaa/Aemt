@@ -26,12 +26,46 @@ import CustomToolTip from '../../common/customTooltip/CustomToolTip';
 
 function Registration() {
   const navigate = useNavigate()
-  const renderTitle = () => {
-    return (
-      <div>Tooltip</div>
-    )
+  const styles: any = {
+    control: (base: any, state: any) => ({
+      ...base,
+      background: "none",
+      // outline: 0,
+      border: '0 !important',
 
-  }
+      // match with the menu
+      borderRadius: state.isFocused ? 'none' : 'none',
+      // // // Overwrittes the different states of border
+      // borderColor: state.isFocused ? 'none' : 'none',
+      // // Removes weird border around container
+      // boxShadow: state.isFocused ? null : null,
+      "&:hover": {
+        outline: "none",
+        border: state.isFocused ? '0 !important' : '0 !important',
+        borderRadius: state.isFocused ? 'none' : 'none',
+        boxShadow: state.isFocused ? 'none' : 'none',
+        // // Overwrittes the different states of border
+        // borderColor: state.isFocused ? 'none' : 'none',
+        backgouund: state.isFocused ? 'none' : 'none',
+        // Overwrittes the different states of border
+        // borderColor: state.isFocused ? "red" : "blue"
+      },
+    }),
+
+
+    singleValue: (provided: any, state: any) => ({
+      ...provided,
+      color: 'white',
+      // fontSize: state.selectProps.myFontSize
+    }),
+    placeholder: (provided: any, state: any) => ({
+      ...provided,
+      color: 'black',
+    })
+
+
+  };
+
 
   const [formStates, setformStates] = useState<{ organizationType: String, country: String, state: String, city: String, empId: String, formSubmitted: Boolean }>
     ({
@@ -151,10 +185,11 @@ function Registration() {
                         setFieldValue("organizationType", e.value)
                         setformStates({ ...formStates, organizationType: e })
                       }}
+                      styles={styles}
                       placeHolder={"Organization Type"}
                       options={orgTypeOptions}
                       values={formStates?.organizationType}
-                      className={(touched?.organizationType && errors.organizationType ? "fieldErr" : "")}
+                      className={(touched?.organizationType && errors.organizationType ? "fieldErr" : "selectField")}
                       onBlur={(e: any) => {
                         setFieldTouched("organizationType", true)
                       }}
@@ -170,6 +205,7 @@ function Registration() {
                     </CustomToolTip>
                     <ReactSelect name={"country"}
                       id={"country"}
+                      styles={styles}
                       placeHolder={"country"}
                       options={CountryOption}
                       values={formStates?.country}
@@ -178,7 +214,7 @@ function Registration() {
                         setFieldValue("country", e.value)
                         setformStates({ ...formStates, country: e })
                       }}
-                      className={(touched?.country && errors.country ? "fieldErr" : "")}
+                      className={(touched?.country && errors.country ? "fieldErr" : "selectField")}
                       onBlur={(e: any) => {
                         setFieldTouched("country", true)
                       }}
@@ -192,6 +228,7 @@ function Registration() {
                     </CustomToolTip>
                     <ReactSelect name={"state"}
                       id={"state"}
+                      styles={styles}
                       placeHolder={"State"}
                       options={StateOption}
                       values={formStates?.state}
@@ -199,7 +236,7 @@ function Registration() {
                         setFieldValue("state", e.value)
                         setformStates({ ...formStates, state: e })
                       }}
-                      className={(touched?.state && errors.state ? "fieldErr" : "")}
+                      className={(touched?.state && errors.state ? "fieldErr" : "selectField")}
                       onBlur={(e: any) => {
                         setFieldTouched("state", true)
                       }}
@@ -213,6 +250,7 @@ function Registration() {
                     </CustomToolTip>
                     <ReactSelect
                       name={"city"}
+                      styles={styles}
                       id={"city"}
                       placeHolder={"City"}
                       options={CityOption}
@@ -221,7 +259,7 @@ function Registration() {
                         setFieldValue("city", e.value)
                         setformStates({ ...formStates, city: e })
                       }}
-                      className={(touched?.city && errors.city ? "fieldErr" : "")}
+                      className={(touched?.city && errors.city ? "fieldErr" : "selectField")}
                       onBlur={(e: any) => {
                         setFieldTouched("city", true)
                       }}
@@ -235,6 +273,7 @@ function Registration() {
                     <ReactSelect
                       name={"regEmpId"}
                       id={"regEmpId"}
+                      styles={styles}
                       placeHolder={"EmployeeID"}
                       options={EmpOption}
                       values={formStates?.empId}
@@ -242,7 +281,7 @@ function Registration() {
                         setFieldValue("regEmpId", e.value)
                         setformStates({ ...formStates, empId: e })
                       }}
-                      className={(touched?.regEmpId && errors.regEmpId ? "fieldErr" : "")}
+                      className={(touched?.regEmpId && errors.regEmpId ? "fieldErr" : "selectField")}
                       onBlur={(e: any) => {
                         setFieldTouched("regEmpId", true)
                       }}
@@ -287,14 +326,14 @@ function Registration() {
                       name="password"
                       value={values.password}
                       id="password"
-                      placeHolder={"PassWord"}
+                      placeHolder={"Password"}
                       className={(touched?.password && errors.password ? "fieldErr" : "")}
                       onChange={(e: any) => { setFieldValue("password", e.target.value) }}
                       spellCheck={false}
                     />
                   </div>
                   <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
-                    <CustomToolTip title={renderTooltip(errors?.confirmPassword, Object.keys(values)[0], touched?.confirmPassword)} placement="left">
+                    <CustomToolTip title={renderTooltip(errors?.confirmPassword, Object.keys(values)[11], touched?.confirmPassword)} placement="left">
 
                       <PasswordIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.confirmPassword && touched?.confirmPassword) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -306,7 +345,7 @@ function Registration() {
                       className={(touched?.confirmPassword && errors.confirmPassword ? "fieldErr" : "")}
                       onChange={(e: any) => { setFieldValue("confirmPassword", e.target.value) }}
                       spellCheck={false}
-                      title={renderTitle}
+
                     />
                   </div>
                 </div>
