@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field } from 'formik';
 import { RegistrationModal } from './RegistrationValues';
 import * as yup from 'yup'
@@ -23,6 +23,8 @@ import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import HomeIcon from '@mui/icons-material/Home';
 import PasswordIcon from '@mui/icons-material/Password';
 import CustomToolTip from '../../common/customTooltip/CustomToolTip';
+import { useDispatch } from 'react-redux';
+import { registerOrganization } from '../actions/actions';
 
 function Registration() {
   const navigate = useNavigate()
@@ -82,6 +84,7 @@ function Registration() {
     navigate('/')
 
   }
+  const dispatch = useDispatch()
   const renderTooltip = (err: any, name: string, touched: any) => {
     console.log(err, name, "41....")
     return (
@@ -91,7 +94,14 @@ function Registration() {
     )
 
   }
+  useEffect(() => {
+    dispatch(registerOrganization())
 
+  }, [])
+  const userReg = (values: any) => {
+    dispatch(registerOrganization(values))
+
+  }
   return (
     <div className='RegistrationPageMain col-12 p-0'>
       <p className='mainHeading'>ORGANIZATION REGISTRATION</p>
@@ -103,16 +113,17 @@ function Registration() {
           initialValues={RegistrationModal}
           validationSchema={ValidateRegistration}
           onSubmit={(values: any) => {
-            axios.post('http://localhost:3001/api/registerUser', {
-              data: values
-            })
-              .then((response: any) => {
-                console.log(response.data);
-                // Handle data
-              })
-              .catch((error: any) => {
-                console.log(error, "40...");
-              })
+            userReg(values)
+            // axios.post('http://localhost:3001/api/registerUser', {
+            //   data: values
+            // })
+            //   .then((response: any) => {
+            //     console.log(response.data);
+            //     // Handle data
+            //   })
+            //   .catch((error: any) => {
+            //     console.log(error, "40...");
+            //   })
           }}>
           {({ errors, touched, setFieldValue, values, handleBlur, isSubmitting, setFieldTouched }) => {
             { console.log(errors, touched, "30....") }

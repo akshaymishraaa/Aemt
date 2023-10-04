@@ -1,0 +1,194 @@
+[
+    {
+        "monthExpen": {
+            "name": "january",
+            "value": 45000
+        },
+        "catogorySplit": [
+            {
+                "name": "employeeSalary",
+                "value": 56868
+            },
+            {
+                "name": "maintainance",
+                "value": 90000
+            },
+            {
+                "name": "Transportation",
+                "value": 90000
+            },
+            {
+                "name": "Surcharges",
+                "value": 90000
+            }
+        ]
+    },
+    {
+        "monthExpen": {
+            "name": "Febuary",
+            "value": 45000
+        },
+        "catogorySplit": [
+            {
+                "name": "employeeSalary",
+                "value": 56868
+            },
+            {
+                "name": "maintainance",
+                "value": 90000
+            },
+            {
+                "name": "Transportation",
+                "value": 90000
+            },
+            {
+                "name": "Surcharges",
+                "value": 90000
+            }
+        ]
+    },
+    {
+        "monthExpen": {
+            "name": "March",
+            "value": 45000
+        },
+        "catogorySplit": [
+            {
+                "name": "employeeSalary",
+                "value": 56868
+            },
+            {
+                "name": "maintainance",
+                "value": 90000
+            },
+            {
+                "name": "Transportation",
+                "value": 90000
+            },
+            {
+                "name": "Surcharges",
+                "value": 90000
+            }
+        ]
+    },
+    {
+        "monthExpen": {
+            "name": "April",
+            "value": 45000
+        },
+        "catogorySplit": [
+            {
+                "name": "employeeSalary",
+                "value": 56868
+            },
+            {
+                "name": "maintainance",
+                "value": 90000
+            },
+            {
+                "name": "Transportation",
+                "value": 90000
+            },
+            {
+                "name": "Surcharges",
+                "value": 90000
+            }
+        ]
+    },
+    {
+        "monthExpen": {
+            "name": "May",
+            "value": 45000
+        },
+        "catogorySplit": [
+            {
+                "name": "employeeSalary",
+                "value": 56868
+            },
+            {
+                "name": "maintainance",
+                "value": 90000
+            },
+            {
+                "name": "Transportation",
+                "value": 90000
+            },
+            {
+                "name": "Surcharges",
+                "value": 90000
+            }
+        ]
+    },
+    {
+        "monthExpen": {
+            "name": "June",
+            "value": 45000
+        },
+        "catogorySplit": [
+            {
+                "name": "employeeSalary",
+                "value": 56868
+            },
+            {
+                "name": "maintainance",
+                "value": 90000
+            },
+            {
+                "name": "Transportation",
+                "value": 90000
+            },
+            {
+                "name": "Surcharges",
+                "value": 90000
+            }
+        ]
+    },
+    {
+        "monthExpen": {
+            "name": "July",
+            "value": 45000
+        },
+        "catogorySplit": [
+            {
+                "name": "employeeSalary",
+                "value": 56868
+            },
+            {
+                "name": "maintainance",
+                "value": 90000
+            },
+            {
+                "name": "Transportation",
+                "value": 90000
+            },
+            {
+                "name": "Surcharges",
+                "value": 90000
+            }
+        ]
+    },
+    {
+        "monthExpen": {
+            "name": "August",
+            "value": 45000
+        },
+        "catogorySplit": [
+            {
+                "name": "employeeSalary",
+                "value": 56868
+            },
+            {
+                "name": "maintainance",
+                "value": 90000
+            },
+            {
+                "name": "Transportation",
+                "value": 90000
+            },
+            {
+                "name": "Surcharges",
+                "value": 90000
+            }
+        ]
+    }
+]
