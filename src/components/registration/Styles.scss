@@ -84,18 +84,36 @@
                     display: flex;
                     margin-bottom: 10px;
 
-                    .fieldErr {
-                        border-bottom: 1px solid red;
-                    }
+
 
                     .reactSelect {
                         width: 90%;
 
+
+                        .fieldErr {
+                            border-bottom: 1.5px solid red;
+                        }
+
+                        .selectField {
+                            border-bottom: 1.5px solid lightblue;
+                        }
+
                         .css-b62m3t-container {
+
+
                             .css-13cymwt-control {
                                 background: none;
                                 border: none;
-                                border-bottom: 1.5px solid lightskyblue;;
+
+                                &:hover {
+                                    background: none !important;
+                                }
+
+                                &:focus {
+                                    background: none !important;
+                                }
+
+                                // border-bottom: 1.5px solid lightskyblue;
 
                                 .css-1fdsijx-ValueContainer {
                                     .css-1dimb5e-singleValue {
@@ -104,10 +122,6 @@
 
                                     .css-1jqq78o-placeholder {
                                         color: black;
-                                    }
-
-                                    .css-qbdosj-Input {
-                                        background: none;
                                     }
                                 }
 

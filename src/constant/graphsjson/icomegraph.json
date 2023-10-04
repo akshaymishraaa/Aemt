@@ -1,0 +1,242 @@
+[
+    {
+        "month": {
+            "name": "january",
+            "Income": 150000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 3449
+            },
+            {
+                "name": "class2",
+                "value": 4000
+            },
+            {
+                "name": "class3",
+                "value": 5000
+            }
+        ]
+    },
+    {
+        "month": {
+            "name": "Febuary",
+            "Income": 180000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 5009
+            },
+            {
+                "name": "class2",
+                "value": 2000
+            },
+            {
+                "name": "class3",
+                "value": 3000
+            }
+        ]
+    },
+    {
+        "month": {
+            "name": "March",
+            "Income": 170000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 4009
+            },
+            {
+                "name": "class2",
+                "value": 7000
+            },
+            {
+                "name": "class3",
+                "value": 8000
+            }
+        ]
+    },
+    {
+        "month": {
+            "name": "April",
+            "Income": 120000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 6449
+            },
+            {
+                "name": "class2",
+                "value": 7000
+            },
+            {
+                "name": "class3",
+                "value": 4000
+            }
+        ]
+    },
+    {
+        "month": {
+            "name": "May",
+            "Income": 10000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 1449
+            },
+            {
+                "name": "class2",
+                "value": 4000
+            },
+            {
+                "name": "class3",
+                "value": 5000
+            }
+        ]
+    },
+    {
+        "month": {
+            "name": "june",
+            "Income": 150000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 5000
+            },
+            {
+                "name": "class2",
+                "value": 4000
+            },
+            {
+                "name": "class3",
+                "value": 6000
+            }
+        ]
+    },
+    {
+        "month": {
+            "name": "July",
+            "Income": 9000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 3000
+            },
+            {
+                "name": "class2",
+                "value": 3000
+            },
+            {
+                "name": "class3",
+                "value": 3000
+            }
+        ]
+    },
+    {
+        "month": {
+            "name": "August",
+            "Income": 5000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 1000
+            },
+            {
+                "name": "class2",
+                "value": 1000
+            },
+            {
+                "name": "class3",
+                "value": 3000
+            }
+        ]
+    },
+    {
+        "month": {
+            "name": "September",
+            "Income": 90000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 8449
+            },
+            {
+                "name": "class2",
+                "value": 7000
+            },
+            {
+                "name": "class3",
+                "value": 7000
+            }
+        ]
+    },
+    {
+        "month": {
+            "name": "Octomber",
+            "Income": 16000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 7449
+            },
+            {
+                "name": "class2",
+                "value": 5000
+            },
+            {
+                "name": "class3",
+                "value": 5000
+            }
+        ]
+    },
+    {
+        "month": {
+            "name": "november",
+            "Income": 170000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 3449
+            },
+            {
+                "name": "class2",
+                "value": 4000
+            },
+            {
+                "name": "class3",
+                "value": 57000
+            }
+        ]
+    },
+    {
+        "month": {
+            "name": "December",
+            "Income": 19000
+        },
+        "catagorySplit": [
+            {
+                "name": "class1",
+                "value": 5000
+            },
+            {
+                "name": "class2",
+                "value": 6000
+            },
+            {
+                "name": "class3",
+                "value": 9000
+            }
+        ]
+    }
+]
