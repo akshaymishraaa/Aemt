@@ -6,7 +6,7 @@ export const registerOrganization: any = (props: any) => {
     console.log(props, "5....")
     return ((dispatch: any) => {
         fetch({
-            url: `${url}/reregisterUser`,
+            url: `${url}/registerUser`,
             method: 'POST',
             data: props
         }).then((res: any) => {
