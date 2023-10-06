@@ -53,8 +53,6 @@ function Registration() {
         // borderColor: state.isFocused ? "red" : "blue"
       },
     }),
-
-
     singleValue: (provided: any, state: any) => ({
       ...provided,
       color: 'white',
@@ -64,11 +62,7 @@ function Registration() {
       ...provided,
       color: 'black',
     })
-
-
   };
-
-
   const [formStates, setformStates] = useState<{ organizationType: String, country: String, state: String, city: String, empId: String, formSubmitted: Boolean }>
     ({
       organizationType: "",
@@ -103,7 +97,7 @@ function Registration() {
 
   }
   return (
-    <div className='RegistrationPageMain col-12 p-0'>
+    <div className=' row RegistrationPageMain col-12 p-0 m-0'>
       <p className='mainHeading'>ORGANIZATION REGISTRATION</p>
 
       {/* <p className='backToSighnIn' onClick={() => { handleBackToSighnIn() }}><ArrowBackOutlinedIcon />Back To SighnIn </p> */}
@@ -197,6 +191,7 @@ function Registration() {
                         setformStates({ ...formStates, organizationType: e })
                       }}
                       styles={styles}
+
                       placeHolder={"Organization Type"}
                       options={orgTypeOptions}
                       values={formStates?.organizationType}

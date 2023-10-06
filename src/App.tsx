@@ -11,11 +11,11 @@ function App() {
   return (
     <React.Fragment>
       {/* <Navbar /> */}
-      <div className="container-fluid">
-        <div className="row p-0">
+      <div className="container-fluid p-0">
+      
 
           <Routes />
-        </div>
+    
 
       </div>
     </React.Fragment>
