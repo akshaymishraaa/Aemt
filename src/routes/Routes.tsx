@@ -2,8 +2,6 @@ import React, { Suspense } from "react";
 import {
   Route,
   Routes as Routing,
-  useRoutes,
-  BrowserRouter,
 } from "react-router-dom";
 import Registration from "../components/registration/Registration";
 import Login from "../components/login/Login";
@@ -13,10 +11,10 @@ import { useSelector } from "react-redux";
 import PrivateRoute from "./PrivateRoute";
 // import Dashboard from "../components/dashboard";
 import { privateRoutes } from "../constants/lazyRoutes";
-function Routes() {
+function Root() {
   const { isAuthenticated } = useSelector((state: any) => state.application);
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
       <Suspense fallback={<LoadingScreen />}>
         <Routing>
           <Route
@@ -35,13 +33,6 @@ function Routes() {
               </PublicRoute>
             }
           ></Route>
-          {/* <Route path="/dashboard" element={
-            <PrivateRoute isAuthenticated={isAuthenticated} to="/">
-              <Dashboard />
-            </PrivateRoute>
-          }>
-
-          </Route> */}
           <>
             {privateRoutes?.map((item: any, index: number) => {
               return (
@@ -75,8 +66,8 @@ function Routes() {
 
         </Routing>
       </Suspense>
-    </BrowserRouter>
+    // </BrowserRouter>
   );
 }
 
-export default Routes;
+export default Root;
