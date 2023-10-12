@@ -18,6 +18,8 @@ import ListItemText from '@mui/material/ListItemText';
 import { IconList } from './IconList';
 import NavbarIcons from '../../constant/DashboardIcons.json'
 import Routes from '../../routes/Routes';
+import { Outlet } from 'react-router-dom';
+import Dashboard from '../dashboard';
 
 const drawerWidth = 240;
 
@@ -106,79 +108,85 @@ export default function Navbar() {
         // alert('click')
     }
     return (
-        <Box sx={{ display: 'flex' }}>
-            {/* <CssBaseline /> */}
-            <AppBar position="fixed" open={open} >
-                <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        sx={{
-                            marginRight: 5,
-                            ...(open && { display: 'none' }),
-                        }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Educational Enterprise Management
-                    </Typography>
-                    <div className=''>
-                        user
-                    </div>
-                </Toolbar>
-            </AppBar>
-            <Drawer variant="permanent" open={open}>
-                <DrawerHeader sx={{ bgcolor: '#0d6efd' }}>
-                    <Typography variant="h6" noWrap component="div">
-                        St. Xavier school
-                    </Typography>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                    </IconButton>
-                </DrawerHeader>
-                <Divider />
-                <List className='bg-light'>
-                    {
-                        NavbarIcons.map((item: any) => {
-                            const Component = IconList[item.icon];
-                            if (item.icon && item.icon !== "") {
-                                return <ListItem
-                                    key={'dashboard'}
-                                    disablePadding
-                                    sx={{ display: 'block' }}
-                                    onClick={(item: any) => handleClick(item)}
-                                >
-                                    <ListItemButton
-                                        sx={{
-                                            minHeight: 48,
-                                            justifyContent: open ? 'initial' : 'center',
-                                            px: 2.5,
-                                        }}
+        <div>
+            <Box sx={{ display: 'flex' }}>
+                {/* <CssBaseline /> */}
+                <AppBar position="fixed" open={open} >
+                    <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={handleDrawerOpen}
+                            edge="start"
+                            sx={{
+                                marginRight: 5,
+                                ...(open && { display: 'none' }),
+                            }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" noWrap component="div">
+                            Educational Enterprise Management
+                        </Typography>
+                        <div className=''>
+                            user
+                        </div>
+                    </Toolbar>
+                </AppBar>
+                <Drawer variant="permanent" open={open}>
+                    <DrawerHeader sx={{ bgcolor: '#0d6efd' }}>
+                        <Typography variant="h6" noWrap component="div">
+                            St. Xavier school
+                        </Typography>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                        </IconButton>
+                    </DrawerHeader>
+                    <Divider />
+                    <List className='bg-light'>
+                        {
+                            NavbarIcons.map((item: any, index: any) => {
+                                const Component = IconList[item.icon];
+                                if (item.icon && item.icon !== "") {
+                                    return <ListItem
+                                        key={'index'}
+                                        disablePadding
+                                        sx={{ display: 'block' }}
+                                        onClick={(item: any) => handleClick(item)}
                                     >
-                                        <ListItemIcon
+
+                                        <ListItemButton
                                             sx={{
-                                                minWidth: 10,
-                                                mr: open ? 3 : 'auto',
-                                                justifyContent: 'center',
+                                                minHeight: 48,
+                                                justifyContent: open ? 'initial' : 'center',
+                                                px: 2.5,
                                             }}
                                         >
-                                            <Component />
-                                        </ListItemIcon>
-                                        <ListItemText primary={item.label} sx={{ opacity: open ? 1 : 0 }} />
-                                    </ListItemButton>
-                                </ListItem>
-                            }
-                        })
-                    }
-                </List>
-                <Divider />
-            </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                <DrawerHeader />
+                                            <ListItemIcon
+                                                sx={{
+                                                    minWidth: 10,
+                                                    mr: open ? 3 : 'auto',
+                                                    justifyContent: 'center',
+                                                }}
+                                            >
+                                                <Component />
+                                            </ListItemIcon>
+                                            <ListItemText primary={item.label} sx={{ opacity: open ? 1 : 0 }} />
+                                        </ListItemButton>
+                                    </ListItem>
+                                }
+                            })
+                        }
+                    </List>
+                    <Divider />
+                </Drawer>
+                <Box component="main" sx={{ flexGrow: 1, p: 3 }} className='p-0'>
+                    <DrawerHeader />
+                    <Dashboard />
+                </Box>
             </Box>
-        </Box>
+        </div>
+
+
     );
 }

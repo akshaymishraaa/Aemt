@@ -12,11 +12,7 @@ function App() {
     <React.Fragment>
       {/* <Navbar /> */}
       <div className="container-fluid p-0">
-      
-
           <Routes />
-    
-
       </div>
     </React.Fragment>
   );

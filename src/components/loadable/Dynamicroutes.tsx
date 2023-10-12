@@ -26,7 +26,7 @@ const dynamicRoutes = [
   {
     name: 'Home',
     pathName: '/home',
-    component: lazy(() => import("../dashboard/Dashboard")),
+    component: lazy(() => import("../dashboard/index")),
     navigateTo: '/home'
   },
   // {
