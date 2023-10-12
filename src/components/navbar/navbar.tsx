@@ -180,5 +180,7 @@ export default function Navbar() {
                 <Root />
             </Box>
         </Box>
+
+
     );
 }

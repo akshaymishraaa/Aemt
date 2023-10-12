@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/navbar/navbar";
 
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <React.Fragment>
       <div className="container-fluid p-0">
         <React.Suspense fallback={<div>Loading....</div>}>
-          <Navbar />
+          <Navbar/>
         </React.Suspense>
       </div>
     </React.Fragment>
