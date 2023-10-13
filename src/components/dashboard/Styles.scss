@@ -1,18 +1,22 @@
 .dashboardMain {
     height: 100vh;
-    background-color: rgba(22, 17, 58, 255);
+    background-color: rgba(104, 155, 184, 255);
     padding: 15px;
 
     .graphsContainer {
 
 
         .expensesGraphMain {
-            background: rgba(89, 91, 130, 255);
+            background: rgba(187, 206, 217, 255);
+            opacity: 0.7;
+            // background-color: transparent;
             margin: 5px;
             width: 49% !important;
+            border-radius: 15px;
+            padding: 10px;
 
             .GrpahHeading {
-                color: antiquewhite;
+                color: green;
                 font-weight: 400;
                 font-size: medium;
                 padding: 0px;
@@ -25,9 +29,9 @@
                 .detailsCard {
                     width: 30%;
                     height: 50px;
-                    background-color: white;
+                    background-color: rgba(204, 204, 204, 255);
                     text-align: center;
-                    color: wheat;
+                    color: green;
                     border-radius: 5px;
                     font-size: 13px;
                 }

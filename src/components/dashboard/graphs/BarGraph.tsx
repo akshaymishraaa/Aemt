@@ -6,27 +6,10 @@ import CustomDialog from '../../../common/dialogBox/CustomDialog';
 import { Navigate } from 'react-router';
 // import 
 type EChartsOption = echarts.EChartsOption;
-const BarGraph = () => {
-  // var option: EChartsOption;
-  const [showCategorySplit, setShowCategroySplit] = useState(false)
-  var MothCategories: string[] = []
-  var expenses: number[] = []
-  ExpensesDetails?.map((item: any, index: number) => {
-    MothCategories.push(item?.monthExpen?.name)
-    expenses.push(item?.monthExpen?.value)
-
-  })
-
-  const HandleClick = (props: any) => {
-    setShowCategroySplit(true)
-  }
-  const OpenCustomDialog = () => {
-    return (
-      <CustomDialog />
-    )
-  }
-
+const BarGraph = (props: any) => {
+  const { handleBarClick, barData, title } = props
   var option: EChartsOption = {
+    // title: {title},
     tooltip: {
       trigger: 'axis',
       axisPointer: {
@@ -42,7 +25,7 @@ const BarGraph = () => {
     xAxis: [
       {
         type: 'category',
-        data: MothCategories,
+        data: barData?.categories,
         axisTick: {
           alignWithLabel: true
         }
@@ -58,7 +41,7 @@ const BarGraph = () => {
         name: 'Month Expenses',
         type: 'bar',
         barWidth: '60%',
-        data: expenses
+        data: barData?.values
       }
     ]
   };
@@ -66,16 +49,7 @@ const BarGraph = () => {
   return (
     <>
       <div className='mainChartsContainer w-100'>
-        <ReactECharts option={option} onEvents={{ 'click': HandleClick }} />
-        {
-          (showCategorySplit) ? <CustomDialog
-            open={showCategorySplit}
-            setShowCategroySplit={setShowCategroySplit}
-            title={'Catogory Wise Expenditure Of Month:'}
-          >
-            <p>Expenditure of Every Category </p>
-          </CustomDialog> : null
-        }
+        <ReactECharts option={option} onEvents={{ 'click': handleBarClick }} />
       </div>
     </>
 
