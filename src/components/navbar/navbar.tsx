@@ -105,7 +105,7 @@ export default function Navbar() {
     };
     return (
         <Box sx={{ display: 'flex' }}>
-            {/* <CssBaseline /> */}
+
             <AppBar position="fixed" open={open} >
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <IconButton
@@ -175,7 +175,7 @@ export default function Navbar() {
                 </List>
                 <Divider />
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Box component="main" sx={{ flexGrow: 1 }}>
                 <DrawerHeader />
                 <Root />
             </Box>

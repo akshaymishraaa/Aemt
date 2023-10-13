@@ -1,0 +1,40 @@
+.dashboardMain {
+    height: 100vh;
+    background-color: rgba(22, 17, 58, 255);
+    padding: 15px;
+
+    .graphsContainer {
+
+
+        .expensesGraphMain {
+            background: rgba(89, 91, 130, 255);
+            margin: 5px;
+            width: 49% !important;
+
+            .GrpahHeading {
+                color: antiquewhite;
+                font-weight: 400;
+                font-size: medium;
+                padding: 0px;
+            }
+
+            .cardsContainer {
+                display: flex;
+                justify-content: space-around;
+
+                .detailsCard {
+                    width: 30%;
+                    height: 50px;
+                    background-color: white;
+                    text-align: center;
+                    color: wheat;
+                    border-radius: 5px;
+                    font-size: 13px;
+                }
+
+            }
+
+        }
+
+    }
+}
