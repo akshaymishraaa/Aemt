@@ -8,38 +8,55 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-export default function CustomDialog() {
+export default function CustomDialog(props: any) {
+    console.log(props, "12...")
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         '& .MuiDialogContent-root': {
             padding: theme.spacing(2),
+            width: props?.width,
+            fontSize: "14px"
         },
         '& .MuiDialogActions-root': {
             padding: theme.spacing(1),
         },
+        '& .MuiTypography-root': {
+            fontSize: "13px",
+            margin: "2px",
+            width: "90%",
+            padding: "5px",
+            textAlign: "center",
+
+        },
+        '& .MuiButtonBase-root': {
+            width: "10%",
+            top: "0px",
+            marginLeft: "5px",
+            fontSize: "13px",
+        },
+
     }));
 
-    const [open, setOpen] = React.useState(true);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    const [open, setOpen] = React.useState(props?.open);
     const handleClose = () => {
         setOpen(false);
+        props?.setShowCategroySplit(false)
     };
 
     return (
         <div>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Open dialog
-            </Button>
             <BootstrapDialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
                 open={open}
+                className='CustomDialog'
+
             >
-                <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                    Modal title
-                </DialogTitle>
+                <div>
+
+                    <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                        {props?.title}
+                    </DialogTitle>
+                </div>
                 <IconButton
                     aria-label="close"
                     onClick={handleClose}
@@ -53,26 +70,16 @@ export default function CustomDialog() {
                     <CloseIcon />
                 </IconButton>
                 <DialogContent dividers>
-                    <Typography gutterBottom>
-                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                        dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                        consectetur ac, vestibulum at eros.
-                    </Typography>
-                    <Typography gutterBottom>
-                        Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                        Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-                    </Typography>
-                    <Typography gutterBottom>
-                        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-                        magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-                        ullamcorper nulla non metus auctor fringilla.
-                    </Typography>
+                    {props.children}
                 </DialogContent>
-                <DialogActions>
-                    <Button autoFocus onClick={handleClose}>
-                        Save changes
-                    </Button>
-                </DialogActions>
+                {
+                    props?.actions ? <DialogActions>
+                        <Button autoFocus onClick={handleClose}>
+                            Submit
+                        </Button>
+                    </DialogActions> : null
+                }
+
             </BootstrapDialog>
         </div>
     );

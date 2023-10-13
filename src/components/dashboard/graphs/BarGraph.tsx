@@ -1,25 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactECharts from 'echarts-for-react';
 import * as echarts from 'echarts';
 import ExpensesDetails from '../../../constant/graphsjson/expenses.json';
+import CustomDialog from '../../../common/dialogBox/CustomDialog';
+import { Navigate } from 'react-router';
 // import 
 type EChartsOption = echarts.EChartsOption;
-const BarGraph = () => {
-  // var option: EChartsOption;
-  var MothCategories: string[] = []
-  var expenses: number[] = []
-  ExpensesDetails?.map((item: any, index: number) => {
-    MothCategories.push(item?.monthExpen?.name)
-    expenses.push(item?.monthExpen?.value)
-
-  })
-
-  const HandleClick = (props: any) => {
-    console.log("hiiii", MothCategories)
-
-  }
-
+const BarGraph = (props: any) => {
+  const { handleBarClick, barData, title } = props
   var option: EChartsOption = {
+    // title: {title},
     tooltip: {
       trigger: 'axis',
       axisPointer: {
@@ -35,7 +25,7 @@ const BarGraph = () => {
     xAxis: [
       {
         type: 'category',
-        data: MothCategories,
+        data: barData?.categories,
         axisTick: {
           alignWithLabel: true
         }
@@ -48,19 +38,18 @@ const BarGraph = () => {
     ],
     series: [
       {
-        name: 'Direct',
+        name: 'Month Expenses',
         type: 'bar',
         barWidth: '60%',
-        data: expenses
+        data: barData?.values
       }
     ]
   };
   // option && myChart.setOption(option);
   return (
     <>
-      <div style={{ width: "600", height: "400" }}>
-
-        <ReactECharts option={option} onEvents={{ 'click': HandleClick }} />
+      <div className='mainChartsContainer w-100'>
+        <ReactECharts option={option} onEvents={{ 'click': handleBarClick }} />
       </div>
     </>
 
