@@ -5,6 +5,8 @@ import './style/Styles.scss';
 import { FilledInput, FormControl, IconButton, InputAdornment, InputLabel, TextField } from "@mui/material";
 import { VisibilityOff } from "@mui/icons-material";
 import { Visibility } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { Actiontypes } from "../../types/ActionTypes";
 
 interface Values {
   userName: string;
@@ -13,6 +15,7 @@ interface Values {
 
 function Login() {
   const navigate = useNavigate();
+  const dispatch =  useDispatch();
 
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -35,7 +38,9 @@ function Login() {
                   password: "",
                 }}
                 onSubmit={(values: any) => {
+                  dispatch({type:Actiontypes.IS_USER_AUTHINTCATED , payload:true})
                  navigate('/home')
+                 
                 }}
               >
                 <div className=" d-flex justify-content-center">
