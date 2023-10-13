@@ -19,6 +19,7 @@ import Root from '../../routes/Routes';
 
 import { NavLink, useLocation } from 'react-router-dom';
 import { navigationItem } from '../../constants/navigationBarItem';
+import { useSelector } from 'react-redux';
 
 const drawerWidth = 200;
 
@@ -95,6 +96,8 @@ export default function Navbar() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const location = useLocation();
+    const { isAuthenticated } = useSelector((state: any) => state.application);
+    console.log('100', isAuthenticated)
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -106,7 +109,7 @@ export default function Navbar() {
     return (
         <Box sx={{ display: 'flex' }}>
             {/* <CssBaseline /> */}
-            <AppBar position="fixed" open={open} >
+            {isAuthenticated && <AppBar position="fixed" open={open} >
                 <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <IconButton
                         color="inherit"
@@ -127,8 +130,8 @@ export default function Navbar() {
                         user
                     </div>
                 </Toolbar>
-            </AppBar>
-            <Drawer variant="permanent" open={open}>
+            </AppBar>}
+            {isAuthenticated && <Drawer variant="permanent" open={open}>
                 <DrawerHeader sx={{ bgcolor: '#0d6efd' }}>
                     <Typography variant="h6" noWrap component="div">
                         St. Xavier school
@@ -174,7 +177,7 @@ export default function Navbar() {
                     ))}
                 </List>
                 <Divider />
-            </Drawer>
+            </Drawer>}
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
                 <Root />
