@@ -1,13 +1,26 @@
 .dashboardMain {
     height: 100vh;
-    background-color: rgba(104, 155, 184, 255);
+    background-color: rgba(242, 237, 243, 255);
     padding: 15px;
 
     .graphsContainer {
+        .incomestats {
+            background: rgba(207,
+                    208,
+                    230);
+            opacity: 0.7;
+
+        }
+
+        .expensesStats {
+            background: rgba(97, 219, 202, 255);
+            opacity: 0.7;
+
+        }
 
 
-        .expensesGraphMain {
-            background: rgba(187, 206, 217, 255);
+        .barGraphMain {
+            // background: rgba(97, 219, 202, 255);
             opacity: 0.7;
             // background-color: transparent;
             margin: 5px;
@@ -16,7 +29,8 @@
             padding: 10px;
 
             .GrpahHeading {
-                color: green;
+                color: White;
+                // color: green;
                 font-weight: 400;
                 font-size: medium;
                 padding: 0px;
@@ -27,13 +41,14 @@
                 justify-content: space-around;
 
                 .detailsCard {
+                    background-color: rgba(61, 157, 234, 255);
                     width: 30%;
                     height: 50px;
-                    background-color: rgba(204, 204, 204, 255);
                     text-align: center;
-                    color: green;
+                    color: white;
                     border-radius: 5px;
-                    font-size: 13px;
+                    font-size: 10px;
+                    font-weight: bold;
                 }
 
             }
