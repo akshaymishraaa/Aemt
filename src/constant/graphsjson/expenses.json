@@ -1,7 +1,7 @@
 [
     {
         "monthExpen": {
-            "name": "january",
+            "name": "January",
             "value": 45000
         },
         "catogorySplit": {
@@ -11,7 +11,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 15000,
                 10000,
                 15000,
@@ -31,7 +31,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 15000,
                 18000,
                 16000,
@@ -51,7 +51,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 8000,
                 12000,
                 6000,
@@ -71,7 +71,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 25000,
                 18000,
                 12000,
@@ -91,7 +91,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 12000,
                 12000,
                 6000,
@@ -111,7 +111,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 40000,
                 12000,
                 12000,
@@ -131,7 +131,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 15000,
                 10000,
                 15000,
@@ -151,7 +151,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 29000,
                 19000,
                 4000,
@@ -171,7 +171,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 15000,
                 10000,
                 15000,
@@ -191,7 +191,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 15000,
                 10000,
                 15000,
@@ -211,7 +211,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 13000,
                 13000,
                 13000,
@@ -231,7 +231,7 @@
                 "Transportation",
                 "Surcharges"
             ],
-            "expense": [
+            "values": [
                 7000,
                 6000,
                 6000,

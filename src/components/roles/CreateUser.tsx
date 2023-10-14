@@ -2,6 +2,8 @@ import { Alert, Button } from "@mui/material";
 import React from "react";
 import CustomDialog from "../../common/dialogBox/CustomDialog";
 import { Formik, Field, Form } from "formik";
+import ReactSelect from "../../common/selectBox/ReactSelect";
+import { rolesOption, tabOptions } from "./SelectStaticOption";
 
 function CreateUser() {
   const [open, setOpen] = React.useState(false);
@@ -79,6 +81,28 @@ function CreateUser() {
                       name="Password"
                       placeholder="Enter Your Password"
                       type="password"
+                    />
+                  </div>
+                </div>
+                <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  <label htmlFor="firstName">Role</label>
+                  <div>
+                    <ReactSelect
+                      name={"role"}
+                      id={"role"}
+                      placeHolder={"role"}
+                      options={rolesOption}
+                    />
+                  </div>
+                </div>
+                <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  <label htmlFor="firstName">Allowed tabs</label>
+                  <div>
+                  <ReactSelect
+                      name={"tabs"}
+                      id={"tabs"}
+                      placeHolder={"Allowed tabs"}
+                      options={tabOptions}
                     />
                   </div>
                 </div>

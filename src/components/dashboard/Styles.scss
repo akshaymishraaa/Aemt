@@ -1,0 +1,97 @@
+.dashboardMain {
+    height: 100vh;
+    background-color: rgba(242, 237, 243, 0.8);
+    padding: 15px;
+
+    .graphsContainer {
+        .incomestats {
+            background: rgba(207, 208, 230);
+            opacity: 1;
+
+            .GrpahHeading {
+                color: black;
+            }
+
+            .detailsCard {
+                color: black;
+            }
+
+        }
+
+
+
+        .expensesStats {
+            background: rgba(97, 219, 202, 255);
+            opacity: 1;
+            // position: relative;
+
+            // .overlay {
+            //     height: 100%;
+            //     width: 100%;
+            //     position: absolute;
+            //     display: flex;
+            //     margin: auto;
+            //     justify-content: center;
+            //     top: 0px;
+            //     left: 0px;
+            //     flex-direction: column;
+            //     text-align: center;
+            //     background: rgba(183, 189, 185, 0.5);
+
+            //     &:hover {
+            //         display: none;
+            //     }
+            // }
+
+            .GrpahHeading {
+                color: white;
+            }
+
+            .detailsCard {
+                color: aliceblue;
+            }
+
+        }
+
+
+        .barGraphMain {
+            // background: rgba(97, 219, 202, 255);
+            // background-color: transparent;
+            border: 1px solid rgba(205, 114, 73, 255);
+            margin: 5px;
+            width: 49% !important;
+            border-radius: 15px;
+            padding: 10px;
+
+            // &:hover~.overlay {
+            //     display: none;
+            // }
+
+            .GrpahHeading {
+                // color: White;
+                // color: green;
+                font-weight: bolder;
+                font-size: medium;
+                padding: 0px;
+            }
+
+            .cardsContainer {
+                display: flex;
+                justify-content: space-around;
+
+                .detailsCard {
+                    background-color: rgba(61, 157, 234, 255);
+                    width: 30%;
+                    height: 50px;
+                    text-align: center;
+                    border-radius: 5px;
+                    font-size: 10px;
+                    font-weight: bold;
+                }
+
+            }
+
+        }
+
+    }
+}

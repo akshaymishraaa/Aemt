@@ -1,9 +1,10 @@
 import React from 'react'
-import CustomDialog from '../../common/dialogBox/CustomDialog'
-import SuperUserDashBoard from './superUserDashBoard/SuperUserDashBoard'
+import SuperUserDashBoard from './superUserDashBoard/SuperUserDashBoard';
+import './Styles.scss'
 
-export default function Dashboard() {
+const Dashboard = () => {
   return (
-    <div><SuperUserDashBoard /></div>
+    <div className='dashboardMain'><SuperUserDashBoard /></div>
   )
 }
+export default Dashboard

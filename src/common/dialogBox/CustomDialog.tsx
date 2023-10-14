@@ -13,17 +13,30 @@ export default function CustomDialog(props:any) {
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         '& .MuiDialogContent-root': {
             padding: theme.spacing(2),
+            width: props?.width,
+            fontSize: "14px"
         },
         '& .MuiDialogActions-root': {
             padding: theme.spacing(1),
         },
+        '& .MuiTypography-root': {
+            fontSize: "13px",
+            margin: "2px",
+            width: "90%",
+            padding: "5px",
+            textAlign: "center",
+
+        },
+        '& .MuiButtonBase-root': {
+            width: "10%",
+            top: "0px",
+            marginLeft: "5px",
+            fontSize: "13px",
+        },
+
     }));
 
-    const [open, setOpen] = React.useState(true);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    const [open, setOpen] = React.useState(props?.open);
     const handleClose = () => {
         props.onClose();
     };
