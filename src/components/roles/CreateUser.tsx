@@ -14,7 +14,7 @@ function CreateUser() {
   };
 
   const submitHandler = (values: any) => {
-    alert("...");
+    console.log("17...", values);
   };
 
   return (
@@ -27,7 +27,7 @@ function CreateUser() {
         open={open}
         onClose={onClose}
         actionType={"Submit"}
-        maxWidth="md"
+        maxWidth="lg"
         fullWidth={true}
         form={"createUser"}
         onSubmitHandler={() => {}}
@@ -40,8 +40,49 @@ function CreateUser() {
             onSubmit={(values: any) => submitHandler(values)}
           >
             <Form id="createUser">
-              <label htmlFor="firstName">First Name</label>
-              <Field id="firstName" name="firstName" placeholder="Jane" />
+              <div className="row ">
+                <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  <label htmlFor="firstName">First Name</label>
+                  <div>
+                    <Field
+                      id="firstName"
+                      name="firstName"
+                      placeholder="Enter Your First Name"
+                    />
+                  </div>
+                </div>
+                <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  <label htmlFor="firstName">Last Name</label>
+                  <div>
+                    <Field
+                      id="lastName"
+                      name="lastName"
+                      placeholder="Enter Your Last Name"
+                    />
+                  </div>
+                </div>
+                <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  <label htmlFor="firstName">Email</label>
+                  <div>
+                    <Field
+                      id="email"
+                      name="email"
+                      placeholder="Enter Your email"
+                    />
+                  </div>
+                </div>
+                <div className="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                  <label htmlFor="firstName">Pasword</label>
+                  <div>
+                    <Field
+                      id="password"
+                      name="Password"
+                      placeholder="Enter Your Password"
+                      type="password"
+                    />
+                  </div>
+                </div>
+              </div>
             </Form>
             {/* <button type="submit" onSubmit={submitHandler} >Submit</button> */}
           </Formik>

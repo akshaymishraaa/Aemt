@@ -57,7 +57,7 @@ export default function CustomDialog(props:any) {
                 <DialogActions>
                     {console.log("58...",props.actionType)}
                     {props.actionType==='Close' ?  <Button autoFocus onClick={handleClose}>Close</Button> : <Button autoFocus onClick={handleClose}>cancel</Button>}
-                    {props.actionType && props.actionType!=='Close' && <Button type='submit' autoFocus onClick={props.onSubmitHandler}>
+                    {props.actionType && props.actionType!=='Close' && <Button type='submit' form={props.form} autoFocus onClick={props.onSubmitHandler}>
                     {props.actionType==='Submit' ? 'Submit' : props.actionType=== 'Update '? 'Update' : props.actionType}
                     </Button> }
                 </DialogActions>
