@@ -88,10 +88,10 @@ function Registration() {
     )
 
   }
-  useEffect(() => {
-    dispatch(registerOrganization())
+  // useEffect(() => {
+  //   dispatch(registerOrganization())
 
-  }, [])
+  // }, [])
   const userReg = (values: any) => {
     dispatch(registerOrganization(values))
 
