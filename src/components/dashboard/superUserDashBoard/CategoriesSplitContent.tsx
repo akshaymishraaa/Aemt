@@ -3,7 +3,7 @@ import CustomDialog from '../../../common/dialogBox/CustomDialog'
 import HorizontalBarGraph from '../graphs/HoriZontalBarGraph'
 
 const CategoriesSplitContent = (props: any) => {
-    const { categoriesSplit, setShowCategroySplit, showCategorySplit,title } = props
+    const { categoriesSplit, setShowCategroySplit, showCategorySplit, title } = props
     return (
         <CustomDialog
             open={showCategorySplit}
@@ -12,7 +12,7 @@ const CategoriesSplitContent = (props: any) => {
             width={"500px"}
 
         >
-            <HorizontalBarGraph data={categoriesSplit?.data} />
+            <HorizontalBarGraph data={categoriesSplit?.data} className={"categoryBarGraph"} />
         </CustomDialog>
 
     )

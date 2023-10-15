@@ -24,8 +24,10 @@ const IncomeGraph = () => {
     return (
         <>
             <div className='col-6 barGraphMain incomestats'>
-                <p className='GrpahHeading'> Income Of Acedamic Year</p>
-                <div className='w-100 cardsContainer'>
+                <div className='GrpahHeading'>
+                    <p > Income Of Acedamic Year</p>
+                </div>
+                <div className='cardsContainer'>
                     <div className='detailsCard'>
                         <span>Major Income Generated From:</span>
                     </div>
@@ -37,7 +39,7 @@ const IncomeGraph = () => {
                     </div>
                 </div>
                 <BarGraph handleBarClick={HandleClick} barData={{ categories: MothCategories, values: income }} customOptions={{ color: "#0af011", labelColor: "#262120" }} title={"Monthly Expenses Details"} />
-            </div>
+            </div >
             {
                 (showCategorySplit) ?
                     < CategoriesSplitContent categoriesSplit={categoriesSplit} setShowCategroySplit={setShowCategroySplit} showCategorySplit={showCategorySplit} title={'Income Generated From Each Class in :'} /> : null
