@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import Navbar from "./components/navbar/navbar";
 import { useLocation } from "react-router";
 import Root from "./routes/Routes";

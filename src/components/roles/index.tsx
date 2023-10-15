@@ -1,9 +1,12 @@
-import React from 'react';
+import React from "react";
+import UserDashboard from "./UserDashboard";
+import CreateUser from "./CreateUser";
 
-export default function Roles(){
-    return(
-        <>
-        Rolesssss....
-        </>
-    )
+export default function Roles() {
+  return (
+    <>
+      <CreateUser />
+      <UserDashboard />
+    </>
+  );
 }

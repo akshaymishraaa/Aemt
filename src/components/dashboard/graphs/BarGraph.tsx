@@ -7,8 +7,9 @@ import { Navigate } from 'react-router';
 // import 
 type EChartsOption = echarts.EChartsOption;
 const BarGraph = (props: any) => {
-  const { handleBarClick, barData, title } = props
+  const { handleBarClick, barData, title, customOptions } = props
   var option: EChartsOption = {
+    color: [customOptions?.color],
     // title: {title},
     tooltip: {
       trigger: 'axis',
@@ -28,12 +29,22 @@ const BarGraph = (props: any) => {
         data: barData?.categories,
         axisTick: {
           alignWithLabel: true
+        },
+        axisLabel: {
+          color: customOptions?.labelColor ? customOptions?.labelColor : null,
+          fontWeight: "bolder",
+          fontSize: "10px",
         }
       }
     ],
     yAxis: [
       {
-        type: 'value'
+        type: 'value',
+        axisLabel: {
+          color: customOptions?.labelColor ? customOptions?.labelColor : null,
+          fontWeight: "bolder",
+          fontSize: "10px"
+        }
       }
     ],
     series: [
@@ -41,7 +52,16 @@ const BarGraph = (props: any) => {
         name: 'Month Expenses',
         type: 'bar',
         barWidth: '60%',
-        data: barData?.values
+        data: barData?.values,
+        label: {
+          show: true,
+          rotate: 90,
+          align: "center"
+        },
+        itemStyle: {
+          shadowBlur: 7,
+          borderRadius: [8, 8, 8, 8]
+        },
       }
     ]
   };

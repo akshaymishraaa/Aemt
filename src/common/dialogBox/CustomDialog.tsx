@@ -8,8 +8,8 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-export default function CustomDialog(props: any) {
-    console.log(props, "12...")
+export default function CustomDialog(props:any) {
+    const {children, onClose,...other} = props;
     const BootstrapDialog = styled(Dialog)(({ theme }) => ({
         '& .MuiDialogContent-root': {
             padding: theme.spacing(2),
@@ -38,25 +38,20 @@ export default function CustomDialog(props: any) {
 
     const [open, setOpen] = React.useState(props?.open);
     const handleClose = () => {
-        setOpen(false);
-        props?.setShowCategroySplit(false)
+        props?.onClose();
     };
 
     return (
         <div>
             <BootstrapDialog
-                onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
-                open={open}
-                className='CustomDialog'
-
+                open={props.open}
+                maxWidth={props.maxWidth ? props.maxWidth : 'lg'}
+                fullWidth={props.fullWidth === false ? false : true} 
             >
-                <div>
-
-                    <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-                        {props?.title}
-                    </DialogTitle>
-                </div>
+                <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                   <span>{props.title}</span>
+                </DialogTitle>
                 <IconButton
                     aria-label="close"
                     onClick={handleClose}
@@ -72,14 +67,13 @@ export default function CustomDialog(props: any) {
                 <DialogContent dividers>
                     {props.children}
                 </DialogContent>
-                {
-                    props?.actions ? <DialogActions>
-                        <Button autoFocus onClick={handleClose}>
-                            Submit
-                        </Button>
-                    </DialogActions> : null
-                }
-
+                <DialogActions>
+                    {console.log("58...",props.actionType)}
+                    {props.actionType==='Close' ?  <Button autoFocus onClick={handleClose}>Close</Button> : <Button autoFocus onClick={handleClose}>cancel</Button>}
+                    {props.actionType && props.actionType!=='Close' && <Button type='submit' form={props.form} autoFocus onClick={props.onSubmitHandler}>
+                    {props.actionType==='Submit' ? 'Submit' : props.actionType=== 'Update '? 'Update' : props.actionType}
+                    </Button> }
+                </DialogActions>
             </BootstrapDialog>
         </div>
     );
