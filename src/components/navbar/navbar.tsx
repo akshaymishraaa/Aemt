@@ -21,6 +21,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { navigationItem } from '../../constants/navigationBarItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { Actiontypes } from '../../types/ActionTypes';
+import UserMenu from './UserMenu';
 
 const drawerWidth = 200;
 
@@ -140,7 +141,7 @@ export default function Navbar() {
                         Educational Enterprise Management
                     </Typography>
                     <div className=''>
-                        user
+                        <UserMenu/>
                     </div>
                 </Toolbar>
             </AppBar>}
