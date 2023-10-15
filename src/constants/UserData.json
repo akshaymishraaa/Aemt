@@ -1,0 +1,22 @@
+[{
+    "id": "1",
+    "name": "Akshay Mishra",
+    "role": "Admin",
+    "email":"akshay01@gmail.com",
+    "phone":9113775373
+},
+{
+    "id": "2",
+    "name": "Gori Shankar",
+    "role": "Student Admin",
+    "email":"Gori@gmail.com",
+    "phone":9113775374
+},
+{
+    "id": "3",
+    "name": "Aniket Kumar",
+    "role": "Finance Admin",
+    "email":"aniket@gmail.com",
+    "phone":9113775375
+}
+]
