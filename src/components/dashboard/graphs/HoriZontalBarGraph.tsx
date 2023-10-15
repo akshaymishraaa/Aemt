@@ -19,9 +19,10 @@ export default function HorizontalBarGraph(props: any) {
             left: '3%',
             right: '4%',
             // bottom: '3%',
-            top: "2%",
+            top: "10",
             containLabel: true
         },
+       
         xAxis: {
             type: 'value',
             // boundaryGap: [0, 0.01]
@@ -42,6 +43,6 @@ export default function HorizontalBarGraph(props: any) {
         ]
     };
     return (
-        <ReactECharts option={option} />
+        <ReactECharts option={option} className={props?.className} />
     )
 }

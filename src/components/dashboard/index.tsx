@@ -4,7 +4,7 @@ import './Styles.scss'
 
 const Dashboard = () => {
   return (
-    <div className='dashboardMain'><SuperUserDashBoard /></div>
+  <SuperUserDashBoard />
   )
 }
 export default Dashboard

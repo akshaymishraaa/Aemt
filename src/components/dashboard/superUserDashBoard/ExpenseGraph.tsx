@@ -26,7 +26,7 @@ const ExpenseGraph = () => {
         <>
             <div className='col-6 barGraphMain expensesStats'>
                 <p className='GrpahHeading'> Expenses Of Acedamic Year</p>
-                <div className='w-100 cardsContainer'>
+                <div className=' cardsContainer'>
                     <div className='detailsCard'>Common Card</div>
                     <div className='detailsCard'>Common Card</div>
                     <div className='detailsCard'>Common Card</div>
@@ -36,7 +36,7 @@ const ExpenseGraph = () => {
             </div>
             {
                 (showCategorySplit) ?
-                    < CategoriesSplitContent categoriesSplit={categoriesSplit} setShowCategroySplit={setShowCategroySplit} showCategorySplit={showCategorySplit} title={'Catogory Wise Expenditure Of Month :'}/> : null
+                    < CategoriesSplitContent categoriesSplit={categoriesSplit} setShowCategroySplit={setShowCategroySplit} showCategorySplit={showCategorySplit} title={'Catogory Wise Expenditure Of Month :'} /> : null
 
             }
         </>
