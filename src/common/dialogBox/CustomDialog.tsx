@@ -38,7 +38,7 @@ export default function CustomDialog(props:any) {
 
     const [open, setOpen] = React.useState(props?.open);
     const handleClose = () => {
-        props.onClose();
+        props?.onClose();
     };
 
     return (
