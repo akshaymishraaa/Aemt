@@ -80,7 +80,7 @@ function Registration() {
   }
   const dispatch = useDispatch()
   const renderTooltip = (err: any, name: string, touched: any) => {
-    console.log(err, name, "41....")
+    // console.log(err, name, "41....")
     return (
       <>
         <p>{(err && touched) ? err : `Please Enter ${name}`}</p>
