@@ -3,4 +3,5 @@ export const Actiontypes = {
     organization:"organization",
     // REGISTER_USER:"REGISTER_USER"
     GET_USER_ROLES:"GET_USER_ROLES",
+    GET_VALIDATED_USER_DETAILS:'GET_VALIDATED_USER_DETAILS',
 }

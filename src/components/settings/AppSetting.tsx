@@ -94,14 +94,6 @@ function AppSetting() {
               </FormControl>
 
             </div>
-            {/* <>
-              {
-                roles?.map((item: any) => {
-                  console.log('40..', item)
-                })
-              }
-            </> */}
-
           </div>
           <div className='col-6'>
             <div className="form-group mt-2">

@@ -12,6 +12,8 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
+import { Actiontypes } from '../../types/ActionTypes';
+import { useDispatch } from 'react-redux';
 
 export default function UserMenu() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -21,13 +23,18 @@ export default function UserMenu() {
     };
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    function handleClose(parameter:any) {
-        if (parameter == "profile") {
+    function handleClose(parameter: any) {
+        if (parameter === "profile") {
             navigate('/userProfile')
         }
-        if (parameter == "setting") {
+        if (parameter === "setting") {
             navigate('/settings')
+        } if (parameter === 'logout') {
+            navigate('/');
+            dispatch({ type: Actiontypes.IS_USER_AUTHINTCATED, payload: false })
+            sessionStorage.clear();
         }
         setAnchorEl(null);
     };
@@ -92,7 +99,7 @@ export default function UserMenu() {
                     </ListItemIcon>
                     Settings
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={() => handleClose("logout")}>
                     <ListItemIcon>
                         <Logout fontSize="small" />
                     </ListItemIcon>

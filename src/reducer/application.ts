@@ -3,6 +3,7 @@ import { Actiontypes } from "../types/ActionTypes";
 
 const initialState = {
   isAuthenticated: false,
+  orgDetails: {},
   organization: [],
   roles: RolesData,
 };
@@ -15,6 +16,9 @@ export const application = (state: object = initialState, action: any) => {
       return { ...state, organization: action.payload };
     case Actiontypes.GET_USER_ROLES:
       return { ...state, roles: action.payload };
+    case Actiontypes.GET_VALIDATED_USER_DETAILS:
+      console.log('20..',action.payload)
+      return { ...state, orgDetails: action.payload };
     default:
       return state;
   }

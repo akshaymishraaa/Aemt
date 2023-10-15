@@ -17,9 +17,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Root from '../../routes/Routes';
 
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { navigationItem } from '../../constants/navigationBarItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Actiontypes } from '../../types/ActionTypes';
 import UserMenu from './UserMenu';
 
 const drawerWidth = 200;
@@ -107,6 +108,18 @@ export default function Navbar() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    console.log(location, "9...")
+    React.useEffect(() => {
+        if (sessionStorage.getItem('userData')) {
+            dispatch({ type: Actiontypes.IS_USER_AUTHINTCATED, payload: true })
+            navigate('/home')
+        } else {
+            navigate('/')
+        }
+
+    }, [])
     return (
         <Box sx={{ display: 'flex' }}>
             {/* <CssBaseline /> */}
@@ -180,7 +193,7 @@ export default function Navbar() {
                 <Divider />
             </Drawer>}
             <Box component="main" sx={{ flexGrow: 1 }}>
-                {isAuthenticated &&<DrawerHeader />}
+                {isAuthenticated && <DrawerHeader />}
                 <Root />
             </Box>
         </Box>

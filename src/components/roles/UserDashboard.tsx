@@ -21,8 +21,8 @@ function UserDashboard() {
   };
 
   return (
-    <div className="card">
-      <DataTable value={userData} tableStyle={{ minWidth: "50rem" }}>
+    <div className="card p-3 pe-4">
+      <DataTable value={userData} tableStyle={{ minWidth: "45rem" }}>
         <Column field="name" header="User Name"></Column>
         <Column field="role" header="Role"></Column>
         <Column field="email" header="Email"></Column>
