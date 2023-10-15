@@ -5,8 +5,12 @@ import './style/Styles.scss';
 import { FilledInput, FormControl, IconButton, InputAdornment, InputLabel, TextField } from "@mui/material";
 import { VisibilityOff } from "@mui/icons-material";
 import { Visibility } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Actiontypes } from "../../types/ActionTypes";
+import { ValidateOrganization } from "../actions/actions";
+import { baseurl } from "../commonHelpers/envi";
+import { fetch } from "../commonHelpers/fetch";
+import { error } from "console";
 
 interface Values {
   userName: string;
@@ -15,7 +19,8 @@ interface Values {
 
 function Login() {
   const navigate = useNavigate();
-  const dispatch =  useDispatch();
+  const dispatch = useDispatch();
+  const { orgDetails } = useSelector((state: any) => state.application);
 
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -24,6 +29,9 @@ function Login() {
   const register = () => {
     navigate("/registration");
   };
+  const handleChange = () => {
+
+  }
   return (
     <React.Fragment>
       {/* <div className="container"> */}
@@ -34,68 +42,94 @@ function Login() {
               <h5 className="bg-primary p-3 text-light mb-3">Sign In</h5>
               <Formik
                 initialValues={{
-                  userName: "",
+                  email: "",
                   password: "",
                 }}
                 onSubmit={(values: any) => {
-                  dispatch({type:Actiontypes.IS_USER_AUTHINTCATED , payload:true})
-                 navigate('/home')
-                 
-                }}
+                  // await dispatch(ValidateOrganization(values))
+                  const url = `${baseurl}/validateOrg`;
+                  fetch({
+                    url: url,
+                    method: "POST",
+                    data: {values},
+                  })
+                    .then((res: any) => {
+                      if (res.data.status === 'error') {
+                        alert('Wrong User name password')
+                      } else {
+                        sessionStorage.setItem('userData','true')
+                        dispatch({ type: Actiontypes.IS_USER_AUTHINTCATED, payload: true })
+                        navigate('/home')
+                      }
+
+                    }).catch((err:any)=>console.log('Error...',err))
+                  }}
+                  
               >
-                <div className=" d-flex justify-content-center">
-                  <Form>
-                    <div>
-                      {/* <label htmlFor="firstName">Username</label> */}
-                      <div>
-                        <TextField
-                          id="filled-basic"
-                          label="User name"
-                          variant="filled"
-                          sx={{ width: '25ch' }}
-                        />
-                      </div>
+              {
+                ({ errors, touched, values, setFieldValue }) => {
+                  return (
+                    <div className=" d-flex justify-content-center">
+                      <Form>
+                        <div>
+                          {/* <label htmlFor="firstName">Username</label> */}
+                          <div>
+                            <TextField
+                              id="filled-basic"
+                              label="Email"
+                              variant="filled"
+                              name="email"
+                              value={values.email}
+                              sx={{ width: '25ch' }}
+                              onChange={(e: any) => setFieldValue('email', e.target.value)}
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          {/* <label htmlFor="lastName">Password</label> */}
+                          <div>
+                            <FormControl sx={{ width: '25ch', mt: 1 }} variant="filled">
+                              <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
+                              <FilledInput
+                                id="password"
+                                name="password"
+                                value={values.password}
+                                onChange={(e: any) => setFieldValue('password', e.target.value)}
+                                type={showPassword ? 'text' : 'password'}
+                                endAdornment={
+                                  <InputAdornment position="end">
+                                    <IconButton
+                                      aria-label="toggle password visibility"
+                                      onClick={handleClickShowPassword}
+                                      // onMouseDown={handleMouseDownPassword}
+                                      edge="end"
+                                    >
+                                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                  </InputAdornment>
+                                }
+                              />
+                            </FormControl>
+                          </div>
+                        </div>
+                        <div className="link-primary mt-3" onClick={register}>
+                          Not a user! Register now?
+                        </div>
+                        <button className=" mt-2 btn btn-success w-100" type="submit">
+                          Submit
+                        </button>
+                      </Form>
                     </div>
-                    <div>
-                      {/* <label htmlFor="lastName">Password</label> */}
-                      <div>
-                        <FormControl sx={{ width: '25ch', mt: 1 }} variant="filled">
-                          <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
-                          <FilledInput
-                            id="password"
-                            name="password"
-                            type={showPassword ? 'text' : 'password'}
-                            endAdornment={
-                              <InputAdornment position="end">
-                                <IconButton
-                                  aria-label="toggle password visibility"
-                                  onClick={handleClickShowPassword}
-                                  // onMouseDown={handleMouseDownPassword}
-                                  edge="end"
-                                >
-                                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                              </InputAdornment>
-                            }
-                          />
-                        </FormControl>
-                      </div>
-                    </div>
-                    <div className="link-primary mt-3" onClick={register}>
-                      Not a user! Register now?
-                    </div>
-                    <button className=" mt-2 btn btn-success w-100" type="submit">
-                      Submit
-                    </button>
-                  </Form>
-                </div>
-              </Formik>
-            </div>
+                  )
+                }
+              }
+            </Formik>
           </div>
         </div>
       </div>
-      {/* </div> */}
-    </React.Fragment>
+    </div>
+      {/* </div> */ }
+    </React.Fragment >
   );
 }
 

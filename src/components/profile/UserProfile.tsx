@@ -1,8 +1,15 @@
 import React from 'react'
+import CommonCard from '../../common/CommonCard'
 
 function UserProfile() {
   return (
-    <div>UserProfile</div>
+    <React.Fragment>
+      <CommonCard title={'User profile'}>
+        <div>
+          PROFILE
+        </div>
+      </CommonCard>
+    </React.Fragment>
   )
 }
 
