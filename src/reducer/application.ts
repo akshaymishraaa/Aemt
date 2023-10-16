@@ -6,6 +6,7 @@ const initialState = {
   orgDetails: {},
   organization: [],
   roles: RolesData,
+  userData: [],
 };
 
 export const application = (state: object = initialState, action: any) => {
@@ -17,8 +18,10 @@ export const application = (state: object = initialState, action: any) => {
     case Actiontypes.GET_USER_ROLES:
       return { ...state, roles: action.payload };
     case Actiontypes.GET_VALIDATED_USER_DETAILS:
-      console.log('20..',action.payload)
+      console.log("20..", action.payload);
       return { ...state, orgDetails: action.payload };
+    case Actiontypes.GET_ALL_USER_DATA:
+      return { ...state, userData: action.payload };
     default:
       return state;
   }

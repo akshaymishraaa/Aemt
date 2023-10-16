@@ -22,7 +22,7 @@ export const registerOrganization: any = (props: any) => {
 };
 
 export const ValidateOrganization: any = (props: any) => {
-    console.log("32...res", props);
+  console.log("32...res", props);
   const url = `${baseurl}/validateOrg`;
   return (dispatch: any) => {
     fetch({
@@ -39,4 +39,47 @@ export const ValidateOrganization: any = (props: any) => {
       .catch((error: any) => console.log("Error...", error));
   };
 };
-// export const action={}
+
+// create user
+
+export const createUser: any = (props: any, callback: any) => {
+  const url = `${baseurl}/createUser`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "POST",
+      data: props,
+    })
+      .then((res: any) => {
+        console.log('54.....',res.data)
+        if (callback) {
+          callback(res.data);
+        }
+      })
+      .catch((err: any) => {
+        console.log("Error", err);
+      });
+  };
+};
+
+// get all user api call
+
+export const getAllUserDetails: any = ( callback: any) => {
+  const url = `${baseurl}/getAllUserDetails`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "GET",
+      data: '',
+    })
+      .then((res: any) => {
+        console.log('54.....',res.data)
+        if (callback) {
+          callback(res.data);
+        }
+      })
+      .catch((err: any) => {
+        console.log("Error", err);
+      });
+  };
+};

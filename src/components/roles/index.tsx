@@ -4,6 +4,7 @@ import CreateUser from "./CreateUser";
 import CommonCard from "../../common/CommonCard";
 
 export default function Roles() {
+  
   return (
     <CommonCard title={'User management'}>
       <CreateUser />
