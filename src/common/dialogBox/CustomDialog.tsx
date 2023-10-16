@@ -47,7 +47,8 @@ export default function CustomDialog(props:any) {
                 aria-labelledby="customized-dialog-title"
                 open={props.open}
                 maxWidth={props.maxWidth ? props.maxWidth : 'lg'}
-                fullWidth={props.fullWidth === false ? false : true} 
+                fullWidth={props.fullWidth === false ? false : true}
+                 
             >
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
                    <span>{props.title}</span>
