@@ -1,25 +1,39 @@
 import { Alert, Button } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import CustomDialog from "../../common/dialogBox/CustomDialog";
 import { Formik, Field, Form } from "formik";
 import ReactSelect from "../../common/selectBox/ReactSelect";
 import { rolesOption, tabOptions } from "./SelectStaticOption";
-import { useDispatch } from "react-redux";
-import { createUser, getAllUserDetails } from "../actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser, fetchAllTabs, getAllUserDetails } from "../actions/actions";
 import { Actiontypes } from "../../types/ActionTypes";
 
 function CreateUser() {
   const [open, setOpen] = React.useState(false);
   const [error, setError] = React.useState(false);
+  const { tabs } = useSelector((state: any) => state.application)
   const dispatch = useDispatch();
   const onClose = () => {
     setOpen(false);
     setError(false);
   };
 
+  const tabOptions = tabs[0].tabs?.map((item: any, index: any) => {
+    let optionObject = { label: '', value: '' }
+    optionObject.label = item;
+    optionObject.value = item;
+    return optionObject;
+  });
+
   const openDialog = () => {
     setOpen(true);
   };
+  useEffect(() => {
+    dispatch(fetchAllTabs((data: any) => {
+      console.log('25....', data)
+      dispatch({ type: Actiontypes.GET_ALL_TABS, payload: data })
+    }))
+  }, [])
 
   const submitHandler = (values: any) => {
     // console.log("17...", values);

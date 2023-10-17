@@ -7,6 +7,7 @@ const initialState = {
   organization: [],
   roles: RolesData,
   userData: [],
+  tabs: [],
 };
 
 export const application = (state: object = initialState, action: any) => {
@@ -22,6 +23,8 @@ export const application = (state: object = initialState, action: any) => {
       return { ...state, orgDetails: action.payload };
     case Actiontypes.GET_ALL_USER_DATA:
       return { ...state, userData: action.payload };
+    case Actiontypes.GET_ALL_TABS:
+      return { ...state, tabs: action.payload };
     default:
       return state;
   }
