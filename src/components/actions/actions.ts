@@ -51,7 +51,7 @@ export const createUser: any = (props: any, callback: any) => {
       data: props,
     })
       .then((res: any) => {
-        console.log('54.....',res.data)
+        console.log("54.....", res.data);
         if (callback) {
           callback(res.data);
         }
@@ -64,16 +64,38 @@ export const createUser: any = (props: any, callback: any) => {
 
 // get all user api call
 
-export const getAllUserDetails: any = ( callback: any) => {
+export const getAllUserDetails: any = (callback: any) => {
   const url = `${baseurl}/getAllUserDetails`;
   return (dispatch: any) => {
     fetch({
       url: url,
       method: "GET",
-      data: '',
+      data: "",
     })
       .then((res: any) => {
-        console.log('54.....',res.data)
+        console.log("54.....", res.data);
+        if (callback) {
+          callback(res.data);
+        }
+      })
+      .catch((err: any) => {
+        console.log("Error", err);
+      });
+  };
+};
+
+//Get all tabs
+
+export const fetchAllTabs: any = (callback: any) => {
+  const url = `${baseurl}/getTabs`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "GET",
+      data: "",
+    })
+      .then((res: any) => {
+        console.log("54.....", res.data);
         if (callback) {
           callback(res.data);
         }
