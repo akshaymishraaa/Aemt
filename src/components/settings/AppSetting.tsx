@@ -118,6 +118,7 @@ function AppSetting() {
             </div>
           </div>
           <div className='d-flex justify-content-end mt-5 me-5'>
+            <Button variant="outlined" onClick={handleSubmit} sx={{mr:2}}>cancel</Button>
             <Button variant="contained" onClick={handleSubmit}>Submit</Button>
           </div>
         </div>

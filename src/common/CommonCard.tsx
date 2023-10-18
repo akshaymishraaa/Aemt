@@ -9,7 +9,7 @@ export interface cardProps {
 function CommonCard(props: any) {
     return (
         <React.Fragment>
-            <div className='Common-card'>
+            <div className={props.className ? props.className : 'Common-card'}>
                 <div className='card-title'>
                     {props.title}
                 </div>
