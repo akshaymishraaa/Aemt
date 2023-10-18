@@ -18,7 +18,7 @@ function CreateUser() {
     setError(false);
   };
 
-  const tabOptions = tabs[0].tabs?.map((item: any, index: any) => {
+  const tabOptions = tabs[0]?.tabs?.map((item: any, index: any) => {
     let optionObject = { label: '', value: '' }
     optionObject.label = item;
     optionObject.value = item;
