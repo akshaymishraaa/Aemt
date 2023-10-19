@@ -11,6 +11,9 @@ import "bootstrap/dist/js/bootstrap.js"
 import '../node_modules/primereact/resources/primereact.min.css';
 // import "../node_modules/primereact/resources/themes/vela-blue/theme.css";
 import "../node_modules/primeicons/primeicons.css";
+import "primereact/resources/primereact.min.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primeicons/primeicons.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
