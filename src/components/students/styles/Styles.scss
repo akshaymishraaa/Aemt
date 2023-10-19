@@ -1,0 +1,37 @@
+.main-container {
+  background-color: rgb(225, 225, 225);
+  height: 100vh;
+
+  .card-container {
+    width: 18vw;
+    height: 25vh;
+    // border: 1px solid rgb(173, 172, 172);
+    box-shadow: 2px 4px 15px 3px rgb(233, 186, 237);
+    border-radius: 18px;
+    background-color: #ffffff;
+    margin: 1rem;
+    p {
+        padding: 7px;
+        background-color: rgb(99, 1, 106);
+        text-align: center;
+        font-weight: 500;
+        font-size: 18px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        color: #ffffff;
+    }
+    label {
+        display: flex;
+        justify-content: center;
+        word-wrap: break-word;
+    }
+    button{
+        background-color: rgb(184, 135, 221);
+        width: 10rem;
+        border:none;
+        border-radius: 8px;
+        color:white;
+        align-self: center;
+    }
+  }
+}

@@ -36,4 +36,18 @@ export const navigationItem = [
     navigateTo: "/auditLogs",
     icon: lazy(() => import("@mui/icons-material/MenuBook"))
   },
+  {
+    name: "Students",
+    pathName: "/students",
+    component: lazy(() => import("../components/students/Students")),
+    navigateTo: "/students",
+    icon: lazy(() => import("@mui/icons-material/Groups2"))
+  },
+  {
+    name: "Employee",
+    pathName: "/employees",
+    component: lazy(() => import("../components/employess/Employees")),
+    navigateTo: "/employees",
+    icon: lazy(() => import("@mui/icons-material/EventNote"))
+  },
 ];
