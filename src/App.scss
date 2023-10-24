@@ -1,0 +1,30 @@
+
+.p-datatable .p-datatable-tbody>tr>td .p-row-editor-init,
+.p-datatable .p-datatable-tbody>tr>td .p-row-editor-save,
+.p-datatable .p-datatable-tbody>tr>td .p-row-editor-cancel{
+    width: 1rem !important;
+    height: 1rem !important;
+}
+
+.p-datatable{
+.p-datatable-tbody {        
+  tr td {
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    font-size: 12px !important;
+    padding: 7px 14px !important;
+  }
+}
+}
+
+
+
+.p-datatable-wrapper{
+.p-datatable-table{
+    .p-datatable-thead{
+        tr th{
+            border: 1px solid rgba(0, 0, 0, 0.05) !important;
+            font-size: 13px !important;
+        }
+    }
+}
+}

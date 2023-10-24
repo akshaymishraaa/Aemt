@@ -7,6 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUserDetails } from "../actions/actions";
 import { Actiontypes } from "../../types/ActionTypes";
+        
 
 function UserDashboard() {
   // const [userData, setUserData] = React.useState<any>([]);
@@ -31,8 +32,17 @@ function UserDashboard() {
   };
 
   return (
-    <div className="card p-3 pe-4">
-      <DataTable value={userData} showGridlines stripedRows tableStyle={{ minWidth: "45rem" }}>
+    <div className="">
+      <DataTable 
+      value={userData} 
+      stripedRows 
+      emptyMessage="No users availablre to display."
+      tableStyle={{ minWidth: '50rem' }}
+      // paginator 
+      // rows={5}
+      // rowsPerPageOptions={[5, 10, 25, 50]} 
+      scrollable scrollHeight="390px"
+      >
         <Column field="firstName" header="User Name"></Column>
         <Column field="role" header="Role"></Column>
         <Column field="email" header="Email"></Column>
