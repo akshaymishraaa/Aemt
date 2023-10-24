@@ -65,7 +65,8 @@ function CreateUser() {
   return (
     <>
       <div className="d-flex justify-content-end">
-        <Button onClick={openDialog}>Create User</Button>
+        {/* <Button className= "btn btn-primary" onClick={openDialog}>Create User</Button> */}
+        <button type="button" className="btn btn-primary my-2" onClick={openDialog}>Create User</button>
       </div>
       <CustomDialog
         title={"Create User"}
@@ -109,6 +110,7 @@ function CreateUser() {
                           name="firstName"
                           placeholder="Enter Your First Name"
                           value={values.firstName}
+                          
                         />
                         <ErrorMessage name="firstName" component="div" className="text-danger" />
                       </div>

@@ -8,9 +8,14 @@ import { Provider } from "react-redux";
 import store from "./store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.js"
-import '../node_modules/primereact/resources/primereact.min.css';
+// import '../node_modules/primereact/datatable/datatable.min.css '
+// import '../node_modules/primereact/resources/primereact.min.css';
+import "../node_modules/primereact/resources/themes/saga-blue/theme.css";
+// import '../node_modules/primereact/resources/themes/lara-light-indigo/theme.css';
+import '../node_modules/primereact/resources/primereact.css'
 // import "../node_modules/primereact/resources/themes/vela-blue/theme.css";
 import "../node_modules/primeicons/primeicons.css";
+// import { PrimeReactProvider } from 'primereact/api';
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
