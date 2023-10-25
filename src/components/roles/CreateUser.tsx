@@ -70,7 +70,7 @@ function CreateUser() {
       </div> */}
       <div className="d-flex justify-content-end">
         <div>
-        <CommonSearchField placeholder={"Search employees here..."} />
+        <CommonSearchField placeholder={"Search users here..."} />
         </div>
         <div style={{padding: "0px 6px",margin: "1rem"}}>
         <button type="button" className="btn btn-primary " onClick={openDialog}>Create User</button>
