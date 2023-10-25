@@ -2,7 +2,7 @@ import { Actiontypes } from "../../types/ActionTypes";
 import { baseurl } from "../commonHelpers/envi";
 import { fetch } from "../commonHelpers/fetch";
 
-export const registerOrganization: any = (props: any) => {
+export const registerOrganization: any = (props: any, callback: any) => {
   console.log(props, "5....");
   const url = `${baseurl}/registerUser`;
   return (dispatch: any) => {
@@ -13,6 +13,9 @@ export const registerOrganization: any = (props: any) => {
     })
       .then((res: any) => {
         console.log("res...99", res);
+        if (callback) {
+          callback(res.data);
+        }
         // dispatch({ type: Actiontypes.organization, payload: res?.data })
       })
       .catch((err: any) => {

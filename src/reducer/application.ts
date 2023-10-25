@@ -8,6 +8,7 @@ const initialState = {
   roles: RolesData,
   userData: [],
   tabs: [],
+  recentOrganizationName: {},
 };
 
 export const application = (state: object = initialState, action: any) => {
@@ -25,6 +26,8 @@ export const application = (state: object = initialState, action: any) => {
       return { ...state, userData: action.payload };
     case Actiontypes.GET_ALL_TABS:
       return { ...state, tabs: action.payload };
+    case Actiontypes.RECENT_REGISTERED_ORG:
+      return { ...state, recentOrganizationName: action.payload };
     default:
       return state;
   }
