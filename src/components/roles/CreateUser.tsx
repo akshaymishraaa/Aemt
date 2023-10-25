@@ -1,7 +1,7 @@
 import { Alert, Button } from "@mui/material";
 import React, { useEffect } from "react";
 import CustomDialog from "../../common/dialogBox/CustomDialog";
-import { Formik, Field, Form, ErrorMessage  } from "formik";
+import { Formik, Field, Form, ErrorMessage } from "formik";
 import ReactSelect from "../../common/selectBox/ReactSelect";
 import { rolesOption, tabOptions } from "./SelectStaticOption";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ import {
 } from "../actions/actions";
 import { Actiontypes } from "../../types/ActionTypes";
 import { validateUserSchema } from "./helpers/validate";
+import CommonSearchField from "../../common/CommonSearchField";
 
 function CreateUser() {
   const [open, setOpen] = React.useState(false);
@@ -24,7 +25,7 @@ function CreateUser() {
   };
 
   const tabOptions = tabs[0]?.tabs?.map((item: any, index: any) => {
-    let optionObject = { label: '', value: '' }
+    let optionObject = { label: "", value: "" };
     optionObject.label = item;
     optionObject.value = item;
     return optionObject;
@@ -64,9 +65,16 @@ function CreateUser() {
 
   return (
     <>
+      {/* <div className="d-flex justify-content-end my-2">
+        <button type="button" className="btn btn-primary " onClick={openDialog}>Create User</button>
+      </div> */}
       <div className="d-flex justify-content-end">
-        {/* <Button className= "btn btn-primary" onClick={openDialog}>Create User</Button> */}
-        <button type="button" className="btn btn-primary my-2" onClick={openDialog}>Create User</button>
+        <div>
+        <CommonSearchField placeholder={"Search employees here..."} />
+        </div>
+        <div style={{padding: "0px 6px",margin: "1rem"}}>
+        <button type="button" className="btn btn-primary " onClick={openDialog}>Create User</button>
+        </div>
       </div>
       <CustomDialog
         title={"Create User"}
@@ -101,7 +109,7 @@ function CreateUser() {
               return (
                 <Form id="createUser">
                   <div className="row ">
-                    <>{console.log("101....",errors)}</>
+                    <>{console.log("101....", errors)}</>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">First Name</label>
                       <div>
@@ -110,9 +118,12 @@ function CreateUser() {
                           name="firstName"
                           placeholder="Enter Your First Name"
                           value={values.firstName}
-                          
                         />
-                        <ErrorMessage name="firstName" component="div" className="text-danger" />
+                        <ErrorMessage
+                          name="firstName"
+                          component="div"
+                          className="text-danger"
+                        />
                       </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -124,7 +135,11 @@ function CreateUser() {
                           placeholder="Enter Your Last Name"
                           value={values.lastName}
                         />
-                        <ErrorMessage name="lastName" component="div" className="text-danger" />
+                        <ErrorMessage
+                          name="lastName"
+                          component="div"
+                          className="text-danger"
+                        />
                       </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -136,7 +151,11 @@ function CreateUser() {
                           placeholder="Enter Your email"
                           value={values.email}
                         />
-                        <ErrorMessage name="email" component="div" className="text-danger" />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className="text-danger"
+                        />
                       </div>
                     </div>
                   </div>
@@ -151,7 +170,11 @@ function CreateUser() {
                           placeholder="Enter your contact number"
                           value={values.contactNo}
                         />
-                        <ErrorMessage name="contactNo" component="div" className="text-danger" />
+                        <ErrorMessage
+                          name="contactNo"
+                          component="div"
+                          className="text-danger"
+                        />
                       </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -164,7 +187,11 @@ function CreateUser() {
                           type="password"
                           value={values.password}
                         />
-                        <ErrorMessage name="password" component="div" className="text-danger" />
+                        <ErrorMessage
+                          name="password"
+                          component="div"
+                          className="text-danger"
+                        />
                       </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -178,7 +205,11 @@ function CreateUser() {
                           value={values.role}
                           onChange={(e: any) => setFieldValue("role", e.value)}
                         />
-                        <ErrorMessage name="role" component="div" className="text-danger" />
+                        <ErrorMessage
+                          name="role"
+                          component="div"
+                          className="text-danger"
+                        />
                       </div>
                     </div>
                   </div>
@@ -196,7 +227,11 @@ function CreateUser() {
                             setFieldValue("allowedModule", e.value)
                           }
                         />
-                        <ErrorMessage name="allowedModule" component="div" className="text-danger" />
+                        <ErrorMessage
+                          name="allowedModule"
+                          component="div"
+                          className="text-danger"
+                        />
                       </div>
                     </div>
                   </div>
