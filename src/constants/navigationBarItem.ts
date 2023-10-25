@@ -46,7 +46,7 @@ export const navigationItem = [
   {
     name: "Employee",
     pathName: "/employees",
-    component: lazy(() => import("../components/employess/Employees")),
+    component: lazy(() => import("../components/employess/index")),
     navigateTo: "/employees",
     icon: lazy(() => import("@mui/icons-material/EventNote"))
   },
