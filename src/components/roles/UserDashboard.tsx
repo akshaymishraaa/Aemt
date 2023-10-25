@@ -25,7 +25,7 @@ function UserDashboard() {
   const actionTemplate = () => {
     return (
       <>
-        <EditIcon />
+        <EditIcon />|  &nbsp;
         <DeleteIcon />
       </>
     );

@@ -12,7 +12,7 @@ export const ValidateRegistration = Yup.object().shape({
   regEmpId: Yup.string().required("Required"),
   zipCode: Yup.number().required("Required"),
   address: Yup.string().required("Required"),
-  password: Yup.string().required('Required'),
-  confirmPassword: Yup.string().required('Required').oneOf([Yup.ref('password')], "Should Be Same match With Password Field")
+  // password: Yup.string().required('Required'),
+  // confirmPassword: Yup.string().required('Required').oneOf([Yup.ref('password')], "Should Be Same match With Password Field")
   // confirmPassword: yup.string().oneOf([yup.ref('password'), null], "Passwords don't match").required('Confirm Password is required'),
 });

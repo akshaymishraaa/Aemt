@@ -11,6 +11,6 @@ export const RegistrationModal: RegistraionModelTypes = {
     regEmpId: "",
     zipCode: null,
     address: "",
-    password: "",
-    confirmPassword: "",
+    // password: "",
+    // confirmPassword: "",
 }

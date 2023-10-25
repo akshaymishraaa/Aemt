@@ -130,7 +130,7 @@ function Registration() {
                     <p className='errorsNote'>* Please Check Some Of Mandatory Fields Are Not Appropriate As Req</p> :
                     <p className="InitialNote">* All The Field Are Mandatory For Registration</p>}
                 <div className='row fieldsRow'>
-                  <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.organizationName, Object.keys(values)[0], touched?.organizationName)} placement="left">
                       <CorporateFareIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.organizationName && touched?.organizationName) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -150,7 +150,7 @@ function Registration() {
                     {/* </CustomToolTip> */}
 
                   </div>
-                  <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.organizationEmailId, Object.keys(values)[1], touched?.organizationEmailId)} placement="left">
                       <MailIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.organizationEmailId && touched?.organizationEmailId) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -165,7 +165,7 @@ function Registration() {
                       spellCheck={false}
                     />
                   </div>
-                  <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.contactNumber, Object.keys(values)[2], touched?.contactNumber)} placement="left">
                       <AddIcCallIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.contactNumber && touched?.contactNumber) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -179,7 +179,9 @@ function Registration() {
                       onBlur={handleBlur}
                     />
                   </div>
-                  <div className='formField-select col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                </div>
+                <div className='row fieldsRow'>
+                <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.organizationType, Object.keys(values)[3], touched?.organizationType)} placement="left">
                       <DomainIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.organizationType && touched?.organizationType) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -202,10 +204,7 @@ function Registration() {
 
                     />
                   </div>
-                </div>
-                <div className='row fieldsRow'>
-
-                  <div className='formField-select col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.country, Object.keys(values)[4], touched?.country)} placement="left">
                       <PublicIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.country && touched?.country) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -227,7 +226,7 @@ function Registration() {
 
                     />
                   </div>
-                  <div className='formField-select col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.state, Object.keys(values)[5], touched?.state)} placement="left">
 
                       <LocationOnIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.state && touched?.state) ? 'red' : '' }} />
@@ -249,7 +248,7 @@ function Registration() {
 
                     />
                   </div>
-                  <div className='formField-select col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.city, Object.keys(values)[6], touched?.city)} placement="left">
 
                       <LocationCityIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.city && touched?.city) ? 'red' : '' }} />
@@ -271,7 +270,7 @@ function Registration() {
                       }}
                     />
                   </div>
-                  <div className='formField-select col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.regEmpId, Object.keys(values)[7], touched?.regEmpId)} placement="left">
 
                       <BadgeIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.regEmpId && touched?.regEmpId) ? 'red' : '' }} />
@@ -293,11 +292,8 @@ function Registration() {
                       }}
                     />
                   </div>
-                </div>
-                <div className='row fieldsRow'>
-                  <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.zipCode, Object.keys(values)[8], touched?.zipCode)} placement="left">
-
                       <GpsFixedIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.zipCode && touched?.zipCode) ? 'red' : '' }} />
                     </CustomToolTip>
                     <Field type={"number"}
@@ -309,7 +305,9 @@ function Registration() {
                       onChange={(e: any) => { setFieldValue("zipCode", parseInt(e.target.value)) }}
                     />
                   </div>
-                  <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                </div>
+                <div className='row fieldsRow'>
+                  <div className='formField col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.address, Object.keys(values)[9], touched?.address)} placement="left">
                       <HomeIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.address && touched?.address) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -323,7 +321,7 @@ function Registration() {
                       spellCheck={false}
                     />
                   </div>
-                  <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  {/* <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.password, Object.keys(values)[10], touched?.password)} placement="left">
 
                       <PasswordIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.password && touched?.password) ? 'red' : '' }} />
@@ -337,8 +335,8 @@ function Registration() {
                       onChange={(e: any) => { setFieldValue("password", e.target.value) }}
                       spellCheck={false}
                     />
-                  </div>
-                  <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  </div> */}
+                  {/* <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.confirmPassword, Object.keys(values)[11], touched?.confirmPassword)} placement="left">
 
                       <PasswordIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.confirmPassword && touched?.confirmPassword) ? 'red' : '' }} />
@@ -353,7 +351,7 @@ function Registration() {
                       spellCheck={false}
 
                     />
-                  </div>
+                  </div> */}
                 </div>
                 <div className='formSubmission'>
                   <Button variant="contained" type={'submit'} onClick={(e: any) => { setformStates({ ...formStates, formSubmitted: true }) }}>Register</Button>
