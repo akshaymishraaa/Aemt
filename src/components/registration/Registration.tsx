@@ -25,6 +25,7 @@ import PasswordIcon from '@mui/icons-material/Password';
 import CustomToolTip from '../../common/customTooltip/CustomToolTip';
 import { useDispatch } from 'react-redux';
 import { registerOrganization } from '../actions/actions';
+import { Actiontypes } from '../../types/ActionTypes';
 
 function Registration() {
   const navigate = useNavigate()
@@ -88,12 +89,13 @@ function Registration() {
     )
 
   }
-  // useEffect(() => {
-  //   dispatch(registerOrganization())
 
-  // }, [])
   const userReg = (values: any) => {
-    dispatch(registerOrganization(values))
+    dispatch(registerOrganization(values, (data: any) => {
+      dispatch({ type: Actiontypes.RECENT_REGISTERED_ORG, payload: data })
+      navigate('/createUser')
+    }))
+
 
   }
   return (
@@ -181,7 +183,7 @@ function Registration() {
                   </div>
                 </div>
                 <div className='row fieldsRow'>
-                <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.organizationType, Object.keys(values)[3], touched?.organizationType)} placement="left">
                       <DomainIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.organizationType && touched?.organizationType) ? 'red' : '' }} />
                     </CustomToolTip>
