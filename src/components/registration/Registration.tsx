@@ -23,7 +23,7 @@ import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import HomeIcon from '@mui/icons-material/Home';
 import PasswordIcon from '@mui/icons-material/Password';
 import CustomToolTip from '../../common/customTooltip/CustomToolTip';
-import { useDispatch } from 'react-redux';
+ import { useDispatch } from 'react-redux';
 import { registerOrganization } from '../actions/actions';
 
 function Registration() {

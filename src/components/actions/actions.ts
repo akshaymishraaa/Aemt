@@ -105,3 +105,4 @@ export const fetchAllTabs: any = (callback: any) => {
       });
   };
 };
+

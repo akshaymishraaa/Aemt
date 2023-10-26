@@ -60,6 +60,7 @@ function Login() {
               payload: true,
             });
             navigate("/home");
+            
           }
         })
         .catch((err: any) => console.log("Error...", err));
