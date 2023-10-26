@@ -44,7 +44,7 @@ function Login() {
     },
     validationSchema: ValidateSignUpSchema,
     onSubmit: (values) => {
-      const url = `${baseurl}/validateOrg`;
+      const url = `${baseurl}/validateUser`;
       fetch({
         url: url,
         method: "POST",

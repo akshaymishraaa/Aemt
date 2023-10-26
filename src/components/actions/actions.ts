@@ -108,3 +108,54 @@ export const fetchAllTabs: any = (callback: any) => {
       });
   };
 };
+
+// get all countries
+
+export const getCountries: any = () => {
+  const url = `${baseurl}/countries`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "GET",
+      data: "",
+    })
+      .then((res: any) => {
+        console.log("122....", res.data);
+      })
+      .catch((err: any) => {
+        console.log("error...", err);
+      });
+  };
+};
+export const getStates: any = (paylaod: any) => {
+  const url = `${baseurl}/states`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "POST",
+      data: paylaod,
+    })
+      .then((res: any) => {
+        console.log("122....", res.data);
+      })
+      .catch((err: any) => {
+        console.log("error...", err);
+      });
+  };
+};
+export const getCities: any = (paylaod: any) => {
+  const url = `${baseurl}/cities`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "POST",
+      data: paylaod,
+    })
+      .then((res: any) => {
+        console.log("122....", res.data);
+      })
+      .catch((err: any) => {
+        console.log("error...", err);
+      });
+  };
+};
