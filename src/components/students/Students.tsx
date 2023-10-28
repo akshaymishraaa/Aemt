@@ -3,7 +3,7 @@ import CommonCard from '../../common/CommonCard'
 import './styles/Styles.scss';
 import StudentDetails from './components/StudentDetails';
 import CommonSearchField from '../../common/CommonSearchField';
-import { NavLink, Route, Routes, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 import AddEditNewStudentDetails from './components/AddEditNewStudent';
 
 function Students() {
@@ -12,10 +12,14 @@ function Students() {
   // { featureName: 'Add Old Student Data', description: 'To add old student details' },
   // { featureName: 'Old Student Payment', description: 'setup old students payment mode' }, { featureName: 'Certificates', description: 'To access certificates and TC' }, { featureName: 'Transportation', description: 'To access Transport services details' }, { featureName: 'Inventory', description: 'To access inventory details of Uniforms,books and stationaries' }]
   return (
-    <Routes>
+    <div>
+     <StudentDetails />
+    {/* <Routes>
       <Route path='/' element={<StudentDetails />}> </Route>
       <Route path='addStudent' element={<AddEditNewStudentDetails />} />
-    </Routes>
+    </Routes> */}
+    {/* <Outlet /> */}
+    </div>
 
   )
 }

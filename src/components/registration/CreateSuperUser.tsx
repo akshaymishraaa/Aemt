@@ -24,7 +24,7 @@ function CreateSuperUser() {
 
     //     return optionObject;
     // });
-    const rolesOption = recentOrganizationName?.role.map((item: any, index: any) => {
+    const rolesOption = recentOrganizationName?.role?.map((item: any, index: any) => {
         let optionObject = { label: '', value: '' }
         optionObject.label = item.label;
         optionObject.value = item.value;
@@ -224,11 +224,9 @@ function CreateSuperUser() {
                                                 }
                                                 className="w-100"
                                                 isMulti={true}
-                                                defaultValue={recentOrganizationName.modules.filter((item: any) => item.status && item)}
+                                                defaultValue={recentOrganizationName?.modules?.filter((item: any) => item?.status && item)}
                                             />
-                                            <>
-                                                {console.log('228...', recentOrganizationName.modules.filter((item: any) => item.status && item))}
-                                            </>
+                                            
                                             <ErrorMessage
                                                 name="allowedModule"
                                                 component="div"
