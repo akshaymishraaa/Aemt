@@ -3,7 +3,6 @@ import Select from 'react-select';
 
 
 export default function ReactSelect(props: any) {
-    console.log(props, "6..")
     return (
         <div className='reactSelect'>
 
@@ -18,9 +17,13 @@ export default function ReactSelect(props: any) {
                 value={props.values?.value === "" ? [] : props.values}
                 className={props.className}
                 onBlur={props.onBlur}
+<<<<<<< HEAD
                 isDisabled={props.disabled}
                 isMulti={props.isMulti}
                 defaultValue={props.defaultValue}
+=======
+                isDisabled={props?.disabled}
+>>>>>>> 21519260320bf954e42392d1389d48a6629142da
             />
         </div>
     )

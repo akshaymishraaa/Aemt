@@ -21,7 +21,7 @@ export default function CustomDialog(props:any) {
         },
         '& .MuiTypography-root': {
             fontSize: "13px",
-            margin: "2px",
+            // margin: "2px",
             width: "90%",
             padding: "5px",
             textAlign: "center",
@@ -33,6 +33,29 @@ export default function CustomDialog(props:any) {
             marginLeft: "5px",
             fontSize: "13px",
         },
+        '& .btn-eprimary':{
+            fontSize:"13px",
+            color:"white",
+            backgroundColor:"rgba(6,95,212,255)",
+            borderRadius:"4px",
+            WhiteSpace:"nowrap",
+            margin:"0px",
+            maxHeight:"32px",
+            lineHeight:"32px",
+            
+        },
+        '& .btn-esecondary':{
+            fontSize:"13px",
+            color:"black",
+            backgroundColor:"rgba(204,204,204,255)",
+            borderRadius:"4px",
+            whiteSpace:"nowrap",
+            margin:"0px",
+            maxHeight:"32px",
+            lineHeight:"32px",
+
+        },
+
 
     }));
 
@@ -52,8 +75,7 @@ export default function CustomDialog(props:any) {
             >
                 <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
                    <span>{props.title}</span>
-                </DialogTitle>
-                <IconButton
+                   <IconButton
                     aria-label="close"
                     onClick={handleClose}
                     sx={{
@@ -65,13 +87,15 @@ export default function CustomDialog(props:any) {
                 >
                     <CloseIcon />
                 </IconButton>
+                </DialogTitle>
+               
                 <DialogContent dividers>
                     {props.children}
                 </DialogContent>
                 <DialogActions>
                     {console.log("58...",props.actionType)}
-                    {props.actionType==='Close' ?  <Button autoFocus onClick={handleClose}>Close</Button> : <Button autoFocus onClick={handleClose}>cancel</Button>}
-                    {props.actionType && props.actionType!=='Close' && <Button type='submit' form={props.form} autoFocus onClick={props.onSubmitHandler}>
+                    {props.actionType==='Close' ?  <Button autoFocus onClick={handleClose}>Close</Button> : <Button className='btn-esecondary' autoFocus onClick={handleClose}>cancel</Button>}
+                    {props.actionType && props.actionType!=='Close' && <Button className='btn-eprimary' type='submit' form={props.form} autoFocus onClick={props.onSubmitHandler}>
                     {props.actionType==='Submit' ? 'Submit' : props.actionType=== 'Update '? 'Update' : props.actionType}
                     </Button> }
                 </DialogActions>

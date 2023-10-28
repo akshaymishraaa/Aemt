@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Formik, Form, Field } from 'formik';
 import { RegistrationModal } from './RegistrationValues';
 import * as yup from 'yup'
@@ -7,7 +7,7 @@ import { ValidateRegistration } from './ValidationSchema';
 import Button from '@mui/material/Button';
 import ReactSelect from '../../common/selectBox/ReactSelect';
 import axios from 'axios';
-import { orgTypeOptions, CountryOption, StateOption, CityOption, EmpOption } from './selectStaticOptions';
+import { orgTypeOptions, CityOption, EmpOption } from './selectStaticOptions';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import { useNavigate } from 'react-router-dom';
 import CorporateFareIcon from '@mui/icons-material/CorporateFare';
@@ -24,15 +24,18 @@ import HomeIcon from '@mui/icons-material/Home';
 import PasswordIcon from '@mui/icons-material/Password';
 import CustomToolTip from '../../common/customTooltip/CustomToolTip';
 import { useDispatch } from 'react-redux';
-import { registerOrganization } from '../actions/actions';
+import { getCities, getCountries, getStates, registerOrganization } from '../actions/actions';
 import { Actiontypes } from '../../types/ActionTypes';
+import { extractOptions } from './helpers';
 
 function Registration() {
   const navigate = useNavigate()
+  const isLoaded = useRef(true)
   const styles: any = {
     control: (base: any, state: any) => ({
       ...base,
-      background: "none",
+      background: state.isDisabled ? "grey" : "none",
+      cursor: state.isDisabled ? 'not-allowed !important' : "pointer",
       // outline: 0,
       border: '0 !important',
 
@@ -54,25 +57,34 @@ function Registration() {
         // borderColor: state.isFocused ? "red" : "blue"
       },
     }),
-    singleValue: (provided: any, state: any) => ({
+    singleValue: (provided: any, { isDisabled }: any) => ({
       ...provided,
       color: 'white',
+      "&:disabled": {
+        background: "grey"
+      }
       // fontSize: state.selectProps.myFontSize
     }),
     placeholder: (provided: any, state: any) => ({
       ...provided,
       color: 'black',
-    })
+    }),
+    // input: ((provided: any, state: any)=>{
+    //   ...provided,
+    //   back
+    // })
   };
-  const [formStates, setformStates] = useState<{ organizationType: String, country: String, state: String, city: String, empId: String, formSubmitted: Boolean }>
+  const [formStates, setformStates] = useState<{ organizationType: { label: String, value: String }, country: { label: String, value: String }, state: { label: String, value: String }, city: { label: String, value: String }, empId: { label: String, value: String }, formSubmitted: Boolean }>
     ({
-      organizationType: "",
-      country: "",
-      state: "",
-      city: "",
-      empId: "",
+      organizationType: { label: '', value: '' },
+      country: { label: '', value: '' },
+      state: { label: '', value: '' },
+      city: { label: '', value: '' },
+      empId: { label: '', value: '' },
       formSubmitted: false
     })
+  const [countriesOpt, setCountriesOpt] = useState<any>()
+  const [stateOpt, setStateOpt] = useState<any>()
 
 
   const handleBackToSighnIn = () => {
@@ -81,7 +93,6 @@ function Registration() {
   }
   const dispatch = useDispatch()
   const renderTooltip = (err: any, name: string, touched: any) => {
-    // console.log(err, name, "41....")
     return (
       <>
         <p>{(err && touched) ? err : `Please Enter ${name}`}</p>
@@ -98,6 +109,51 @@ function Registration() {
 
 
   }
+
+  const onStateChangeHandler = (e: any, setFieldValue: any) => {
+    setformStates({ ...formStates, state: e })
+    setFieldValue("state", e.value)
+    const payload = ({
+      countryId: formStates.country.value,
+      stateId: e.value
+    })
+    console.log(formStates, "formStates")
+    dispatch(getCities(payload, (response: any) => {
+      console.log(response, "115.....")
+    }))
+  }
+
+  const onCountryChangeHandler = (e: any, setFieldValue: any) => {
+    setFieldValue("country", e.value)
+    setformStates({ ...formStates, country: e })
+    const payload = ({
+      countryId: e.value
+    })
+    dispatch(getStates(payload, (response: any) => {
+      let stateList = extractOptions(response)
+      setStateOpt(stateList)
+    }))
+
+  }
+
+  useEffect(() => {
+    if (isLoaded.current) {
+
+      dispatch(getCountries((response: any) => {
+        if (response?.length > 0) {
+          let CoutriesOptList = extractOptions(response)
+          setCountriesOpt(CoutriesOptList)
+
+        }
+        else {
+
+        }
+
+      }))
+      isLoaded.current = false
+    }
+  }, [])
+
   return (
     <div className=' row RegistrationPageMain col-12 p-0 m-0'>
       <p className='mainHeading'>ORGANIZATION REGISTRATION</p>
@@ -110,19 +166,9 @@ function Registration() {
           validationSchema={ValidateRegistration}
           onSubmit={(values: any) => {
             userReg(values)
-            // axios.post('http://localhost:3001/api/registerUser', {
-            //   data: values
-            // })
-            //   .then((response: any) => {
-            //     console.log(response.data);
-            //     // Handle data
-            //   })
-            //   .catch((error: any) => {
-            //     console.log(error, "40...");
-            //   })
           }}>
           {({ errors, touched, setFieldValue, values, handleBlur, isSubmitting, setFieldTouched }) => {
-            { console.log(errors, touched, "30....") }
+            { console.log(values, errors, touched, "30....") }
             return (
 
               <Form className='form'>
@@ -132,7 +178,7 @@ function Registration() {
                     <p className='errorsNote'>* Please Check Some Of Mandatory Fields Are Not Appropriate As Req</p> :
                     <p className="InitialNote">* All The Field Are Mandatory For Registration</p>}
                 <div className='row fieldsRow'>
-                  <div className='formField col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.organizationName, Object.keys(values)[0], touched?.organizationName)} placement="left">
                       <CorporateFareIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.organizationName && touched?.organizationName) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -152,7 +198,7 @@ function Registration() {
                     {/* </CustomToolTip> */}
 
                   </div>
-                  <div className='formField col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.organizationEmailId, Object.keys(values)[1], touched?.organizationEmailId)} placement="left">
                       <MailIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.organizationEmailId && touched?.organizationEmailId) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -167,7 +213,7 @@ function Registration() {
                       spellCheck={false}
                     />
                   </div>
-                  <div className='formField col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.contactNumber, Object.keys(values)[2], touched?.contactNumber)} placement="left">
                       <AddIcCallIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.contactNumber && touched?.contactNumber) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -183,7 +229,7 @@ function Registration() {
                   </div>
                 </div>
                 <div className='row fieldsRow'>
-                  <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField-select col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.organizationType, Object.keys(values)[3], touched?.organizationType)} placement="left">
                       <DomainIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.organizationType && touched?.organizationType) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -191,8 +237,9 @@ function Registration() {
                       id={"organizationType"}
                       onChange={(e: any) => {
                         console.log("76...")
-                        setFieldValue("organizationType", e.value)
                         setformStates({ ...formStates, organizationType: e })
+
+                        setFieldValue("organizationType", e.value)
                       }}
                       styles={styles}
 
@@ -200,13 +247,11 @@ function Registration() {
                       options={orgTypeOptions}
                       values={formStates?.organizationType}
                       className={(touched?.organizationType && errors.organizationType ? "fieldErr" : "selectField")}
-                      onBlur={(e: any) => {
-                        setFieldTouched("organizationType", true)
-                      }}
+
 
                     />
                   </div>
-                  <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField-select col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.country, Object.keys(values)[4], touched?.country)} placement="left">
                       <PublicIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.country && touched?.country) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -214,21 +259,18 @@ function Registration() {
                       id={"country"}
                       styles={styles}
                       placeHolder={"country"}
-                      options={CountryOption}
+                      options={countriesOpt}
                       values={formStates?.country}
                       disabled={false}
                       onChange={(e: any) => {
-                        setFieldValue("country", e.value)
-                        setformStates({ ...formStates, country: e })
+                        onCountryChangeHandler(e, setFieldValue)
                       }}
                       className={(touched?.country && errors.country ? "fieldErr" : "selectField")}
-                      onBlur={(e: any) => {
-                        setFieldTouched("country", true)
-                      }}
+
 
                     />
                   </div>
-                  <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField-select col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.state, Object.keys(values)[5], touched?.state)} placement="left">
 
                       <LocationOnIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.state && touched?.state) ? 'red' : '' }} />
@@ -237,20 +279,18 @@ function Registration() {
                       id={"state"}
                       styles={styles}
                       placeHolder={"State"}
-                      options={StateOption}
+                      options={stateOpt}
                       values={formStates?.state}
+                      disabled={(values?.country) ? false : true}
                       onChange={(e: any) => {
-                        setFieldValue("state", e.value)
-                        setformStates({ ...formStates, state: e })
+                        onStateChangeHandler(e, setFieldValue)
                       }}
-                      className={(touched?.state && errors.state ? "fieldErr" : "selectField")}
-                      onBlur={(e: any) => {
-                        setFieldTouched("state", true)
-                      }}
+                      className={(touched?.state && errors?.state ? "fieldErr" : "selectField")}
+
 
                     />
                   </div>
-                  <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField-select col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.city, Object.keys(values)[6], touched?.city)} placement="left">
 
                       <LocationCityIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.city && touched?.city) ? 'red' : '' }} />
@@ -261,18 +301,16 @@ function Registration() {
                       id={"city"}
                       placeHolder={"City"}
                       options={CityOption}
+                      disabled={(values.state) ? false : true}
                       values={formStates?.city}
                       onChange={(e: any) => {
                         setFieldValue("city", e.value)
                         setformStates({ ...formStates, city: e })
                       }}
                       className={(touched?.city && errors.city ? "fieldErr" : "selectField")}
-                      onBlur={(e: any) => {
-                        setFieldTouched("city", true)
-                      }}
                     />
                   </div>
-                  <div className='formField-select col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField-select col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.regEmpId, Object.keys(values)[7], touched?.regEmpId)} placement="left">
 
                       <BadgeIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.regEmpId && touched?.regEmpId) ? 'red' : '' }} />
@@ -289,12 +327,9 @@ function Registration() {
                         setformStates({ ...formStates, empId: e })
                       }}
                       className={(touched?.regEmpId && errors.regEmpId ? "fieldErr" : "selectField")}
-                      onBlur={(e: any) => {
-                        setFieldTouched("regEmpId", true)
-                      }}
                     />
                   </div>
-                  <div className='formField col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.zipCode, Object.keys(values)[8], touched?.zipCode)} placement="left">
                       <GpsFixedIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.zipCode && touched?.zipCode) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -309,7 +344,7 @@ function Registration() {
                   </div>
                 </div>
                 <div className='row fieldsRow'>
-                  <div className='formField col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12'>
+                  <div className='formField col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.address, Object.keys(values)[9], touched?.address)} placement="left">
                       <HomeIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.address && touched?.address) ? 'red' : '' }} />
                     </CustomToolTip>
@@ -323,7 +358,7 @@ function Registration() {
                       spellCheck={false}
                     />
                   </div>
-                  {/* <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  {/* <div className='formField col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.password, Object.keys(values)[10], touched?.password)} placement="left">
 
                       <PasswordIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.password && touched?.password) ? 'red' : '' }} />
@@ -338,7 +373,7 @@ function Registration() {
                       spellCheck={false}
                     />
                   </div> */}
-                  {/* <div className='formField col-xl-3 col-lg-3 col-md-6 col-sm-6 col-xs-12'>
+                  {/* <div className='formField col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12'>
                     <CustomToolTip title={renderTooltip(errors?.confirmPassword, Object.keys(values)[11], touched?.confirmPassword)} placement="left">
 
                       <PasswordIcon sx={{ fontSize: "30px" }} className='fieldIcon' style={{ color: (errors?.confirmPassword && touched?.confirmPassword) ? 'red' : '' }} />

@@ -19,7 +19,7 @@ function Root() {
     <Suspense fallback={<LoadingScreen />}>
       <Routing>
         <Route
-          path="/"
+          path="/"  
           element={
             <PublicRoute to="/home">
               <Login />

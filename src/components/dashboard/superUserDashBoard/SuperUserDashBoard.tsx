@@ -11,6 +11,7 @@ const SuperUserDashBoard = () => {
   const { userDetails } = useSelector((state: any) => state.application)
   console.log('12....',userDetails)
   const dispatch = useDispatch()
+  
   useEffect(() => {
 
     dispatch(findUserById(userDetails.id))
