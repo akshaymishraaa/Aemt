@@ -12,7 +12,6 @@ function Students() {
   // { featureName: 'Add Old Student Data', description: 'To add old student details' },
   // { featureName: 'Old Student Payment', description: 'setup old students payment mode' }, { featureName: 'Certificates', description: 'To access certificates and TC' }, { featureName: 'Transportation', description: 'To access Transport services details' }, { featureName: 'Inventory', description: 'To access inventory details of Uniforms,books and stationaries' }]
   return (
-
     <Routes>
       <Route path='/' element={<StudentDetails />}> </Route>
       <Route path='addStudent' element={<AddEditNewStudentDetails />} />
