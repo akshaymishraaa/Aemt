@@ -1,10 +1,13 @@
 import { Alert, Button } from "@mui/material";
 import React, { useEffect } from "react";
 import CustomDialog from "../../common/dialogBox/CustomDialog";
+import '../../common/dialogBox/Dialogbox.scss';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import ReactSelect from "../../common/selectBox/ReactSelect";
 import { rolesOption, tabOptions } from "./SelectStaticOption";
 import { useDispatch, useSelector } from "react-redux";
+import LockResetIcon from '@mui/icons-material/LockReset';
+import Select, { StylesConfig } from 'react-select';
 import {
   createUser,
   fetchAllTabs,
@@ -99,6 +102,7 @@ function CreateUser() {
               email: "",
               contactNo: "",
               password: "",
+              org_name:"",
               role: "",
               allowedModule: "",
             }}
@@ -111,13 +115,15 @@ function CreateUser() {
                   <div className="row ">
                     <>{console.log("101....", errors)}</>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                      <label htmlFor="firstName">First Name</label>
+                      <label htmlFor="firstName">First Name:<span className="text-danger">*</span></label>
                       <div>
                         <Field
                           id="firstName"
                           name="firstName"
                           placeholder="Enter Your First Name"
                           value={values.firstName}
+                          // className={((touched?.firstName && errors.firstName) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
                         />
                         <ErrorMessage
                           name="firstName"
@@ -127,13 +133,15 @@ function CreateUser() {
                       </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                      <label htmlFor="firstName">Last Name</label>
+                      <label htmlFor="firstName">Last Name:</label>
                       <div>
                         <Field
                           id="lastName"
                           name="lastName"
                           placeholder="Enter Your Last Name"
                           value={values.lastName}
+                          // className={((touched?.lastName && errors.firstName) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
                         />
                         <ErrorMessage
                           name="lastName"
@@ -143,13 +151,15 @@ function CreateUser() {
                       </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                      <label htmlFor="firstName">Email</label>
+                      <label htmlFor="firstName">Email:<span className="text-danger">*</span></label>
                       <div>
                         <Field
                           id="email"
                           name="email"
                           placeholder="Enter Your email"
                           value={values.email}
+                          // className={((touched?.email && errors.email) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
                         />
                         <ErrorMessage
                           name="email"
@@ -161,7 +171,7 @@ function CreateUser() {
                   </div>
                   <div className="row ">
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                      <label htmlFor="firstName">Phone no.</label>
+                      <label htmlFor="firstName">Phone no:<span className="text-danger">*</span></label>
                       <div>
                         <Field
                           id="number"
@@ -169,6 +179,8 @@ function CreateUser() {
                           name="contactNo"
                           placeholder="Enter your contact number"
                           value={values.contactNo}
+                          // className={((touched?.contactNo && errors.contactNo) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
                         />
                         <ErrorMessage
                           name="contactNo"
@@ -178,14 +190,17 @@ function CreateUser() {
                       </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                      <label htmlFor="firstName">Pasword</label>
+                      <label htmlFor="firstName">Pasword:<span className="text-danger">*</span></label>
                       <div>
+                      {/* <span> <LockResetIcon/></span> */}
                         <Field
                           id="password"
                           name="password"
                           placeholder="Enter Your Password"
                           type="password"
                           value={values.password}
+                          // className={((touched?.password && errors.password) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
                         />
                         <ErrorMessage
                           name="password"
@@ -195,15 +210,16 @@ function CreateUser() {
                       </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                      <label htmlFor="firstName">Role</label>
+                      <label htmlFor="firstName">Organization Name:<span className="text-danger">*</span></label>
                       <div>
-                        <ReactSelect
-                          name={"role"}
-                          id={"role"}
-                          placeHolder={"role"}
-                          options={rolesOption}
-                          value={values.role}
-                          onChange={(e: any) => setFieldValue("role", e.value)}
+                      {/* <span> <LockResetIcon/></span> */}
+                        <Field
+                          id="org_name"
+                          name="org_name"
+                          placeholder="Enter Your Org_name"
+                          value={values.org_name}
+                          // className={((touched?.password && errors.password) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
                         />
                         <ErrorMessage
                           name="role"
@@ -212,26 +228,44 @@ function CreateUser() {
                         />
                       </div>
                     </div>
+                    
                   </div>
                   <div className="row ">
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                      <label htmlFor="firstName">Allowed Module</label>
+                      <label htmlFor="firstName">Allowed Module:<span className="text-danger">*</span></label>
                       <div>
-                        <ReactSelect
+                        <Select
                           name={"allowedModule"}
                           id={"module"}
-                          placeHolder={"Allowed module"}
+                          // placeHolder={"Allowed module"}
                           value={values.allowedModule}
                           options={tabOptions}
+                          isMulti
                           onChange={(e: any) =>
                             setFieldValue("allowedModule", e.value)
                           }
+                          // className={((touched?.allowedModule && errors.allowedModule) ? "selecterror" : "")}
                         />
                         <ErrorMessage
                           name="allowedModule"
                           component="div"
                           className="text-danger"
                         />
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <label htmlFor="firstName">Role:<span className="text-danger">*</span></label>
+                      <div>
+                        <ReactSelect
+                          name={"role"}
+                          id={"role"}
+                          placeHolder={"role"}
+                          options={rolesOption}
+                          value={values.role}
+                          onChange={(e: any) => setFieldValue("role", e.value)}
+                          // className={((touched?.role && errors.role) ? "selecterror" : "")}
+                        />
+                        <ErrorMessage name="role" component="div" className="text-danger" />
                       </div>
                     </div>
                   </div>
