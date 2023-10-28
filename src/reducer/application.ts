@@ -3,7 +3,7 @@ import { Actiontypes } from "../types/ActionTypes";
 
 const initialState = {
   isAuthenticated: false,
-  orgDetails: {},
+  userDetails: {},
   organization: [],
   roles: RolesData,
   userData: [],
@@ -21,7 +21,7 @@ export const application = (state: object = initialState, action: any) => {
       return { ...state, roles: action.payload };
     case Actiontypes.GET_VALIDATED_USER_DETAILS:
       console.log("20..", action.payload);
-      return { ...state, orgDetails: action.payload };
+      return { ...state, userDetails: action.payload };
     case Actiontypes.GET_ALL_USER_DATA:
       return { ...state, userData: action.payload };
     case Actiontypes.GET_ALL_TABS:

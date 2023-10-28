@@ -16,12 +16,14 @@ function CreateSuperUser() {
     const { tabs, recentOrganizationName } = useSelector((state: any) => state.application);
     const dispatch = useDispatch();
 
-    const tabOptions = recentOrganizationName.modules?.map((item: any, index: any) => {
-        let optionObject = { label: "", value: "" };
-        optionObject.label = item;
-        optionObject.value = item;
-        return optionObject;
-    });
+    const tabOptions = recentOrganizationName.modules
+    // ?.map((item: any, index: any) => {
+    //     let optionObject = { label: "", value: "" };
+    //     optionObject.label = item.name;
+    //     optionObject.value = item.name;
+
+    //     return optionObject;
+    // });
     const rolesOption = recentOrganizationName?.role.map((item: any, index: any) => {
         let optionObject = { label: '', value: '' }
         optionObject.label = item.label;
@@ -209,16 +211,24 @@ function CreateSuperUser() {
                                         <label htmlFor="firstName">Allowed Module</label>
                                         <div>
                                             <ReactSelect
+                                                type="multi"
                                                 name={"allowedModule"}
                                                 id={"module"}
                                                 placeHolder={"Allowed module"}
                                                 value={values.allowedModule}
                                                 options={tabOptions}
-                                                onChange={(e: any) =>
-                                                    setFieldValue("allowedModule", e.value)
+                                                onChange={(e: any) => {
+                                                    console.log('e.value', e)
+                                                    setFieldValue("allowedModule", e)
+                                                }
                                                 }
                                                 className="w-100"
+                                                isMulti={true}
+                                                defaultValue={recentOrganizationName.modules.filter((item: any) => item.status && item)}
                                             />
+                                            <>
+                                                {console.log('228...', recentOrganizationName.modules.filter((item: any) => item.status && item))}
+                                            </>
                                             <ErrorMessage
                                                 name="allowedModule"
                                                 component="div"

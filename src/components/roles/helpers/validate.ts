@@ -8,5 +8,5 @@ export const validateUserSchema = Yup.object().shape({
   contactNo: Yup.string().required("Please Enter Email"),
   password: Yup.string().required("Please Enter Email"),
   role: Yup.string().required("Please Enter Email"),
-  allowedModule: Yup.string().required("Please Enter Email"),
+  allowedModule: Yup.array().required("Please select modules"),
 });
