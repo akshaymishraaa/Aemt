@@ -9,6 +9,7 @@ const initialState = {
   userData: [],
   tabs: [],
   recentOrganizationName: {},
+  Countries_List:[]
 };
 
 export const application = (state: object = initialState, action: any) => {
@@ -28,6 +29,8 @@ export const application = (state: object = initialState, action: any) => {
       return { ...state, tabs: action.payload };
     case Actiontypes.RECENT_REGISTERED_ORG:
       return { ...state, recentOrganizationName: action.payload };
+    case Actiontypes.ALL_COUNTRIES:
+      return { ...state, Countries_List :action.payload}
     default:
       return state;
   }

@@ -8,6 +8,7 @@ import { getCities, getCountries, getStates } from '../../actions/actions'
 
 const SuperUserDashBoard = () => {
   const dispatch = useDispatch()
+  
   useEffect(() => {
     dispatch(getCountries())
     dispatch(getStates({ countryId: '101' }))
