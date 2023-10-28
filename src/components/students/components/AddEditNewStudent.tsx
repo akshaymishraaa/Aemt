@@ -1,9 +1,10 @@
 import React from 'react'
-const AddEditNewStudentDetails=(props:any)=>{
-    return(
+const AddEditNewStudentDetails = (props: any) => {
+
+    return (
         <>
-        <div>Add Student Details............................</div>
+            <div>Add Student Details............................</div>
         </>
     )
-}   
+}
 export default AddEditNewStudentDetails
