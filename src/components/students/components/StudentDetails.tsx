@@ -52,7 +52,7 @@ export default function StudentDetails() {
                 <Column field={'class'} header={'Class'} />
                 <Column field={'section'} header={'Section'} />
                 <Column field={'parentContact'} header={'Parent contact'} />
-                <Column body={actionBody} header={'Parent contact'} />
+                <Column body={actionBody} header={'Actions'} />
             </DataTable>
         </div>
     );

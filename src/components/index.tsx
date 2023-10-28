@@ -1,6 +1,5 @@
 import React from 'react'
 import Dashboard from './dashboard'
-import Employees from './employess/Employees'
 
 function index() {
   return (
