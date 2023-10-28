@@ -24,9 +24,9 @@ export const registerOrganization: any = (props: any, callback: any) => {
   };
 };
 
-export const ValidateOrganization: any = (props: any) => {
+export const ValidateUser: any = (props: any, callback: any) => {
   console.log("32...res", props);
-  const url = `${baseurl}/validateOrg`;
+  const url = `${baseurl}/validateUser`;
   return (dispatch: any) => {
     fetch({
       url: url,
@@ -34,10 +34,10 @@ export const ValidateOrganization: any = (props: any) => {
       data: props,
     })
       .then((res: any) => {
-        dispatch({
-          type: Actiontypes.GET_VALIDATED_USER_DETAILS,
-          payload: res.data,
-        });
+        if (callback) {
+          callback(res.data);
+        }
+        
       })
       .catch((error: any) => console.log("Error...", error));
   };
@@ -158,6 +158,25 @@ export const getCities: any = (paylaod: any, callback: any) => {
       url: url,
       method: "POST",
       data: paylaod,
+    })
+      .then((res: any) => {
+        // console.log("122....", res.data);
+      })
+      .catch((err: any) => {
+        console.log("error...", err);
+      });
+  };
+};
+
+// api for find user details as per email id
+
+export const findUserById: any = (payload: any,callback:any) => {
+  const url = `${baseurl}/findUserById/${payload}`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "GET",
+      data: "",
     })
       .then((res: any) => {
         console.log("122....", res.data);
