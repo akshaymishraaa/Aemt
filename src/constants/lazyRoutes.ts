@@ -47,8 +47,9 @@ export const privateRoutes = [
     pathName: "/students",
     component: lazy(() => import("../components/students/Students")),
     navigateTo: "/students",
-    icon: lazy(() => import("@mui/icons-material/Groups2"))
-  },
+    icon: lazy(() => import("@mui/icons-material/Groups2")),
+    renderChild:true, 
+   },
   {
     name: "Employee",
     pathName: "/employees",
@@ -56,6 +57,12 @@ export const privateRoutes = [
     navigateTo: "/employees",
     icon: lazy(() => import("@mui/icons-material/EventNote"))
   },
+  {
+    name: 'addNewStudents',
+    pathNmae: 'addStudent',
+    component: lazy(() => import("../components/students/components/AddEditNewStudent")),
+    navigateTo: 'addStudent',
+  }
 
   // //Note:------Just a example for how to write routes who have childrens change according tp your needs
   // {

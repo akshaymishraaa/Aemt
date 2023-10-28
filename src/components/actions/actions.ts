@@ -111,7 +111,7 @@ export const fetchAllTabs: any = (callback: any) => {
 
 // get all countries
 
-export const getCountries: any = () => {
+export const getCountries: any = (callback: any) => {
   const url = `${baseurl}/countries`;
   return (dispatch: any) => {
     fetch({
@@ -120,14 +120,22 @@ export const getCountries: any = () => {
       data: "",
     })
       .then((res: any) => {
-        console.log("122....", res.data);
+        dispatch({ type: Actiontypes.ALL_COUNTRIES, payload: res.data })
+        if (res?.data) {
+          if (callback) { callback(res.data.sort((a: any, b: any) => a.name.localeCompare(b.name))) }
+        }
+        else {
+          if (callback) { callback([]) }
+        }
+        console.log("122....res.data", res?.data);
       })
       .catch((err: any) => {
+
         console.log("error...", err);
       });
   };
 };
-export const getStates: any = (paylaod: any) => {
+export const getStates: any = (paylaod: any, callback: any) => {
   const url = `${baseurl}/states`;
   return (dispatch: any) => {
     fetch({
@@ -136,14 +144,14 @@ export const getStates: any = (paylaod: any) => {
       data: paylaod,
     })
       .then((res: any) => {
-        console.log("122....", res.data);
+        if (callback) { callback(res.data.sort((a: any, b: any) => a.name.localeCompare(b.name))) }
       })
       .catch((err: any) => {
         console.log("error...", err);
       });
   };
 };
-export const getCities: any = (paylaod: any) => {
+export const getCities: any = (paylaod: any, callback: any) => {
   const url = `${baseurl}/cities`;
   return (dispatch: any) => {
     fetch({
@@ -153,6 +161,7 @@ export const getCities: any = (paylaod: any) => {
     })
       .then((res: any) => {
         console.log("122....", res.data);
+        if (callback) { callback(res.data) }
       })
       .catch((err: any) => {
         console.log("error...", err);
