@@ -170,7 +170,7 @@ export const getCities: any = (paylaod: any, callback: any) => {
 
 // api for find user details as per email id
 
-export const findUserById: any = (payload: any) => {
+export const findUserById: any = (payload: any,callback:any) => {
   const url = `${baseurl}/findUserById/${payload}`;
   return (dispatch: any) => {
     fetch({
