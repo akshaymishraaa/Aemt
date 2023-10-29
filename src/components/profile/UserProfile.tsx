@@ -8,7 +8,7 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUserDetails } from '../actions/actions';
 import { Actiontypes } from '../../types/ActionTypes';
-import userprofileimage from '../../assets/userprofileimage.jpg'
+import userprofileimage from '../../assets/userpic.png'
 import "../../../src/App.scss";
 function UserProfile() {
   const dispatch = useDispatch();
@@ -22,18 +22,18 @@ function UserProfile() {
     );
   }, [])
 
-
+console.log(userData[0].firstName)
   return (
     <React.Fragment>
       {/* <CommonCard title={'User profile'}> 
       </CommonCard> */}
-      <div className='d-flex'>
+      <div className='d-flex mt-4'>
         <Formik
           initialValues={userData}
           validationSchema={UserProfileValidation}
           onSubmit={() => {
 
-            console.log(userData)
+            //console.log(userData)
 
             // axios.get("http://localhost:3001/api/validateOrg" )
             // .then((response)=>{console.log(response.data)})
@@ -50,6 +50,7 @@ function UserProfile() {
                         name="firstName"
                         id="firstName"
                         placeHolder={"Enter First Name"}
+                        
                         className="form-control ms-3 input-sm "
                       />
                    </div>
@@ -161,8 +162,8 @@ function UserProfile() {
           </Form>
 
         </Formik>
-        <div className='user-profile-image my-4'>
-          <img src={userprofileimage} />
+        <div className='user-profile-image'>
+          <img src={userprofileimage} height={400} width={400}/>
         </div>
 
       </div>

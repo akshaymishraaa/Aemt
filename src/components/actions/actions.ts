@@ -24,9 +24,9 @@ export const registerOrganization: any = (props: any, callback: any) => {
   };
 };
 
-export const ValidateOrganization: any = (props: any) => {
+export const ValidateUser: any = (props: any, callback: any) => {
   console.log("32...res", props);
-  const url = `${baseurl}/validateOrg`;
+  const url = `${baseurl}/validateUser`;
   return (dispatch: any) => {
     fetch({
       url: url,
@@ -34,10 +34,10 @@ export const ValidateOrganization: any = (props: any) => {
       data: props,
     })
       .then((res: any) => {
-        dispatch({
-          type: Actiontypes.GET_VALIDATED_USER_DETAILS,
-          payload: res.data,
-        });
+        if (callback) {
+          callback(res.data);
+        }
+        
       })
       .catch((error: any) => console.log("Error...", error));
   };
@@ -113,7 +113,7 @@ export const fetchAllTabs: any = (callback: any) => {
 // =======
 // get all countries
 
-export const getCountries: any = () => {
+export const getCountries: any = (callback: any) => {
   const url = `${baseurl}/countries`;
   return (dispatch: any) => {
     fetch({
@@ -122,14 +122,22 @@ export const getCountries: any = () => {
       data: "",
     })
       .then((res: any) => {
-        console.log("122....", res.data);
+        dispatch({ type: Actiontypes.ALL_COUNTRIES, payload: res.data })
+        if (res?.data) {
+          if (callback) { callback(res.data.sort((a: any, b: any) => a.name.localeCompare(b.name))) }
+        }
+        else {
+          if (callback) { callback([]) }
+        }
+        console.log("122....res.data", res?.data);
       })
       .catch((err: any) => {
+
         console.log("error...", err);
       });
   };
 };
-export const getStates: any = (paylaod: any) => {
+export const getStates: any = (paylaod: any, callback: any) => {
   const url = `${baseurl}/states`;
   return (dispatch: any) => {
     fetch({
@@ -138,14 +146,14 @@ export const getStates: any = (paylaod: any) => {
       data: paylaod,
     })
       .then((res: any) => {
-        console.log("122....", res.data);
+        if (callback) { callback(res.data.sort((a: any, b: any) => a.name.localeCompare(b.name))) }
       })
       .catch((err: any) => {
         console.log("error...", err);
       });
   };
 };
-export const getCities: any = (paylaod: any) => {
+export const getCities: any = (paylaod: any, callback: any) => {
   const url = `${baseurl}/cities`;
   return (dispatch: any) => {
     fetch({
@@ -154,7 +162,27 @@ export const getCities: any = (paylaod: any) => {
       data: paylaod,
     })
       .then((res: any) => {
+        // console.log("122....", res.data);
+      })
+      .catch((err: any) => {
+        console.log("error...", err);
+      });
+  };
+};
+
+// api for find user details as per email id
+
+export const findUserById: any = (payload: any,callback:any) => {
+  const url = `${baseurl}/findUserById/${payload}`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "GET",
+      data: "",
+    })
+      .then((res: any) => {
         console.log("122....", res.data);
+        if (callback) { callback(res.data) }
       })
       .catch((err: any) => {
         console.log("error...", err);

@@ -4,11 +4,15 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import CommonCard from '../../../common/CommonCard';
+import CommonSearchField from '../../../common/CommonSearchField';
+import '../styles/Styles.scss'
 
 
 export default function StudentDetails() {
     const [products, setProducts] = useState([]);
+    const navigate = useNavigate()
 
     const studentData: any = [
         { id: 'STX1', studentName: 'Amar pratap', rollNo: 12, class: '10th', section: 'D', parentContact: 99858348484 },
@@ -40,20 +44,31 @@ export default function StudentDetails() {
 
 
     return (
-        <div className="card p-4">
-            <DataTable value={studentData}
-                showGridlines
-                stripedRows
-                tableStyle={{ minWidth: '50rem' }}
-            >
-                <Column body={stdIdTemplate} header={'Student UID'} />
-                <Column field={'studentName'} header={'Student name'} />
-                <Column field={'rollNo'} header={'Roll no'} />
-                <Column field={'class'} header={'Class'} />
-                <Column field={'section'} header={'Section'} />
-                <Column field={'parentContact'} header={'Parent contact'} />
-                <Column body={actionBody} header={'Actions'} />
-            </DataTable>
-        </div>
+        <CommonCard title={'Students'}>
+            <div>
+                <div className='d-flex justify-content-end'>
+                    <CommonSearchField placeholder={'Search students here...'} />
+                    <button className='btn btn-primary p-1 m-3' onClick={(e: any) => { navigate('./addStudent') }}  >Add New Student Details</button>
+                </div>
+
+
+                <div className="card p-4">
+                    <DataTable value={studentData}
+                        showGridlines
+                        stripedRows
+                        tableStyle={{ minWidth: '50rem' }}
+                    >
+                        <Column body={stdIdTemplate} header={'Student UID'} />
+                        <Column field={'studentName'} header={'Student name'} />
+                        <Column field={'rollNo'} header={'Roll no'} />
+                        <Column field={'class'} header={'Class'} />
+                        <Column field={'section'} header={'Section'} />
+                        <Column field={'parentContact'} header={'Parent contact'} />
+                        <Column body={actionBody} header={'Actions'} />
+                    </DataTable>
+                </div>
+
+            </div>
+        </CommonCard>
     );
 }

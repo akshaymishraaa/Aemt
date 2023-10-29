@@ -14,7 +14,7 @@ import { VisibilityOff } from "@mui/icons-material";
 import { Visibility } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { Actiontypes } from "../../types/ActionTypes";
-import { ValidateOrganization } from "../actions/actions";
+import { ValidateUser } from "../actions/actions";
 import { baseurl } from "../commonHelpers/envi";
 import { fetch } from "../commonHelpers/fetch";
 import { ValidateSignUpSchema } from "./Validate";
@@ -44,29 +44,23 @@ function Login() {
     },
     validationSchema: ValidateSignUpSchema,
     onSubmit: (values) => {
-      const url = `${baseurl}/validateUser`;
-      fetch({
-        url: url,
-        method: "POST",
-        data: { values },
-      })
-        .then((res: any) => {
-          if (res.data.status === "error") {
-            alert("Wrong User name password");
-          } else {
-            sessionStorage.setItem("userData", "true");
-            dispatch({
-              type: Actiontypes.IS_USER_AUTHINTCATED,
-              payload: true,
-            });
-            navigate("/home");
-            
-          }
-        })
-        .catch((err: any) => console.log("Error...", err));
-
-      
-    },
+      dispatch(ValidateUser(values,(data:any)=>{
+        if (data.status === "error") {
+          alert("Wrong User name password");
+        } else {
+          sessionStorage.setItem("userData", "true");
+          dispatch({
+            type: Actiontypes.IS_USER_AUTHINTCATED,
+            payload: true,
+          });
+          dispatch({
+            type: Actiontypes.GET_VALIDATED_USER_DETAILS,
+            payload: data,
+          });
+          navigate("/home");
+        }
+      }))
+    }
   });
   return (
     <React.Fragment>
