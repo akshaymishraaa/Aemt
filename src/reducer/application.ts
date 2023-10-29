@@ -1,3 +1,4 @@
+import { UserProfileModal } from "../components/profile/UseProfileValues";
 import { RolesData } from "../constants/roleModel";
 import { Actiontypes } from "../types/ActionTypes";
 
@@ -6,11 +7,12 @@ const initialState = {
   userDetails: {},
   organization: [],
   roles: RolesData,
-  userData: [],
+  userData: UserProfileModal,
   tabs: [],
   recentOrganizationName: {},
   Countries_List:[]
 };
+
 
 export const application = (state: object = initialState, action: any) => {
   switch (action.type) {

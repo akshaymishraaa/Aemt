@@ -109,6 +109,8 @@ export const fetchAllTabs: any = (callback: any) => {
   };
 };
 
+// <<<<<<< HEAD
+// =======
 // get all countries
 
 export const getCountries: any = (callback: any) => {
@@ -187,3 +189,4 @@ export const findUserById: any = (payload: any,callback:any) => {
       });
   };
 };
+
