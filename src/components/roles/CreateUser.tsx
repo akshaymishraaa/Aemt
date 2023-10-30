@@ -34,7 +34,7 @@ function CreateUser() {
     return optionObject;
   });
 
-  const openDialog = () => {
+  const  openDialog = () => {
     setOpen(true);
   };
   useEffect(() => {

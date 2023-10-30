@@ -4,17 +4,29 @@ import { Column } from "primereact/column";
 import UserData from "../../constants/UserData.json";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { useDispatch, useSelector } from "react-redux";
+
 import { getAllUserDetails } from "../actions/actions";
 import { Actiontypes } from "../../types/ActionTypes";
 import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
+
+
+
+import CustomDialog from "../../common/dialogBox/CustomDialog";
+import '../../common/dialogBox/Dialogbox.scss';
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import ReactSelect from "../../common/selectBox/ReactSelect";
+import { rolesOption, tabOptions } from "./SelectStaticOption";
+import { useDispatch, useSelector } from "react-redux";
+import LockResetIcon from '@mui/icons-material/LockReset';
+import Select, { StylesConfig } from 'react-select';
+import {
+  createUser,
+  fetchAllTabs,
+  
+} from "../actions/actions";
+
+import { validateUserSchema } from "./helpers/validate";
 
         
 
@@ -31,55 +43,231 @@ function UserDashboard() {
     }))
   }, []);
 
+  const [error, setError] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const onClose = () => {
+    setOpen(false);
 
-  const handleClickOpen = () => {
+  };
+
+  const { tabs } = useSelector((state: any) => state.application);
+  
+  
+  const  openDialog = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
 
-
-
-  const editUser=()=>{
-    return(
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
-        </DialogActions>
-      </Dialog>
-    )
-  }
   const actionTemplate = () => {
     return (
       <>
-        <span onClick={handleClickOpen}><EditIcon /></span>
-        |  &nbsp;
+       <span onClick={openDialog}><EditIcon /></span> 
+         |  &nbsp;
         <DeleteIcon />
       </>
     );
   };
 
   return (
+   <>
+
+<CustomDialog
+        title={"Create User"}
+        open={open}
+        onClose={onClose}
+        actionType={"Submit"}
+        maxWidth="md"
+        fullWidth={true}
+        form={"createUser"}
+        onSubmitHandler={() => {}}
+      >
+        <div>
+          {error && (
+            <p className="text-danger">
+              Email id or Phone number already in use,Please try with another.
+            </p>
+          )}
+          <Formik
+            initialValues={{
+              firstName: "",
+              lastName: "",
+              email: "",
+              contactNo: "",
+              password: "",
+              org_name:"",
+              role: "",
+              allowedModule: "",
+            }}
+            validationSchema={validateUserSchema}
+            onSubmit={(values: any) => console.log("value...",values)}
+          >
+            {({ values, errors, touched, setFieldValue }) => {
+              return (
+                <Form id="createUser">
+                  <div className="row ">
+                    <>{console.log("101....", errors)}</>
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <label htmlFor="firstName">First Name:<span className="text-danger">*</span></label>
+                      <div>
+                        <Field
+                          id="firstName"
+                          name="firstName"
+                          placeholder="Enter Your First Name"
+                          value={values.firstName}
+                          // className={((touched?.firstName && errors.firstName) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
+                        />
+                        <ErrorMessage
+                          name="firstName"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <label htmlFor="firstName">Last Name:</label>
+                      <div>
+                        <Field
+                          id="lastName"
+                          name="lastName"
+                          placeholder="Enter Your Last Name"
+                          value={values.lastName}
+                          // className={((touched?.lastName && errors.firstName) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
+                        />
+                        <ErrorMessage
+                          name="lastName"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <label htmlFor="firstName">Email:<span className="text-danger">*</span></label>
+                      <div>
+                        <Field
+                          id="email"
+                          name="email"
+                          placeholder="Enter Your email"
+                          value={values.email}
+                          // className={((touched?.email && errors.email) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
+                        />
+                        <ErrorMessage
+                          name="email"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row ">
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <label htmlFor="firstName">Phone no:<span className="text-danger">*</span></label>
+                      <div>
+                        <Field
+                          id="number"
+                          type="number"
+                          name="contactNo"
+                          placeholder="Enter your contact number"
+                          value={values.contactNo}
+                          // className={((touched?.contactNo && errors.contactNo) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
+                        />
+                        <ErrorMessage
+                          name="contactNo"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <label htmlFor="firstName">Pasword:<span className="text-danger">*</span></label>
+                      <div>
+                      {/* <span> <LockResetIcon/></span> */}
+                        <Field
+                          id="password"
+                          name="password"
+                          placeholder="Enter Your Password"
+                          type="password"
+                          value={values.password}
+                          // className={((touched?.password && errors.password) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
+                        />
+                        <ErrorMessage
+                          name="password"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <label htmlFor="firstName">Organization Name:<span className="text-danger">*</span></label>
+                      <div>
+                      {/* <span> <LockResetIcon/></span> */}
+                        <Field
+                          id="org_name"
+                          name="org_name"
+                          placeholder="Enter Your Org_name"
+                          value={values.org_name}
+                          // className={((touched?.password && errors.password) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
+                        />
+                        <ErrorMessage
+                          name="role"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div className="row ">
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <label htmlFor="firstName">Allowed Module:<span className="text-danger">*</span></label>
+                      <div>
+                        <Select
+                          name={"allowedModule"}
+                          id={"module"}
+                          // placeHolder={"Allowed module"}
+                          value={values.allowedModule}
+                          // options={tabOptions}
+                          isMulti
+                          onChange={(e: any) =>
+                            setFieldValue("allowedModule", e.value)
+                          }
+                          // className={((touched?.allowedModule && errors.allowedModule) ? "selecterror" : "")}
+                        />
+                        <ErrorMessage
+                          name="allowedModule"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <label htmlFor="firstName">Role:<span className="text-danger">*</span></label>
+                      <div>
+                        <ReactSelect
+                          name={"role"}
+                          id={"role"}
+                          placeHolder={"role"}
+                          options={rolesOption}
+                          value={values.role}
+                          onChange={(e: any) => setFieldValue("role", e.value)}
+                          // className={((touched?.role && errors.role) ? "selecterror" : "")}
+                        />
+                        <ErrorMessage name="role" component="div" className="text-danger" />
+                      </div>
+                    </div>
+                  </div>
+                </Form>
+              );
+            }}
+          </Formik>
+        </div>
+      </CustomDialog> 
+
     <div className="">
       <DataTable 
       value={userData} 
@@ -98,6 +286,7 @@ function UserDashboard() {
         <Column body={actionTemplate} header="Actions"></Column>
       </DataTable>
     </div>
+    </>
   );
 }
 
