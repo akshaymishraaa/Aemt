@@ -22,7 +22,7 @@ function UserProfile() {
     );
   }, [])
 
-console.log(userData[0].firstName)
+
   return (
     <React.Fragment>
       {/* <CommonCard title={'User profile'}> 
@@ -33,10 +33,11 @@ console.log(userData[0].firstName)
           validationSchema={UserProfileValidation}
           onSubmit={() => {
 
-            //console.log(userData)
+            console.log(userData)
 
-            // axios.get("http://localhost:3001/api/validateOrg" )
-            // .then((response)=>{console.log(response.data)})
+            
+            
+            
           }}
         >
           <Form>

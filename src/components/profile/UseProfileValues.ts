@@ -1,6 +1,6 @@
 
 import {UserProfileModalTypes }from './ProfileModel'
-export const UserProfileModal:UserProfileModalTypes={
+export const UserProfileModal:UserProfileModalTypes=[{
     firstName:"",
     lastName: "",
     email: "",
@@ -8,4 +8,4 @@ export const UserProfileModal:UserProfileModalTypes={
     password: "",
     role: "",
     allowedModule: "",
-}
+}]

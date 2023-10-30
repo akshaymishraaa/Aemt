@@ -1,4 +1,4 @@
-export type UserProfileModalTypes={
+export type UserProfileModalTypes=[{
     firstName?: String | null;
     lastName?: String | null;
     email?: String | null;
@@ -7,4 +7,4 @@ export type UserProfileModalTypes={
     role?: String | null;
     allowedModule?: String | null;
     
-}
+}]
