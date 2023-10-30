@@ -12,15 +12,19 @@ import userprofileimage from '../../assets/userpic.png'
 import "../../../src/App.scss";
 function UserProfile() {
   const dispatch = useDispatch();
-  const { userData } = useSelector((state: any) => state.application);
+  const { userData,userDetails } = useSelector((state: any) => state.application);
+  
 
-  React.useEffect(() => {
-    dispatch(
-      getAllUserDetails((data: any) => {
-        dispatch({ type: Actiontypes.GET_ALL_USER_DATA, payload: data });
-      })
-    );
-  }, [])
+  console.log("line 17 userdata........",userData)
+  console.log("userDetails data ............",userDetails)
+
+  // React.useEffect(() => {
+  //   dispatch(
+  //     getAllUserDetails((data: any) => {
+  //       dispatch({ type: Actiontypes.GET_ALL_USER_DATA, payload: data });
+  //     })
+  //   );
+  // }, [])
 
 
   return (
@@ -35,8 +39,6 @@ function UserProfile() {
 
             console.log(userData)
 
-            
-            
             
           }}
         >
