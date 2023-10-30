@@ -10,8 +10,6 @@ import { Actiontypes } from "../../types/ActionTypes";
 import { useNavigate } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 
-
-
 import CustomDialog from "../../common/dialogBox/CustomDialog";
 import '../../common/dialogBox/Dialogbox.scss';
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -27,7 +25,6 @@ import {
 } from "../actions/actions";
 
 import { validateUserSchema } from "./helpers/validate";
-
         
 
 function UserDashboard() {
@@ -37,7 +34,7 @@ function UserDashboard() {
   const navigate=useNavigate()
   React.useEffect(() => {
     dispatch(getAllUserDetails((data: any) => {
-      console.log('16.....', data)
+      console.log('38.....', data)
       // setUserData(data);
       dispatch({ type: Actiontypes.GET_ALL_USER_DATA, payload: data })
     }))
@@ -70,7 +67,7 @@ function UserDashboard() {
 
   return (
    <>
-
+ 
 <CustomDialog
         title={"Create User"}
         open={open}
