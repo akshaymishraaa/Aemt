@@ -18,6 +18,7 @@ export default function ReactSelect(props: any) {
                 className={props.className}
                 onBlur={props.onBlur}
                 isDisabled={props?.disabled}
+                isMulti={props.isMulti}
             />
         </div>
     )

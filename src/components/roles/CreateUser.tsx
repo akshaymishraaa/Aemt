@@ -2,7 +2,7 @@ import { Alert, Button } from "@mui/material";
 import React, { useEffect } from "react";
 import CustomDialog from "../../common/dialogBox/CustomDialog";
 import '../../common/dialogBox/Dialogbox.scss';
-import { Formik, Field, Form, ErrorMessage } from "formik";
+  import { Formik, Field, Form, ErrorMessage } from "formik";
 import ReactSelect from "../../common/selectBox/ReactSelect";
 import { rolesOption, tabOptions } from "./SelectStaticOption";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,7 +34,7 @@ function CreateUser() {
     return optionObject;
   });
 
-  const  openDialog = () => {
+  const openDialog = () => {
     setOpen(true);
   };
   useEffect(() => {
@@ -50,7 +50,6 @@ function CreateUser() {
     // console.log("17...", values);
     dispatch(
       createUser(values, (data: any) => {
-        console.log("24......", data);
         if (data.status === "success") {
           onClose();
 
@@ -73,10 +72,10 @@ function CreateUser() {
       </div> */}
       <div className="d-flex justify-content-end">
         <div>
-        <CommonSearchField placeholder={"Search users here..."} />
+          <CommonSearchField placeholder={"Search users here..."} />
         </div>
-        <div style={{padding: "0px 6px",margin: "1rem"}}>
-        <button type="button" className="btn btn-primary " onClick={openDialog}>Create User</button>
+        <div style={{ padding: "0px 6px", margin: "1rem" }}>
+          <button type="button" className="btn btn-primary " onClick={openDialog}>Create User</button>
         </div>
       </div>
       <CustomDialog
@@ -87,7 +86,7 @@ function CreateUser() {
         maxWidth="md"
         fullWidth={true}
         form={"createUser"}
-        onSubmitHandler={() => {}}
+        onSubmitHandler={() => { }}
       >
         <div>
           {error && (
@@ -102,7 +101,7 @@ function CreateUser() {
               email: "",
               contactNo: "",
               password: "",
-              org_name:"",
+              org_name: "",
               role: "",
               allowedModule: "",
             }}
@@ -113,7 +112,25 @@ function CreateUser() {
               return (
                 <Form id="createUser">
                   <div className="row ">
-                    <>{console.log("101....", errors)}</>
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                      <label htmlFor="firstName">Organization Name:<span className="text-danger">*</span></label>
+                      <div>
+                        {/* <span> <LockResetIcon/></span> */}
+                        <Field
+                          id="org_name"
+                          name="org_name"
+                          placeholder="Enter Your Org_name"
+                          value={values.org_name}
+                          // className={((touched?.password && errors.password) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
+                        />
+                        <ErrorMessage
+                          name="role"
+                          component="div"
+                          className="text-danger"
+                        />
+                      </div>
+                    </div>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">First Name:<span className="text-danger">*</span></label>
                       <div>
@@ -150,6 +167,9 @@ function CreateUser() {
                         />
                       </div>
                     </div>
+
+                  </div>
+                  <div className="row ">
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Email:<span className="text-danger">*</span></label>
                       <div>
@@ -168,8 +188,6 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                  </div>
-                  <div className="row ">
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Phone no:<span className="text-danger">*</span></label>
                       <div>
@@ -192,7 +210,7 @@ function CreateUser() {
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Pasword:<span className="text-danger">*</span></label>
                       <div>
-                      {/* <span> <LockResetIcon/></span> */}
+                        {/* <span> <LockResetIcon/></span> */}
                         <Field
                           id="password"
                           name="password"
@@ -209,26 +227,8 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                      <label htmlFor="firstName">Organization Name:<span className="text-danger">*</span></label>
-                      <div>
-                      {/* <span> <LockResetIcon/></span> */}
-                        <Field
-                          id="org_name"
-                          name="org_name"
-                          placeholder="Enter Your Org_name"
-                          value={values.org_name}
-                          // className={((touched?.password && errors.password) ? "inputerror" : "")}
-                          className="form-control form-control-md text-field"
-                        />
-                        <ErrorMessage
-                          name="role"
-                          component="div"
-                          className="text-danger"
-                        />
-                      </div>
-                    </div>
-                    
+
+
                   </div>
                   <div className="row ">
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -244,7 +244,7 @@ function CreateUser() {
                           onChange={(e: any) =>
                             setFieldValue("allowedModule", e.value)
                           }
-                          // className={((touched?.allowedModule && errors.allowedModule) ? "selecterror" : "")}
+                        // className={((touched?.allowedModule && errors.allowedModule) ? "selecterror" : "")}
                         />
                         <ErrorMessage
                           name="allowedModule"
@@ -263,7 +263,7 @@ function CreateUser() {
                           options={rolesOption}
                           value={values.role}
                           onChange={(e: any) => setFieldValue("role", e.value)}
-                          // className={((touched?.role && errors.role) ? "selecterror" : "")}
+                        // className={((touched?.role && errors.role) ? "selecterror" : "")}
                         />
                         <ErrorMessage name="role" component="div" className="text-danger" />
                       </div>
