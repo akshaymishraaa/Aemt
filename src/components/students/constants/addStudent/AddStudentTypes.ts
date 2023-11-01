@@ -1,12 +1,12 @@
 export type studentAdmissionFrom = {
     studentInfo: {
         studentFullName: string | undefined,
-        dateOfBirth: String,
+        dateOfBirth: String | null,
         gender: string,
         adharNumber: string,
         categorgy: string,
         classJoining: String,
-        dateOfAdmission: string,
+        dateOfAdmission: string |null,
         emailId: string,
         contactNumber: string
     },

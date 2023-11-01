@@ -134,9 +134,10 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.dateOfBirth' className='form-label'> Joining Date:  </label>
+                                            <label htmlFor='studentInfo.dateOfAdmission' className='form-label'> Joining Date:  </label>
                                             <DatePick
                                                 placeholder={"Date Of joining"}
+                                                values={values.studentInfo.dateOfAdmission}
                                             />
                                         </div>
                                         <div className='field'>

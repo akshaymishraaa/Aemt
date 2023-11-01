@@ -2,12 +2,12 @@ import { studentAdmissionFrom } from "./AddStudentTypes"
 export const studentAdmissionDetails: studentAdmissionFrom = {
     studentInfo: {
         studentFullName: undefined,
-        dateOfBirth: '',
+        dateOfBirth: null,
         gender: '',
         adharNumber: '',
         categorgy: '',
         classJoining: '',
-        dateOfAdmission: '',
+        dateOfAdmission: null,
         emailId: '',
         contactNumber: ''
     },
