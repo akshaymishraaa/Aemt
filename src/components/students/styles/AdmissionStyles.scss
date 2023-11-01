@@ -1,0 +1,69 @@
+.admissionForm {
+    .formHeading {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 15px;
+        font-weight: 900px;
+    }
+
+    .SectionsContainer {
+        width: 93%;
+        height: 100%;
+        // border: 2px solid grey;
+        box-shadow: 1px 3px 3px grey;
+        margin: 0.5rem 2rem;
+        height: auto;
+
+        .SectionContainer {
+
+            .SectionHeader {
+                width: 100%;
+                text-align: left;
+                padding-left: 10px;
+                font-weight: 600px;
+            }
+
+            .fieldsContainer {
+                width: 97%;
+                flex-wrap: wrap;
+                display: flex;
+                justify-content: space-between;
+
+                .field {
+                    width: 33%;
+                    padding: 0px 1rem;
+
+
+                    .form-label {
+                        font-size: 0.8rem;
+                        font-weight: 400;
+                        width: 100%;
+                        padding-left: 10px;
+                        margin: 0px !important;
+                    }
+
+                    .form-control {
+                        width: 100%;
+                        padding: 0px !important;
+                        margin: 3px 10px;
+
+                        &:focus {
+                            box-shadow: none !important;
+                        }
+
+                    }
+
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        appearance: none;
+                        margin: 0;
+                    }
+                }
+            }
+
+        }
+    }
+}
