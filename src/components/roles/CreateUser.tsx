@@ -7,7 +7,7 @@ import ReactSelect from "../../common/selectBox/ReactSelect";
 import { rolesOption, tabOptions } from "./SelectStaticOption";
 import { useDispatch, useSelector } from "react-redux";
 import LockResetIcon from '@mui/icons-material/LockReset';
-import Select, { StylesConfig } from 'react-select';
+// import Select, { StylesConfig } from 'react-select';
 import {
   createUser,
   fetchAllTabs,
@@ -103,7 +103,7 @@ function CreateUser() {
               password: "",
               org_name: "",
               role: "",
-              allowedModule: "",
+              allowedModule: [],
             }}
             validationSchema={validateUserSchema}
             onSubmit={(values: any) => submitHandler(values)}
@@ -121,14 +121,15 @@ function CreateUser() {
                           name="org_name"
                           placeholder="Enter Your Org_name"
                           value={values.org_name}
+                          disabled
                           // className={((touched?.password && errors.password) ? "inputerror" : "")}
                           className="form-control form-control-md text-field"
                         />
-                        <ErrorMessage
+                        {/* <ErrorMessage
                           name="role"
                           component="div"
                           className="text-danger"
-                        />
+                        /> */}
                       </div>
                     </div>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -234,13 +235,14 @@ function CreateUser() {
                     <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Allowed Module:<span className="text-danger">*</span></label>
                       <div>
-                        <Select
+                        <ReactSelect
                           name={"allowedModule"}
                           id={"module"}
-                          // placeHolder={"Allowed module"}
+                          placeHolder={"Allowed module"}
                           value={values.allowedModule}
                           options={tabOptions}
-                          isMulti
+                          isMulti={true}
+                          
                           onChange={(e: any) =>
                             setFieldValue("allowedModule", e.value)
                           }

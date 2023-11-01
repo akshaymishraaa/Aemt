@@ -73,7 +73,7 @@ export default function CustomDialog(props:any) {
                 fullWidth={props.fullWidth === false ? false : true}
                  
             >
-                <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+                <DialogTitle sx={{ m: 0, p: 2,display:"flex" }} id="customized-dialog-title">
                    <span>{props.title}</span>
                    <IconButton
                     aria-label="close"
@@ -82,7 +82,7 @@ export default function CustomDialog(props:any) {
                         position: 'absolute',
                         right: 8,
                         top: 8,
-                        color: (theme) => theme.palette.grey[500],
+                        color: (theme:any) => theme.palette.grey[500],
                     }}
                 >
                     <CloseIcon />
