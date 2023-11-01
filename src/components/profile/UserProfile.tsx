@@ -12,17 +12,21 @@ import userprofileimage from '../../assets/userpic.png'
 import "../../../src/App.scss";
 function UserProfile() {
   const dispatch = useDispatch();
-  const { userData } = useSelector((state: any) => state.application);
+  const { userData,userDetails } = useSelector((state: any) => state.application);
+  
 
-  React.useEffect(() => {
-    dispatch(
-      getAllUserDetails((data: any) => {
-        dispatch({ type: Actiontypes.GET_ALL_USER_DATA, payload: data });
-      })
-    );
-  }, [])
+  console.log("line 17 userdata........",userData)
+  console.log("userDetails data ............",userDetails)
 
-console.log(userData[0].firstName)
+  // React.useEffect(() => {
+  //   dispatch(
+  //     getAllUserDetails((data: any) => {
+  //       dispatch({ type: Actiontypes.GET_ALL_USER_DATA, payload: data });
+  //     })
+  //   );
+  // }, [])
+
+
   return (
     <React.Fragment>
       {/* <CommonCard title={'User profile'}> 
@@ -33,10 +37,9 @@ console.log(userData[0].firstName)
           validationSchema={UserProfileValidation}
           onSubmit={() => {
 
-            //console.log(userData)
+            console.log(userData)
 
-            // axios.get("http://localhost:3001/api/validateOrg" )
-            // .then((response)=>{console.log(response.data)})
+            
           }}
         >
           <Form>

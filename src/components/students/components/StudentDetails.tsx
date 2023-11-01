@@ -11,7 +11,7 @@ import '../styles/Styles.scss'
 
 
 export default function StudentDetails() {
-    const [products, setProducts] = useState([]);
+    
     const navigate = useNavigate()
 
     const studentData: any = [

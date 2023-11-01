@@ -14,7 +14,7 @@ import { VisibilityOff } from "@mui/icons-material";
 import { Visibility } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { Actiontypes } from "../../types/ActionTypes";
-import { ValidateUser } from "../actions/actions";
+import { ValidateUser, findUserById } from "../actions/actions";
 import { baseurl } from "../commonHelpers/envi";
 import { fetch } from "../commonHelpers/fetch";
 import { ValidateSignUpSchema } from "./Validate";
@@ -27,16 +27,17 @@ interface Values {
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { orgDetails } = useSelector((state: any) => state.application);
+  const { userDetails } = useSelector((state: any) => state.application);
 
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+
   const register = () => {
     navigate("/registration");
   };
-  const handleChange = () => {};
+  const handleChange = () => { };
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -44,7 +45,7 @@ function Login() {
     },
     validationSchema: ValidateSignUpSchema,
     onSubmit: (values) => {
-      dispatch(ValidateUser(values,(data:any)=>{
+      dispatch(ValidateUser(values, (data: any) => {
         if (data.status === "error") {
           alert("Wrong User name password");
         } else {
@@ -57,7 +58,9 @@ function Login() {
             type: Actiontypes.GET_VALIDATED_USER_DETAILS,
             payload: data,
           });
+          sessionStorage.setItem('id', data.id);
           navigate("/home");
+          // console.log('62....',data)
         }
       }))
     }
@@ -122,7 +125,7 @@ function Login() {
                         error={
                           formik.touched.email && Boolean(formik.errors.email)
                         }
-                        // helperText={formik.touched.email && formik.errors.email}
+                      // helperText={formik.touched.email && formik.errors.email}
                       />
                     </div>
                   </div>
