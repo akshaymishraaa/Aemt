@@ -14,15 +14,14 @@ export type studentAdmissionFrom = {
         fatherName: string | undefined,
         fatherOccupation: string | undefined,
         fatherHigherEducation: string | undefined
-        motherName: string,
-        motherOccupation: string,
-        motherHigherEducation: string,
-        localGurdian: string,
-        gurdianContactNumber: string,
+        motherName: string | undefined,
+        motherOccupation: string | undefined,
+        motherHigherEducation: string | undefined,
+        localGurdian: string | undefined,
+        gurdianContactNumber: string | undefined,
         primaryConactNumber: string,
-        SecondaryContactNumber: string,
-        localAddress: string,
-        PermenantAddres: string,
+        localAddress: string | undefined,
+        PermenantAddress: string | undefined,
         emailId: string
     },
     previousAcademicDetails: {

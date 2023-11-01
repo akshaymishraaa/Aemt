@@ -11,6 +11,7 @@ export default function DatePick(props: any) {
                 <DatePicker label={props.placeholder}
                     value={props?.value}
                     onChange={(e: any) => props.onChange(e)}
+                    className={props.className}
                 // id={props?.id}
                 />
             </DemoContainer>

@@ -28,7 +28,7 @@
                 width: 97%;
                 flex-wrap: wrap;
                 display: flex;
-                justify-content: space-between;
+                justify-content: start;
 
                 .field {
                     width: 33%;
@@ -45,13 +45,22 @@
 
                     .form-control {
                         width: 100%;
-                        padding: 0px !important;
+                        padding: 3px !important;
                         margin: 3px 10px;
+                        font-size: 1rem;
 
                         &:focus {
                             box-shadow: none !important;
                         }
 
+                    }
+
+                    .checkboxes {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: start;
+                        // align-items: center;
+                        padding-left: 10px;
                     }
 
                     input[type=number]::-webkit-inner-spin-button,
