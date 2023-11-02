@@ -128,7 +128,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                                     console.log(e.$d)
                                                 }}
                                                 placeholder={"Date Of Birth"}
-                                                styles={customDateStyles}
+                                                // styles={customDateStyles}
 
 
 
@@ -143,7 +143,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                                 onChange={(e: any) => {
                                                     console.log(e.$d)
                                                 }}
-                                                styles={customDateStyles}
+                                                // styles={customDateStyles}
                                             />
                                         </div>
                                         <div className='field'>
