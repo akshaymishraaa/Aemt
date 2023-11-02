@@ -12,8 +12,8 @@ const DatePick = (props: any) => {
                     value={props?.value}
                     onChange={(e: any) => props?.onChange(e)}
                     className={props?.className}
-                    // styles={props?.styles}
-                    
+                // styles={props?.styles}
+
                 // id={props?.id}
                 />
             </DemoContainer>

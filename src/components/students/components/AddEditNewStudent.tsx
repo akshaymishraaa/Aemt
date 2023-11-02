@@ -4,8 +4,10 @@ import { useSelector } from 'react-redux';
 import { CustomCom } from '../constants/addStudent/CustomComponents';
 import '../styles/AdmissionStyles.scss'
 import DatePick from '../../../common/Datepicker/Datepicker';
+import moment from 'moment';
+import dayjs from 'dayjs';
 const AddEditNewStudentDetails = (props: any) => {
-        const { studenAdmissiontData } = useSelector((state: any) => state.studentsModule)
+    const { studenAdmissiontData } = useSelector((state: any) => state.studentsModule)
     const [gender, setGender] = useState<string>('')
     // const Div = styled.div({
     //     color: "#ffffff",
@@ -123,14 +125,13 @@ const AddEditNewStudentDetails = (props: any) => {
 
                                             <label htmlFor='studentInfo.dateOfBirth' className='form-label'> Birth Date<span className={'text-danger'}>*</span> :  </label>
                                             <DatePick
-                                                value={values.studentInfo.dateOfBirth}
+                                                value={dayjs(values.studentInfo.dateOfBirth)}
                                                 onChange={(e: any) => {
-                                                    console.log(e.$d)
+                                                    const date = moment(e.$d).format('DD-MM-YYYY')
+                                                    setFieldValue("studentInfo.dateOfBirth", date)
                                                 }}
                                                 placeholder={"Date Of Birth"}
-                                                // styles={customDateStyles}
-
-
+                                            // styles={customDateStyles}
 
                                             />
                                         </div>
@@ -139,11 +140,12 @@ const AddEditNewStudentDetails = (props: any) => {
                                             <label htmlFor='studentInfo.dateOfAdmission' className='form-label'> Joining Date<span className={'text-danger'}>*</span> :  </label>
                                             <DatePick
                                                 placeholder={"Date Of joining"}
-                                                values={values.studentInfo.dateOfAdmission}
+                                                value={dayjs(values.studentInfo.dateOfAdmission)}
                                                 onChange={(e: any) => {
-                                                    console.log(e.$d)
+                                                    const date = moment(e.$d).format('DD-MM-YYYY')
+                                                    setFieldValue("studentInfo.dateOfAdmission", date)
                                                 }}
-                                                // styles={customDateStyles}
+                                            // styles={customDateStyles}
                                             />
                                         </div>
                                         <div className='field'>
