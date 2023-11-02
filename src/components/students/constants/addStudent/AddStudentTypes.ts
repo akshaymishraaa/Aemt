@@ -6,7 +6,7 @@ export type studentAdmissionFrom = {
         adharNumber: string,
         categorgy: string,
         classJoining: String,
-        dateOfAdmission: string |null,
+        dateOfAdmission: string | null,
         emailId: string,
         contactNumber: string
     },
@@ -25,10 +25,10 @@ export type studentAdmissionFrom = {
         emailId: string
     },
     previousAcademicDetails: {
-        lastClassDetails: string,
-        schoolName: string,
-        lastAcedamicPercentage: string,
-        transferCertificate: string
+        lastClassDetails: string | undefined,
+        schoolName: string | undefined,
+        lastAcedamicPercentage: string | undefined,
+        transferCertificate: string | undefined
     },
     others:
     {
