@@ -13,18 +13,27 @@ import "../../../src/App.scss";
 function UserProfile() {
   const dispatch = useDispatch();
   const { userData,userDetails } = useSelector((state: any) => state.application);
+
+  const[userDetailss,setUserDetailss]=useState(userDetails)
   
-
+ console.log("bsdfgbdsgbkdsjh",userDetailss.contactNo)
   console.log("line 17 userdata........",userData)
-  console.log("userDetails data ............",userDetails)
+  console.log("line 18 data ............",userDetails)
 
-  // React.useEffect(() => {
-  //   dispatch(
-  //     getAllUserDetails((data: any) => {
-  //       dispatch({ type: Actiontypes.GET_ALL_USER_DATA, payload: data });
-  //     })
-  //   );
-  // }, [])
+  React.useEffect(() => {
+    dispatch(
+      getAllUserDetails((data: any) => {
+        dispatch({ type: Actiontypes.GET_ALL_USER_DATA, payload: data });
+      })
+    );
+  }, [])
+
+  const handleChange = (event:any) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setUserDetailss((previousData:any )=>({...previousData, [name]: value}) )
+
+}
 
 
   return (
@@ -53,8 +62,9 @@ function UserProfile() {
                         name="firstName"
                         id="firstName"
                         placeHolder={"Enter First Name"}
-                        
+                        value={userDetailss.firstName}
                         className="form-control ms-3 input-sm "
+                        onChange={(event:any) => handleChange(event)}
                       />
                    </div>
                 </div>
@@ -71,8 +81,10 @@ function UserProfile() {
                       <Field type={"text"}
                         name="lastName"
                         id="lastName"
+                        value={userDetailss.lastName}
                         placeHolder={"Enter Last Name"}
                         className="form-control ms-3 input-sm "
+                        onChange={(event:any) => handleChange(event)}
                       />
                       </div>
                 </div>
@@ -92,6 +104,8 @@ function UserProfile() {
                         id="email"
                         placeHolder={"Enter Email"}
                         className="form-control ms-3 input-sm "
+                        value={userDetailss.email}
+                        onChange={(event:any) => handleChange(event)}
                       />
                       </div>
                 </div>
@@ -110,6 +124,8 @@ function UserProfile() {
                         id="contactNo"
                         placeHolder={"Enter Contact Number"}
                         className="form-control ms-3 input-sm "
+                        value={userDetailss.contactNo}
+                        onChange={(event:any) => handleChange(event)}
                       />
                       </div>
                 </div>
@@ -129,6 +145,8 @@ function UserProfile() {
                         id="role"
                         placeHolder={"Enter role"}
                         className="form-control ms-3 input-sm "
+                        value={userDetailss.role}
+                        onChange={(event:any) => handleChange(event)}
                       />
                       </div>
                 </div>
@@ -147,6 +165,8 @@ function UserProfile() {
                         id="allowedModule"
                         placeHolder={"Enter allowed module Name"}
                         className="form-control ms-3 input-sm "
+                        value={userDetailss.module}
+                        onChange={(event:any) => handleChange(event)}
                       />
                       </div>
                 </div>
@@ -168,6 +188,7 @@ function UserProfile() {
         <div className='user-profile-image'>
           <img src={userprofileimage} height={400} width={400}/>
         </div>
+        
 
       </div>
 
