@@ -26,10 +26,10 @@ export const studentAdmissionDetails: studentAdmissionFrom = {
         emailId: ''
     },
     previousAcademicDetails: {
-        lastClassDetails: ' ',
-        schoolName: ' ',
-        lastAcedamicPercentage: ' ',
-        transferCertificate: ' '
+        lastClassDetails: undefined,
+        schoolName: undefined,
+        lastAcedamicPercentage: undefined,
+        transferCertificate: undefined
     },
     others:
     {

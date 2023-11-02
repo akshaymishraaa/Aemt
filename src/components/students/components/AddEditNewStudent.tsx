@@ -5,7 +5,7 @@ import { CustomCom } from '../constants/addStudent/CustomComponents';
 import '../styles/AdmissionStyles.scss'
 import DatePick from '../../../common/Datepicker/Datepicker';
 const AddEditNewStudentDetails = (props: any) => {
-    const { studenAdmissiontData } = useSelector((state: any) => state.studentsModule)
+        const { studenAdmissiontData } = useSelector((state: any) => state.studentsModule)
     const [gender, setGender] = useState<string>('')
     // const Div = styled.div({
     //     color: "#ffffff",
@@ -45,7 +45,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                     <div className='fieldsContainer'>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.studentFullName' className='form-label'> Student FullName:  </label>
+                                            <label htmlFor='studentInfo.studentFullName' className='form-label'> Student FullName<span className={'text-danger'}>*</span> : </label>
                                             <Field
                                                 type="text"
                                                 name="studentInfo.studentFullName"
@@ -58,7 +58,7 @@ const AddEditNewStudentDetails = (props: any) => {
 
                                         </div>
                                         <div className='field'>
-                                            <label htmlFor='studentInfo.adharNumber' className='form-label'> Aadhar Number:  </label>
+                                            <label htmlFor='studentInfo.adharNumber' className='form-label'> Aadhar Number<span className={'text-danger'}>*</span> :  </label>
                                             <Field
                                                 type="number"
                                                 name="studentInfo.adharNumber"
@@ -81,7 +81,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.emailId' className='form-label'>Personal Mail Id:  </label>
+                                            <label htmlFor='studentInfo.emailId' className='form-label'>Personal Mail Id<span className={'text-danger'}>*</span> :  </label>
                                             <Field
                                                 type="email"
                                                 name="studentInfo.emailId"
@@ -97,7 +97,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.contactNumber' className='form-label'> contactNumber:  </label>
+                                            <label htmlFor='studentInfo.contactNumber' className='form-label'> contactNumber<span className={'text-danger'}>*</span> :  </label>
                                             <Field
                                                 type="number"
                                                 name="studentInfo.contactNumber"
@@ -121,28 +121,34 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.dateOfBirth' className='form-label'> Birth Date:  </label>
+                                            <label htmlFor='studentInfo.dateOfBirth' className='form-label'> Birth Date<span className={'text-danger'}>*</span> :  </label>
                                             <DatePick
                                                 value={values.studentInfo.dateOfBirth}
                                                 onChange={(e: any) => {
                                                     console.log(e.$d)
                                                 }}
                                                 placeholder={"Date Of Birth"}
+                                                styles={customDateStyles}
+
 
 
                                             />
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.dateOfAdmission' className='form-label'> Joining Date:  </label>
+                                            <label htmlFor='studentInfo.dateOfAdmission' className='form-label'> Joining Date<span className={'text-danger'}>*</span> :  </label>
                                             <DatePick
                                                 placeholder={"Date Of joining"}
                                                 values={values.studentInfo.dateOfAdmission}
+                                                onChange={(e: any) => {
+                                                    console.log(e.$d)
+                                                }}
+                                                styles={customDateStyles}
                                             />
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.gender' className='form-label'> Gender:  </label>
+                                            <label htmlFor='studentInfo.gender' className='form-label'> Gender<span className={'text-danger'}>*</span> :  </label>
                                             <div className='checkboxes'>
                                                 <label> <Field type={'radio'}
                                                     name={'studentInfo.gender'}
@@ -182,7 +188,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.categorgy' className='form-label'> Category:  </label>
+                                            <label htmlFor='studentInfo.categorgy' className='form-label'> Category<span className={'text-danger'}>*</span> :  </label>
                                             <Field
                                                 as='select'
                                                 name="studentInfo.categorgy"
@@ -206,7 +212,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo. classJoining' className='form-label'> Class Of Admission:  </label>
+                                            <label htmlFor='studentInfo. classJoining' className='form-label'> Class Of Admission<span className={'text-danger'}>*</span> :  </label>
                                             <Field
                                                 as='select'
                                                 name="studentInfo. classJoining"
@@ -236,13 +242,13 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className='SectionContainer mt-3'>
+                                <div className='SectionContainer mt-3 mb-2'>
                                     <h6 className='SectionHeader'>Parents Information :</h6>
                                     <hr className='m-0' />
                                     <div className='fieldsContainer'>
                                         <div className='field'>
 
-                                            <label htmlFor='parentsInfo.fatherName' className='form-label'> Father Full Name:  </label>
+                                            <label htmlFor='parentsInfo.fatherName' className='form-label'> Father Full Name<span className={'text-danger'}>*</span> :  </label>
                                             <Field
                                                 type={"text"}
                                                 name="parentsInfo.fatherName"
@@ -257,7 +263,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='parentsInfo.fatherOccupation' className='form-label'> Father Occupation:  </label>
+                                            <label htmlFor='parentsInfo.fatherOccupation' className='form-label'> Father Occupation<span className={'text-danger'}>*</span> :  </label>
                                             <Field
                                                 type="text"
                                                 name="parentsInfo.fatherOccupation"
@@ -272,7 +278,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='parentsInfo.fatherHigherEducation' className='form-label'>Qualification:  </label>
+                                            <label htmlFor='parentsInfo.fatherHigherEducation' className='form-label'>Qualification<span className={'text-danger'}>*</span> :  </label>
                                             <Field
                                                 type="text"
                                                 name="parentsInfo.fatherHigherEducation"
@@ -287,7 +293,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='parentsInfo.motherName' className='form-label'>Mother Name:  </label>
+                                            <label htmlFor='parentsInfo.motherName' className='form-label'>Mother Name<span className={'text-danger'}>*</span> :  </label>
                                             <Field
                                                 type="text"
                                                 name="parentsInfo.motherName"
@@ -299,7 +305,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='parentsInfo.motherOccupation' className='form-label'> Mother's Occupation:  </label>
+                                            <label htmlFor='parentsInfo.motherOccupation' className='form-label'> Mother's Occupation<span className={'text-danger'}>*</span> :  </label>
                                             <Field
                                                 type="text"
                                                 name="parentsInfo.motherOccupation"
@@ -311,7 +317,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='parentsInfo.motherHigherEducation' className='form-label'>Qualification:  </label>
+                                            <label htmlFor='parentsInfo.motherHigherEducation' className='form-label'>Qualification<span className={'text-danger'}>*</span>:  </label>
                                             <Field
                                                 type="text"
                                                 name="parentsInfo.motherHigherEducation"
@@ -347,13 +353,13 @@ const AddEditNewStudentDetails = (props: any) => {
                                                         e.preventDefault()
                                                     }
                                                     else {
-                                                        setFieldValue("studentInfo.gurdianContactNumber", e.target.value)
+                                                        setFieldValue("parentsInfo.gurdianContactNumber", e.target.value)
                                                     }
                                                 })}
                                             />
                                         </div>
                                         <div className='field'>
-                                            <label htmlFor='parentsInfo.primaryConactNumber' className='form-label'>Primary Contact:  </label>
+                                            <label htmlFor='parentsInfo.primaryConactNumber' className='form-label'>Primary Contact<span className={'text-danger'}>*</span>:  </label>
                                             <Field
                                                 type="number"
                                                 name="parentsInfo.primaryConactNumber"
@@ -366,13 +372,13 @@ const AddEditNewStudentDetails = (props: any) => {
                                                         e.preventDefault()
                                                     }
                                                     else {
-                                                        setFieldValue("studentInfo.primaryConactNumber", e.target.value)
+                                                        setFieldValue("parentsInfo.primaryConactNumber", e.target.value)
                                                     }
                                                 })}
                                             />
                                         </div>
                                         <div className='field'>
-                                            <label htmlFor='parentsInfo.PermenantAddress' className='form-label'>Pemenant Address:  </label>
+                                            <label htmlFor='parentsInfo.PermenantAddress' className='form-label'>Pemenant Address<span className={'text-danger'}>*</span> :  </label>
                                             <textarea
                                                 name="parentsInfo.PermenantAddress"
                                                 id="parentsInfo.PermenantAddress"
@@ -385,7 +391,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                             />
                                         </div>
                                         <div className='field'>
-                                            <label htmlFor='parentsInfo.localAddress' className='form-label'>Local Address:  </label>
+                                            <label htmlFor='parentsInfo.localAddress' className='form-label'>Local Address<span className={'text-danger'}>*</span> :  </label>
                                             <textarea
                                                 name="parentsInfo.localAddress"
                                                 id="parentsInfo.localAddress"
@@ -397,7 +403,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='parentsInfo.emailId' className='form-label'>Primary Mail Id:  </label>
+                                            <label htmlFor='parentsInfo.emailId' className='form-label'>Primary Mail Id<span className={'text-danger'}>*</span> :  </label>
                                             <Field
                                                 type="email"
                                                 name="parentsInfo.emailId"
@@ -419,14 +425,29 @@ const AddEditNewStudentDetails = (props: any) => {
                                     <div className='fieldsContainer'>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.studentFullName' className='form-label'> Student FullName:  </label>
+                                            <label htmlFor='previousAcademicDetails.lastClassDetails' className='form-label'> Last Class Completed:  </label>
                                             <Field
                                                 type="text"
-                                                name="studentInfo.studentFullName"
-                                                id="studentInfo.studentFullName"
-                                                value={values.studentInfo.studentFullName}
+                                                name="previousAcademicDetails.lastClassDetails"
+                                                id="previousAcademicDetails.lastClassDetails"
+                                                value={values.previousAcademicDetails.lastClassDetails}
                                                 className={'form-control'}
-                                                placeholder={"Full Name"}
+                                                placeholder={"Last Class Completed"}
+                                            >
+                                            </Field>
+
+                                        </div>
+                                        <div className='field'>
+
+                                            <label htmlFor='previousAcademicDetails.schoolName' className='form-label'> Previous School Name:  </label>
+                                            <Field
+                                                type="text"
+                                                name="previousAcademicDetails.schoolName"
+                                                id="previousAcademicDetails.schoolNamer"
+                                                value={values.previousAcademicDetails.schoolName}
+                                                className={'form-control'}
+                                                placeholder={"School Name"}
+
                                             >
 
                                             </Field>
@@ -434,58 +455,73 @@ const AddEditNewStudentDetails = (props: any) => {
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.adharNumber' className='form-label'> Aadhar Number:  </label>
+                                            <label htmlFor='previousAcademicDetails.lastAcedamicPercentage' className='form-label'>Previous Academic Performance:  </label>
                                             <Field
-                                                type="number"
-                                                name="studentInfo.adharNumber"
-                                                id="studentInfo.adharNumber"
-                                                value={values.studentInfo.adharNumber}
-                                                className={'form-control'}
-                                                placeholder={"Aadhar Number"}
-                                                onChange={((e: any) => {
-                                                    if (e.target.value?.length > 12) {
-                                                        e.preventDefault()
-                                                    }
-                                                    else {
-                                                        setFieldValue("studentInfo.adharNumber", e.target.value)
-                                                    }
-                                                })}
-                                            >
-
-                                            </Field>
-
-                                        </div>
-                                        <div className='field'>
-
-                                            <label htmlFor='studentInfo.emailId' className='form-label'>Personal Mail Id:  </label>
-                                            <Field
-                                                type="email"
-                                                name="studentInfo.emailId"
-                                                id="studentInfo.emailId"
+                                                type="text"
+                                                name="previousAcademicDetails.lastAcedamicPercentage"
+                                                id="previousAcademicDetails.lastAcedamicPercentage"
                                                 placeholder={'Personal Mail'}
-                                                value={values.studentInfo.emailId}
+                                                value={values.previousAcademicDetails.lastAcedamicPercentage}
                                                 className={'form-control'}
                                             >
 
+                                            </Field>
+
+                                        </div>
+                                        {/* <div className='field'>
+
+                                            <label htmlFor='previousAcademicDetails.transferCertificate' className='form-label'> Transfer Certificate:  </label>
+                                            <Field
+                                                type="file"
+                                                name="previousAcademicDetails.transferCertificate"
+                                                placeholder={"Upload Tc"}
+                                                id="previousAcademicDetails.transferCertificate"
+                                                value={['']}
+                                                // value={values.previousAcademicDetails.transferCertificate}
+                                                className={'form-control'}
+                                            >
+
+                                            </Field>
+
+                                        </div> */}
+                                    </div>
+                                </div>
+                                <div className='SectionContainer mt-3'>
+                                    <h6 className='SectionHeader'> Others:</h6>
+                                    <hr className='m-0' />
+                                    <div className='fieldsContainer pb-3'>
+                                        <div className='field'>
+
+                                            <label htmlFor='others.transportationMode' className='form-label'> Transportation Type:  </label>
+                                            <Field
+                                                type="text"
+                                                name="others.transportationMode"
+                                                id="others.transportationMode"
+                                                value={values.others.transportationMode}
+                                                className={'form-control'}
+                                                placeholder={"Transportation Type"}
+                                            >
                                             </Field>
 
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.contactNumber' className='form-label'> contactNumber:  </label>
+                                            <label htmlFor='others.paymentOptions' className='form-label'> Payment Type:  </label>
                                             <Field
-                                                type="number"
-                                                name="studentInfo.contactNumber"
-                                                placeholder={"Contact Number"}
-                                                id="studentInfo.contactNumber"
-                                                value={values.studentInfo.contactNumber}
+                                                type="text"
+                                                name="others.paymentOptions"
+                                                id="others.paymentOptions"
+                                                value={values.others.paymentOptions}
                                                 className={'form-control'}
-                                                maxLength={12}
+                                                placeholder={"School Name"}
+
                                             >
 
                                             </Field>
 
                                         </div>
+
+
                                     </div>
                                 </div>
                             </div>
