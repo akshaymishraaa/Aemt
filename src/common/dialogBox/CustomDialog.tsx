@@ -42,6 +42,7 @@ export default function CustomDialog(props:any) {
             margin:"0px",
             maxHeight:"32px",
             lineHeight:"32px",
+            marginLeft:"5px",
             
         },
         '& .btn-esecondary':{
@@ -94,8 +95,8 @@ export default function CustomDialog(props:any) {
                 </DialogContent>
                 <DialogActions>
                     {console.log("58...",props.actionType)}
-                    {props.actionType==='Close' ?  <Button autoFocus onClick={handleClose}>Close</Button> : <Button className='btn-esecondary' autoFocus onClick={handleClose}>cancel</Button>}
-                    {props.actionType && props.actionType!=='Close' && <Button className='btn-eprimary' type='submit' form={props.form} autoFocus onClick={props.onSubmitHandler}>
+                    {props.actionType==='Close' ?  <Button variant="contained"  onClick={handleClose}>Close</Button> : <Button  className='btn-esecondary'  onClick={handleClose}>cancel</Button>}
+                    {props.actionType && props.actionType!=='Close' && <Button variant="contained" className='btn-eprimary' type='submit' form={props.form}  onClick={props.onSubmitHandler}>
                     {props.actionType==='Submit' ? 'Submit' : props.actionType=== 'Update '? 'Update' : props.actionType}
                     </Button> }
                 </DialogActions>

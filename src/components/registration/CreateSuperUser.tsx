@@ -9,6 +9,7 @@ import {
 } from "../actions/actions";
 import { Actiontypes } from "../../types/ActionTypes";
 import { validateUserSchema } from "../roles/helpers/validate";
+import CommonCard from '../../common/CommonCard';
 
 
 function CreateSuperUser() {
@@ -62,10 +63,11 @@ function CreateSuperUser() {
     };
 
     return (
-        <div className="container-fluid d-flex justify-content-center mt-5">
-            <div className="border border-1 p-5">
-                <h3>Create super user for access application</h3>
-                <hr />
+        <div className="container-fluid d-flex justify-content-center mt-5" >
+             <CommonCard  title={'Create super user for access application'}>
+            {/* <div className="border border-1 p-5" > */}
+                {/* <h3>Create super user for access application</h3> */}
+                {/* <hr /> */}
                 <Formik
                     initialValues={{
                         orgName: recentOrganizationName.organization,
@@ -85,14 +87,15 @@ function CreateSuperUser() {
                             <Form id="createUser">
                                 <div className="row">
                                     <>{console.log("101....", errors, values)}</>
-                                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <label htmlFor="firstName">Organization Name</label>
+                                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <label htmlFor="firstName">Organization Name:<span className="text-danger">*</span></label>
                                         <div>
                                             <Field
                                                 id="orgName"
                                                 name="orgName"
                                                 value={values.orgName}
                                                 disabled
+                                                className="form-control form-control-md text-field"
                                             />
                                             <ErrorMessage
                                                 name="orgName"
@@ -101,14 +104,15 @@ function CreateSuperUser() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <label htmlFor="firstName">First Name</label>
+                                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <label htmlFor="firstName">First Name:<span className="text-danger">*</span></label>
                                         <div>
                                             <Field
                                                 id="firstName"
                                                 name="firstName"
                                                 placeholder="Enter Your First Name"
                                                 value={values.firstName}
+                                                className="form-control form-control-md text-field"
                                             />
                                             <ErrorMessage
                                                 name="firstName"
@@ -117,14 +121,15 @@ function CreateSuperUser() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <label htmlFor="firstName">Last Name</label>
+                                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <label htmlFor="firstName">Last Name:</label>
                                         <div>
                                             <Field
                                                 id="lastName"
                                                 name="lastName"
                                                 placeholder="Enter Your Last Name"
                                                 value={values.lastName}
+                                                className="form-control form-control-md text-field"
                                             />
                                             <ErrorMessage
                                                 name="lastName"
@@ -136,14 +141,15 @@ function CreateSuperUser() {
 
                                 </div>
                                 <div className="row ">
-                                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <label htmlFor="firstName">Email</label>
+                                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <label htmlFor="firstName">Email:<span className="text-danger">*</span></label>
                                         <div>
                                             <Field
                                                 id="email"
                                                 name="email"
                                                 placeholder="Enter Your email"
                                                 value={values.email}
+                                                className="form-control form-control-md text-field"
                                             />
                                             <ErrorMessage
                                                 name="email"
@@ -152,8 +158,8 @@ function CreateSuperUser() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <label htmlFor="firstName">Phone no.</label>
+                                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <label htmlFor="firstName">Phone no:<span className="text-danger">*</span></label>
                                         <div>
                                             <Field
                                                 id="number"
@@ -161,6 +167,7 @@ function CreateSuperUser() {
                                                 name="contactNo"
                                                 placeholder="Enter your contact number"
                                                 value={values.contactNo}
+                                                className="form-control form-control-md text-field"
                                             />
                                             <ErrorMessage
                                                 name="contactNo"
@@ -169,8 +176,8 @@ function CreateSuperUser() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <label htmlFor="firstName">Pasword</label>
+                                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <label htmlFor="firstName">Pasword:<span className="text-danger">*</span></label>
                                         <div>
                                             <Field
                                                 id="password"
@@ -178,6 +185,7 @@ function CreateSuperUser() {
                                                 placeholder="Enter Your Password"
                                                 type="password"
                                                 value={values.password}
+                                                className="form-control form-control-md text-field"
                                             />
                                             <ErrorMessage
                                                 name="password"
@@ -189,8 +197,8 @@ function CreateSuperUser() {
 
                                 </div>
                                 <div className="row ">
-                                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <label htmlFor="firstName">Role</label>
+                                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <label htmlFor="firstName">Role:<span className="text-danger">*</span></label>
                                         <div>
                                             <ReactSelect
                                                 name={"role"}
@@ -207,8 +215,8 @@ function CreateSuperUser() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <label htmlFor="firstName">Allowed Module</label>
+                                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <label htmlFor="firstName">Allowed Module:<span className="text-danger">*</span></label>
                                         <div>
                                             <ReactSelect
                                                 type="multi"
@@ -237,14 +245,15 @@ function CreateSuperUser() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="d-flex justify-content-center mt-4">
-                                    <button type="submit" className="btn btn-success">Submit</button>
+                                <div className="d-flex justify-content-end mt-4">
+                                    <button type="submit" className="btn btn-primary">Submit</button>
                                 </div>
                             </Form>
                         );
                     }}
                 </Formik>
-            </div>
+            {/* </div> */}
+            </CommonCard>
         </div>
     )
 }
