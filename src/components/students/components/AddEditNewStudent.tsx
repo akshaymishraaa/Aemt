@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Field, Formik, Form } from 'formik';
+import { Field, Formik, Form, ErrorMessage } from 'formik';
 import { useSelector } from 'react-redux';
 import { CustomCom } from '../constants/addStudent/CustomComponents';
 import '../styles/AdmissionStyles.scss'
 import DatePick from '../../../common/Datepicker/Datepicker';
 import moment from 'moment';
 import dayjs from 'dayjs';
+import { validateAdmissionForm } from '../constants/addStudent/validationSchema';
 const AddEditNewStudentDetails = (props: any) => {
     const { studenAdmissiontData } = useSelector((state: any) => state.studentsModule)
     const [gender, setGender] = useState<string>('')
@@ -25,14 +26,15 @@ const AddEditNewStudentDetails = (props: any) => {
             <Formik
                 initialValues={studenAdmissiontData}
                 onSubmit={(values: any) => {
-                    console.log(values)
+                    console.log(values, "28....")
                 }}
+                validationSchema={validateAdmissionForm}
 
             >
                 {({ errors, touched, setFieldValue, values, }) => {
                     return (
                         <Form className='admissionForm'>
-                            <>{console.log(values, "admision25...")}</>
+                            <>{console.log(values, errors, "admision25...")}</>
                             {/* <CustomCom.fieldsDiv>
                                 <h1>  h111111111</h1>
                                 <CustomCom.styledButton>Click here</CustomCom.styledButton>
@@ -57,6 +59,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                                 placeholder={"Full Name"}
 
                                             />
+                                            <div className='text-danger error'><ErrorMessage name={'studentInfo.studentFullName'} /></div>
 
                                         </div>
                                         <div className='field'>
@@ -79,11 +82,13 @@ const AddEditNewStudentDetails = (props: any) => {
                                             >
 
                                             </Field>
+                                            <div className='text-danger error'><ErrorMessage name={'studentInfo.adharNumber'} /></div>
+
 
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.emailId' className='form-label'>Personal Mail Id<span className={'text-danger'}>*</span> :  </label>
+                                            <label htmlFor='studentInfo.emailId' className='form-label'>Personal Mail Id :  </label>
                                             <Field
                                                 type="email"
                                                 name="studentInfo.emailId"
@@ -96,10 +101,11 @@ const AddEditNewStudentDetails = (props: any) => {
 
                                             </Field>
 
+
                                         </div>
                                         <div className='field'>
 
-                                            <label htmlFor='studentInfo.contactNumber' className='form-label'> contactNumber<span className={'text-danger'}>*</span> :  </label>
+                                            <label htmlFor='studentInfo.contactNumber' className='form-label'> contactNumber :  </label>
                                             <Field
                                                 type="number"
                                                 name="studentInfo.contactNumber"
@@ -134,6 +140,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                             // styles={customDateStyles}
 
                                             />
+                                            <div className='text-danger error'><ErrorMessage name={'studentInfo.dateOfBirth'} /></div>
+
                                         </div>
                                         <div className='field'>
 
@@ -147,11 +155,13 @@ const AddEditNewStudentDetails = (props: any) => {
                                                 }}
                                             // styles={customDateStyles}
                                             />
+                                            <div className='text-danger error'><ErrorMessage name={'studentInfo.dateOfAdmission'} /></div>
+
                                         </div>
                                         <div className='field'>
 
                                             <label htmlFor='studentInfo.gender' className='form-label'> Gender<span className={'text-danger'}>*</span> :  </label>
-                                            <div className='checkboxes'>
+                                            <div className='radioContainer'>
                                                 <label> <Field type={'radio'}
                                                     name={'studentInfo.gender'}
                                                     id={"studentInfo.gender"}
@@ -187,6 +197,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                                     />
                                                     <span> Others  </span></label>
                                             </div>
+                                            <div className='text-danger error'><ErrorMessage name={'studentInfo.gender'} /></div>
+
                                         </div>
                                         <div className='field'>
 
@@ -210,6 +222,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                                 <option value="OBC">OBC</option>
                                                 <option value="others">others</option>
                                             </Field>
+                                            <div className='text-danger error'><ErrorMessage name={'studentInfo.categorgy'} /></div>
+
 
                                         </div>
                                         <div className='field'>
@@ -240,6 +254,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                                 <option value="class-10">Class-10</option>
 
                                             </Field>
+                                            <div className='text-danger error'><ErrorMessage name={'studentInfo.classJoining'} /></div>
+
 
                                         </div>
                                     </div>
@@ -261,6 +277,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                             >
 
                                             </Field>
+                                            <div className='text-danger error'><ErrorMessage name={'parentsInfo.fatherName'} /></div>
+
 
                                         </div>
                                         <div className='field'>
@@ -276,6 +294,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                             >
 
                                             </Field>
+                                            <div className='text-danger error'><ErrorMessage name={'parentsInfo.fatherOccupation'} /></div>
+
 
                                         </div>
                                         <div className='field'>
@@ -291,6 +311,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                             >
 
                                             </Field>
+                                            <div className='text-danger error'><ErrorMessage name={'parentsInfo.fatherHigherEducation'} /></div>
+
 
                                         </div>
                                         <div className='field'>
@@ -304,6 +326,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                                 value={values.parentsInfo.motherName}
                                                 className={'form-control'}
                                             />
+                                            <div className='text-danger error'><ErrorMessage name={'parentsInfo.motherName'} /></div>
+
                                         </div>
                                         <div className='field'>
 
@@ -316,6 +340,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                                 className={'form-control'}
                                                 placeholder={"Occupation"}
                                             />
+                                            <div className='text-danger error'><ErrorMessage name={'parentsInfo.motherOccupation'} /></div>
+
                                         </div>
                                         <div className='field'>
 
@@ -328,6 +354,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                                 value={values.parentsInfo.motherHigherEducation}
                                                 className={'form-control'}
                                             />
+                                            <div className='text-danger error'><ErrorMessage name={'parentsInfo.motherHigherEducation'} /></div>
+
                                         </div>
                                         <div className='field'>
 
@@ -340,6 +368,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                                 value={values.parentsInfo.localGurdian}
                                                 className={'form-control'}
                                             />
+
                                         </div>
                                         <div className='field'>
                                             <label htmlFor='parentsInfo.gurdianContactNumber' className='form-label'>Gurdian Contact:  </label>
@@ -359,6 +388,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                                     }
                                                 })}
                                             />
+
                                         </div>
                                         <div className='field'>
                                             <label htmlFor='parentsInfo.primaryConactNumber' className='form-label'>Primary Contact<span className={'text-danger'}>*</span>:  </label>
@@ -378,6 +408,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                                     }
                                                 })}
                                             />
+                                            <div className='text-danger error'><ErrorMessage name={'parentsInfo.primaryConactNumber'} /></div>
+
                                         </div>
                                         <div className='field'>
                                             <label htmlFor='parentsInfo.PermenantAddress' className='form-label'>Pemenant Address<span className={'text-danger'}>*</span> :  </label>
@@ -391,6 +423,8 @@ const AddEditNewStudentDetails = (props: any) => {
 
 
                                             />
+                                            <div className='text-danger error'><ErrorMessage name={'parentsInfo.PermenantAddress'} /></div>
+
                                         </div>
                                         <div className='field'>
                                             <label htmlFor='parentsInfo.localAddress' className='form-label'>Local Address<span className={'text-danger'}>*</span> :  </label>
@@ -402,6 +436,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                                 className={'form-control'}
                                                 cols={5}
                                             />
+                                            <div className='text-danger error'><ErrorMessage name={'parentsInfo.localAddress'} /></div>
+
                                         </div>
                                         <div className='field'>
 
@@ -417,6 +453,9 @@ const AddEditNewStudentDetails = (props: any) => {
                                             >
 
                                             </Field>
+
+                                            <div className='text-danger error'><ErrorMessage name={'parentsInfo.emailId'} /></div>
+
 
                                         </div>
                                     </div>
@@ -470,22 +509,22 @@ const AddEditNewStudentDetails = (props: any) => {
                                             </Field>
 
                                         </div>
-                                        {/* <div className='field'>
+                                        <div className='field'>
 
                                             <label htmlFor='previousAcademicDetails.transferCertificate' className='form-label'> Transfer Certificate:  </label>
-                                            <Field
-                                                type="file"
+                                            <input
+                                                type={'file'}
                                                 name="previousAcademicDetails.transferCertificate"
                                                 placeholder={"Upload Tc"}
                                                 id="previousAcademicDetails.transferCertificate"
-                                                value={['']}
-                                                // value={values.previousAcademicDetails.transferCertificate}
+                                                value={values.previousAcademicDetails.transferCertificate}
+
                                                 className={'form-control'}
-                                            >
+                                            />
 
-                                            </Field>
+                                            {/* </Field> */}
 
-                                        </div> */}
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='SectionContainer mt-3'>
@@ -493,39 +532,41 @@ const AddEditNewStudentDetails = (props: any) => {
                                     <hr className='m-0' />
                                     <div className='fieldsContainer pb-3'>
                                         <div className='field'>
+                                            <label htmlFor='others.transportationMode' className='form-label'> Transportation Mode<span className={'text-danger'}>*</span> :  </label>
+                                            <div className='radioContainer'>
+                                                <label> <Field type={'radio'}
+                                                    name={'others.transportationMode'}
+                                                    id={"others.transportationMode"}
+                                                    value={'self-Transport'}
+                                                    checked={(values?.others?.transportationMode === 'self-Transport') ? true : false}
 
-                                            <label htmlFor='others.transportationMode' className='form-label'> Transportation Type:  </label>
-                                            <Field
-                                                type="text"
-                                                name="others.transportationMode"
-                                                id="others.transportationMode"
-                                                value={values.others.transportationMode}
-                                                className={'form-control'}
-                                                placeholder={"Transportation Type"}
-                                            >
-                                            </Field>
+                                                    onChange={(e: any) => {
+                                                        setFieldValue('others.transportationMode', 'self-Transport')
+
+                                                    }
+                                                    } /> <span> Self Transportation </span></label>
+                                                <label>
+                                                    <Field type={'radio'}
+                                                        name={'others.transportationMode'}
+                                                        id={"others.transportationMode"}
+                                                        value={'school-transport'}
+                                                        checked={(values?.others?.transportationMode === 'school-transport') ? true : false}
+                                                        onChange={(e: any) => {
+                                                            setFieldValue('others.transportationMode', 'school-transport')
+                                                        }}
+                                                    />
+                                                    <span> School Transportation </span></label>
+                                            </div>
+                                            <div className='text-danger error'><ErrorMessage name={'others.transportationMode'} /></div>
 
                                         </div>
-                                        <div className='field'>
 
-                                            <label htmlFor='others.paymentOptions' className='form-label'> Payment Type:  </label>
-                                            <Field
-                                                type="text"
-                                                name="others.paymentOptions"
-                                                id="others.paymentOptions"
-                                                value={values.others.paymentOptions}
-                                                className={'form-control'}
-                                                placeholder={"School Name"}
-
-                                            >
-
-                                            </Field>
-
-                                        </div>
 
 
                                     </div>
                                 </div>
+                                <button type='submit' className='btn btn-primary'> Submit</button>
+
                             </div>
                         </Form>
 

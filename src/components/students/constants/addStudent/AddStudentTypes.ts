@@ -32,7 +32,7 @@ export type studentAdmissionFrom = {
     },
     others:
     {
-        transportationMode: string,
+        transportationMode: string | undefined,
         paymentOptions: string
     }
 }

@@ -55,7 +55,13 @@
 
                     }
 
-                    .checkboxes {
+                    .error {
+
+                        font-size: 0.8rem;
+                        padding-left: 10px;
+                    }
+
+                    .radioContainer {
                         display: flex;
                         flex-direction: column;
                         justify-content: start;
@@ -69,6 +75,10 @@
                         -moz-appearance: none;
                         appearance: none;
                         margin: 0;
+                    }
+
+                    input[type=file] {
+                        font-size: 0.8rem;
                     }
                 }
             }

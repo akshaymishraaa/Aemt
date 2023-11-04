@@ -2,12 +2,12 @@ import { studentAdmissionFrom } from "./AddStudentTypes"
 export const studentAdmissionDetails: studentAdmissionFrom = {
     studentInfo: {
         studentFullName: undefined,
-        dateOfBirth: null,
+        dateOfBirth: '',
         gender: '',
         adharNumber: '',
         categorgy: '',
         classJoining: '',
-        dateOfAdmission: null,
+        dateOfAdmission: '',
         emailId: '',
         contactNumber: ''
     },
@@ -29,11 +29,11 @@ export const studentAdmissionDetails: studentAdmissionFrom = {
         lastClassDetails: undefined,
         schoolName: undefined,
         lastAcedamicPercentage: undefined,
-        transferCertificate: undefined
+        transferCertificate: ''
     },
     others:
     {
-        transportationMode: ' ',
+        transportationMode: undefined,
         paymentOptions: ' '
     }
 
