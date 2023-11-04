@@ -26,7 +26,7 @@ function CreateUser() {
     setOpen(false);
     setError(false);
   };
-
+console.log(tabs,"29---")
   const tabOptions = tabs[0]?.tabs?.map((item: any, index: any) => {
     let optionObject = { label: "", value: "" };
     optionObject.label = item;
@@ -112,7 +112,7 @@ function CreateUser() {
               return (
                 <Form id="createUser">
                   <div className="row ">
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Organization Name:<span className="text-danger">*</span></label>
                       <div>
                         {/* <span> <LockResetIcon/></span> */}
@@ -132,7 +132,7 @@ function CreateUser() {
                         /> */}
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">First Name:<span className="text-danger">*</span></label>
                       <div>
                         <Field
@@ -150,7 +150,7 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Last Name:</label>
                       <div>
                         <Field
@@ -171,7 +171,7 @@ function CreateUser() {
 
                   </div>
                   <div className="row ">
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Email:<span className="text-danger">*</span></label>
                       <div>
                         <Field
@@ -189,7 +189,7 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Phone no:<span className="text-danger">*</span></label>
                       <div>
                         <Field
@@ -208,7 +208,7 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Pasword:<span className="text-danger">*</span></label>
                       <div>
                         {/* <span> <LockResetIcon/></span> */}
@@ -232,7 +232,7 @@ function CreateUser() {
 
                   </div>
                   <div className="row ">
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Allowed Module:<span className="text-danger">*</span></label>
                       <div>
                         <ReactSelect
@@ -255,7 +255,7 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Role:<span className="text-danger">*</span></label>
                       <div>
                         <ReactSelect

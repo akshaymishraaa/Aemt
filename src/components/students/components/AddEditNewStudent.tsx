@@ -130,8 +130,9 @@ const AddEditNewStudentDetails = (props: any) => {
                                         <div className='field'>
 
                                             <label htmlFor='studentInfo.dateOfBirth' className='form-label'> Birth Date<span className={'text-danger'}>*</span> :  </label>
-                                            <DatePick
-                                                value={dayjs(values.studentInfo.dateOfBirth)}
+                                            <DatePick 
+                                                className="date_field"
+                                                value={values.studentInfo.dateOfBirth}
                                                 onChange={(e: any) => {
                                                     const date = moment(e.$d).format('DD-MM-YYYY')
                                                     setFieldValue("studentInfo.dateOfBirth", date)
@@ -147,6 +148,7 @@ const AddEditNewStudentDetails = (props: any) => {
 
                                             <label htmlFor='studentInfo.dateOfAdmission' className='form-label'> Joining Date<span className={'text-danger'}>*</span> :  </label>
                                             <DatePick
+                                                className="date_field"
                                                 placeholder={"Date Of joining"}
                                                 value={dayjs(values.studentInfo.dateOfAdmission)}
                                                 onChange={(e: any) => {
