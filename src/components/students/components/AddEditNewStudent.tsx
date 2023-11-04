@@ -122,7 +122,8 @@ const AddEditNewStudentDetails = (props: any) => {
                                         <div className='field'>
 
                                             <label htmlFor='studentInfo.dateOfBirth' className='form-label'> Birth Date<span className={'text-danger'}>*</span> :  </label>
-                                            <DatePick
+                                            <DatePick 
+                                                className="date_field"
                                                 value={values.studentInfo.dateOfBirth}
                                                 onChange={(e: any) => {
                                                     console.log(e.$d)
@@ -138,6 +139,7 @@ const AddEditNewStudentDetails = (props: any) => {
 
                                             <label htmlFor='studentInfo.dateOfAdmission' className='form-label'> Joining Date<span className={'text-danger'}>*</span> :  </label>
                                             <DatePick
+                                                className="date_field"
                                                 placeholder={"Date Of joining"}
                                                 values={values.studentInfo.dateOfAdmission}
                                                 onChange={(e: any) => {
