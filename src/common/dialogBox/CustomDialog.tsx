@@ -22,7 +22,7 @@ export default function CustomDialog(props: any) {
     "& .MuiTypography-root": {
       fontSize: "13px",
       // margin: "2px",
-      width: "90%",
+      // width: "90%",
       padding: "5px",
       textAlign: "center",
     },
