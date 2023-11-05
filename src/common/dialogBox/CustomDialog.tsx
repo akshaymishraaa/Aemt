@@ -41,6 +41,7 @@ export default function CustomDialog(props: any) {
       margin: "0px",
       maxHeight: "32px",
       lineHeight: "32px",
+      marginLeft:"5px",
     },
     "& .btn-esecondary": {
       fontSize: "13px",
