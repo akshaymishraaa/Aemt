@@ -59,6 +59,14 @@ export const privateRoutes = [
     renderChild: true,
   },
   {
+    name: "Examination",
+    pathName: "/examination/*",
+    component: lazy(() => import("../components/examination/index")),
+    navigateTo: "/examination",
+    icon: lazy(() => import("@mui/icons-material/EventNote")),
+    renderChild: true,
+  },
+  {
     name: 'addEmployee',
     pathName: '/employee/addEmployee',
     component: lazy(() => import("../components/employess/components/AddEmployee")),
