@@ -41,7 +41,13 @@
  // margin-bottom:30px;
   margin-left: 70px;
 }
-
+.MuiTabs-root{
+  background-color: rgba(0, 0, 0, 0.12);
+}
+.Mui-selected{
+  background: #46799a !important;
+  color: white !important;
+}
 // .date_field{
 //   .MuiInputBase-root{
 //     font-size: 13px !important;
