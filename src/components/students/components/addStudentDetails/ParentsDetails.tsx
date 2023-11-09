@@ -203,6 +203,34 @@ const ParentsDetails = (props: any) => {
 
 
                     </div>
+                    <div className='field'>
+
+                        <label htmlFor='parentsInfo.familyYearlyIcome' className='form-label'>Family Yearly Income<span className={'text-danger'}>*</span> : </label>
+                        <Field
+                            type="number"
+                            name="studentInfo.familyYearlyIcome"
+                            id="studentInfo.familyYearlyIcome"
+                            value={values?.studentInfo?.familyYearlyIcome}
+                            className={'form-control'}
+                            placeholder={"Yearly Income"}
+
+                        />
+                        <div className='text-danger error'><ErrorMessage name={'studentInfo.familyYearlyIcome'} /></div>
+
+                    </div>
+                    <div className='field'>
+
+                        <label htmlFor='previousAcademicDetails.gurdianProfile' className='form-label'> Gurdian Profile:  </label>
+                        <input
+                            type={'file'}
+                            name="previousAcademicDetails.gurdianProfile"
+                            placeholder={"Upload Birth Cerificate"}
+                            id="previousAcademicDetails.gurdianProfile"
+                            value={values.previousAcademicDetails.gurdianProfile}
+
+                            className={'form-control'}
+                        />
+                    </div>
                 </div>
             </div>
         </>

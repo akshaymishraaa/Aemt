@@ -1,57 +1,76 @@
-import React, { useEffect } from 'react';
-import Box from '@mui/material/Box';
+import * as React from 'react';
+import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import { ModuleList } from '../constants/ModuleList';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import StudentDetails from './StudentDetails';
+import CertificationIndex from './certifications/CertificationIndex';
 import StationaryDetails from './stationary/StationaryDetails';
 import PendingFeeIndex from './pendingFee/PendingFeeIndex';
-import CertificationIndex from './certifications/CertificationIndex';
 
-export default function StudentSubTabs() {
-    const [value, setValue] = React.useState('Details');
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+}
 
-    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-        console.log(
-            
-        )
-        setValue(newValue);
-    };
-    useEffect(() => {
-        setValue('Details')
-
-    }, [])
+function CustomTabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
 
     return (
-        <Box sx={{ width: '100%', typography: 'body1' }}>
-            <TabContext value={value}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <TabList onChange={handleChange} aria-label="lab API tabs example">
-                        {/* <Tab label="Item One" value="1" />
-                        <Tab label="Item Two" value="2" />
-                        <Tab label="Item Three" value="3" /> */}
-                        {
-                            ModuleList?.map((item: any, index: number) => {
-                                return (
-                                    <>
-                                        <Tab label={item.name} value={item.value} />
-                                    </>
-
-                                )
-
-                            })
-
-                        }
-                    </TabList>
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box>
+                    <Typography>{children}</Typography>
                 </Box>
+            )}
+        </div>
+    );
+}
 
-                <TabPanel value="Details"><StudentDetails /></TabPanel>
-                <TabPanel value="certificates"><CertificationIndex /></TabPanel>
-                <TabPanel value="stationary"><StationaryDetails /></TabPanel>
-                <TabPanel value="feeDetails"><PendingFeeIndex /></TabPanel>
-            </TabContext>
+function a11yProps(index: number) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
+
+export default function StudentMotduleTabs() {
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+    };
+
+    return (
+        <Box sx={{ width: '100%' }}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                    <Tab label="Student Details" {...a11yProps(0)} />
+                    <Tab label="Certificates" {...a11yProps(1)} />
+                    <Tab label="Stationary" {...a11yProps(2)} />
+                    <Tab label="Pending Fees" {...a11yProps(3)} />
+                </Tabs>
+            </Box>
+            <CustomTabPanel value={value} index={0}>
+                <StudentDetails />
+
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={1}>
+                <CertificationIndex />
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={2}>
+                <StationaryDetails />
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={3}>
+                <PendingFeeIndex />
+            </CustomTabPanel>
         </Box>
     );
 }

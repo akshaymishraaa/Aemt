@@ -9,14 +9,15 @@ import StudentSubTabs from './components/Index';
 
 function Students() {
   const navigate = useNavigate()
-  // const featuresList = [{ featureName: 'Student Details', description: 'To access student related details' },
-  // { featureName: 'Add Old Student Data', description: 'To add old student details' },
-  // { featureName: 'Old Student Payment', description: 'setup old students payment mode' }, { featureName: 'Certificates', description: 'To access certificates and TC' }, { featureName: 'Transportation', description: 'To access Transport services details' }, { featureName: 'Inventory', description: 'To access inventory details of Uniforms,books and stationaries' }]
+
+
   return (
-    <Routes>
-      <Route path='/' element={<StudentSubTabs />}> </Route>
-      <Route path='addStudent' element={<AddEditNewStudentDetails />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path='/' element={<StudentSubTabs />}> </Route>
+        <Route path='addStudent' element={<AddEditNewStudentDetails />} />
+      </Routes>
+    </>
 
   )
 }

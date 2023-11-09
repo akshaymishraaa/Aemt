@@ -11,8 +11,8 @@ export const studentAdmissionDetails: studentAdmissionFrom = {
         emailId: '',
         contactNumber: '',
         studentProfile: '',
-        MotherTongue: '',
-        religion: '',
+        MotherTongue: undefined,
+        religion: undefined,
         bloodGroup: '',
         birthCertificate: ''
 
@@ -44,7 +44,7 @@ export const studentAdmissionDetails: studentAdmissionFrom = {
     others:
     {
         transportationMode: undefined,
-        paymentOptions: ' '
+        studentType:"NEW"
     }
 
 }

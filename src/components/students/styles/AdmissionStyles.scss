@@ -3,8 +3,19 @@
         display: flex;
         justify-content: center;
         width: 100%;
-        padding: 15px;
-        font-weight: 900px;
+        font-weight: 900;
+        margin-top: 5px;
+    }
+
+    .studentTypeDef {
+        text-align: end;
+        margin: 0px 40px;
+
+        div {
+            label {
+                margin-left: 15px;
+            }
+        }
     }
 
     .SectionsContainer {
@@ -105,6 +116,15 @@
                 }
             }
 
+        }
+
+        .submissonContainer {
+            display: flex;
+            justify-content: end;
+
+            button {
+                margin: 5px 10px;
+            }
         }
     }
 }

@@ -9,11 +9,11 @@ export type studentAdmissionFrom = {
         dateOfAdmission: String | null,
         emailId: String,
         contactNumber: String,
-        bloodGroup:String,
-        religion:String|undefined,
-        birthCertificate:String|null,
-        studentProfile:String,
-        MotherTongue:String
+        bloodGroup: String,
+        religion: String | undefined,
+        birthCertificate: String | null,
+        studentProfile: String,
+        MotherTongue: String | undefined
 
     },
     parentsInfo: {
@@ -29,8 +29,8 @@ export type studentAdmissionFrom = {
         localAddress: String | undefined,
         PermenantAddress: String | undefined,
         emailId: String,
-        familyYearlyIcome:Number|null,
-        gurdianProfile:String
+        familyYearlyIcome: Number | null,
+        gurdianProfile: String
     },
     previousAcademicDetails: {
         lastClassDetails: String | undefined,
@@ -41,6 +41,6 @@ export type studentAdmissionFrom = {
     others:
     {
         transportationMode: String | undefined,
-        paymentOptions: String
+        studentType: String
     }
 }

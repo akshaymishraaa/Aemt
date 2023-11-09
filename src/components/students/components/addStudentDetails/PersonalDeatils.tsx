@@ -103,10 +103,9 @@ const StudentPersonalDetails = (props: any) => {
 
                         <label htmlFor='studentInfo.dateOfBirth' className='form-label'> Birth Date<span className={'text-danger'}>*</span> :  </label>
                         <DatePick
-                            value={(values.studentInfo.dateOfBirth !== '') ? dayjs(values.studentInfo.dateOfBirth) : null}
+                            value={(values.studentInfo.dateOfBirth !== '') ? values.studentInfo.dateOfBirth : null}
                             onChange={(e: any) => {
-                                const date = moment(e.$d).format('DD-MM-YYYY')
-                                setFieldValue("studentInfo.dateOfBirth", date)
+                                setFieldValue("studentInfo.dateOfBirth", e.$d)
                             }}
                             placeholder={"Date Of Birth"}
                         // styles={customDateStyles}
@@ -119,10 +118,9 @@ const StudentPersonalDetails = (props: any) => {
                         <label htmlFor='studentInfo.dateOfAdmission' className='form-label'> Joining Date<span className={'text-danger'}>*</span> :  </label>
                         <DatePick
                             placeholder={"Date Of joining"}
-                            value={(values.studentInfo.dateOfAdmission) ? dayjs(values.studentInfo.dateOfAdmission) : null}
+                            value={(values.studentInfo.dateOfAdmission) ? values.studentInfo.dateOfAdmission : null}
                             onChange={(e: any) => {
-                                const date = moment(e.$d).format('DD-MM-YYYY')
-                                setFieldValue("studentInfo.dateOfAdmission", date)
+                                setFieldValue("studentInfo.dateOfAdmission", e.$d)
                             }}
                         // styles={customDateStyles}
                         />
@@ -199,12 +197,12 @@ const StudentPersonalDetails = (props: any) => {
                     </div>
                     <div className='field'>
 
-                        <label htmlFor='studentInfo. classJoining' className='form-label'> Class Of Admission<span className={'text-danger'}>*</span> :  </label>
+                        <label htmlFor='studentInfo.classJoining' className='form-label'> Class Of Admission<span className={'text-danger'}>*</span> :  </label>
                         <Field
                             as='select'
-                            name="studentInfo. classJoining"
+                            name="studentInfo.classJoining"
                             placeholder={"Class of Admission"}
-                            id="studentInfo. classJoining"
+                            id="studentInfo.classJoining"
                             value={values.studentInfo.classJoining}
                             className={'form-select'}
                             onChange={((e: any) => {
@@ -228,6 +226,92 @@ const StudentPersonalDetails = (props: any) => {
                         <div className='text-danger error'><ErrorMessage name={'studentInfo.classJoining'} /></div>
 
 
+                    </div>
+                    <div className='field'>
+
+                        <label htmlFor='studentInfo.bloodGroup' className='form-label'> Blood Group<span className={'text-danger'}>*</span> :  </label>
+                        <Field
+                            as='select'
+                            name="studentInfo.bloodGroup"
+                            placeholder={"Class of Admission"}
+                            id="studentInfo.bloodGroup"
+                            value={values.studentInfo.bloodGroup}
+                            className={'form-select'}
+                            onChange={((e: any) => {
+                                setFieldValue('studentInfo.bloodGroup', e.target.value)
+                            })}
+
+                        >
+                            <option value=''>Select BloodGroup </option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+
+                        </Field>
+                        <div className='text-danger error'><ErrorMessage name={'studentInfo.bloodGroup'} /></div>
+
+
+                    </div>
+                    <div className='field'>
+
+                        <label htmlFor='studentInfo.MotherTongue' className='form-label'>Mother Tongue<span className={'text-danger'}>*</span> : </label>
+                        <Field
+                            type="text"
+                            name="studentInfo.MotherTongue"
+                            id="studentInfo.MotherTongue"
+                            value={values?.studentInfo?.MotherTongue}
+                            className={'form-control'}
+                            placeholder={"Mother Tongue"}
+
+                        />
+                        <div className='text-danger error'><ErrorMessage name={'studentInfo.MotherTongue'} /></div>
+
+                    </div>
+                    <div className='field'>
+
+                        <label htmlFor='studentInfo.religion' className='form-label'>Religion<span className={'text-danger'}>*</span> : </label>
+                        <Field
+                            type="text"
+                            name="studentInfo.religion"
+                            id="studentInfo.religion"
+                            value={values?.studentInfo?.religion}
+                            className={'form-control'}
+                            placeholder={"Religion"}
+
+                        />
+                        <div className='text-danger error'><ErrorMessage name={'studentInfo.religion'} /></div>
+
+                    </div>
+                    <div className='field'>
+
+                        <label htmlFor='previousAcademicDetails.birthCertificate' className='form-label'> BirthCertificate:  </label>
+                        <input
+                            type={'file'}
+                            name="previousAcademicDetails.birthCertificate"
+                            placeholder={"Upload Birth Cerificate"}
+                            id="previousAcademicDetails.birthCertificate"
+                            value={values.previousAcademicDetails.birthCertificate}
+
+                            className={'form-control'}
+                        />
+                    </div>
+                    <div className='field'>
+
+                        <label htmlFor='previousAcademicDetails.studentProfile' className='form-label'> Student Profile:  </label>
+                        <input
+                            type={'file'}
+                            name="previousAcademicDetails.studentProfile"
+                            placeholder={"Upload Birth Cerificate"}
+                            id="previousAcademicDetails.studentProfile"
+                            value={values.previousAcademicDetails.studentProfile}
+
+                            className={'form-control'}
+                        />
                     </div>
                 </div>
             </div>

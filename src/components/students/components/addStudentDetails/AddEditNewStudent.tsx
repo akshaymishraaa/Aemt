@@ -10,7 +10,9 @@ import { validateAdmissionForm } from '../../constants/addStudent/validationSche
 import StudentPersonalDetails from './PersonalDeatils';
 import ParentsDetails from './ParentsDetails';
 import PreviousAcademicDetails from './PreviousEducationDetails';
+import { useNavigate } from 'react-router-dom';
 const AddEditNewStudentDetails = (props: any) => {
+    const navigate = useNavigate()
     const { studenAdmissiontData } = useSelector((state: any) => state.studentsModule)
     return (
         <>
@@ -32,6 +34,26 @@ const AddEditNewStudentDetails = (props: any) => {
                                 
                             </CustomCom.fieldsDiv> */}
                             <div className='formHeading'> Student Admission Form</div>
+                            <div>
+                                <div className="studentTypeDef">
+                                    <label htmlFor='others.studentType'> Admission Type</label>
+                                    <div>
+
+                                        <label > <Field
+                                            type="radio"
+                                            name="others.studentType"
+                                            value="NEW"
+                                            checked={(values.others.studentType === 'NEW') ? true : false}
+                                        />New </label>
+                                        <label ><Field
+                                            type="radio"
+                                            name="others.studentType"
+                                            value="OLD"
+                                            checked={(values.others.studentType === 'OLD') ? true : false}
+                                        />Old </label>
+                                    </div>
+                                </div>
+                            </div>
                             <div className='SectionsContainer'>
                                 <StudentPersonalDetails
                                     values={values}
@@ -83,7 +105,11 @@ const AddEditNewStudentDetails = (props: any) => {
 
                                     </div>
                                 </div>
-                                <button type='submit' className='btn btn-primary'> Submit</button>
+                                <div className='submissonContainer'>
+
+                                    <button type='submit' className='btn btn-primary'> Submit</button>
+                                    <button type='button' className='btn btn-secondary' onClick={(e: any) => { navigate('/students') }}> Cancel</button>
+                                </div>
                             </div>
                         </Form>
 
