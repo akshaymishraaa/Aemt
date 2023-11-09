@@ -2,14 +2,20 @@ import { studentAdmissionFrom } from "./AddStudentTypes"
 export const studentAdmissionDetails: studentAdmissionFrom = {
     studentInfo: {
         studentFullName: undefined,
-        dateOfBirth: null,
+        dateOfBirth: '',
         gender: '',
         adharNumber: '',
         categorgy: '',
         classJoining: '',
-        dateOfAdmission: null,
+        dateOfAdmission: '',
         emailId: '',
-        contactNumber: ''
+        contactNumber: '',
+        studentProfile: '',
+        MotherTongue: undefined,
+        religion: undefined,
+        bloodGroup: '',
+        birthCertificate: ''
+
     },
     parentsInfo: {
         fatherName: undefined,
@@ -23,18 +29,22 @@ export const studentAdmissionDetails: studentAdmissionFrom = {
         primaryConactNumber: ' ',
         localAddress: undefined,
         PermenantAddress: undefined,
-        emailId: ''
+        emailId: '',
+        familyYearlyIcome: null,
+        gurdianProfile: ''
+
+
     },
     previousAcademicDetails: {
         lastClassDetails: undefined,
         schoolName: undefined,
         lastAcedamicPercentage: undefined,
-        transferCertificate: undefined
+        transferCertificate: ''
     },
     others:
     {
-        transportationMode: ' ',
-        paymentOptions: ' '
+        transportationMode: undefined,
+        studentType:"NEW"
     }
 
 }

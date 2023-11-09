@@ -1,38 +1,46 @@
 export type studentAdmissionFrom = {
     studentInfo: {
-        studentFullName: string | undefined,
+        studentFullName: String | undefined,
         dateOfBirth: String | null,
-        gender: string,
-        adharNumber: string,
-        categorgy: string,
+        gender: String,
+        adharNumber: String,
+        categorgy: String,
         classJoining: String,
-        dateOfAdmission: string | null,
-        emailId: string,
-        contactNumber: string
+        dateOfAdmission: String | null,
+        emailId: String,
+        contactNumber: String,
+        bloodGroup: String,
+        religion: String | undefined,
+        birthCertificate: String | null,
+        studentProfile: String,
+        MotherTongue: String | undefined
+
     },
     parentsInfo: {
-        fatherName: string | undefined,
-        fatherOccupation: string | undefined,
-        fatherHigherEducation: string | undefined
-        motherName: string | undefined,
-        motherOccupation: string | undefined,
-        motherHigherEducation: string | undefined,
-        localGurdian: string | undefined,
-        gurdianContactNumber: string | undefined,
-        primaryConactNumber: string,
-        localAddress: string | undefined,
-        PermenantAddress: string | undefined,
-        emailId: string
+        fatherName: String | undefined,
+        fatherOccupation: String | undefined,
+        fatherHigherEducation: String | undefined
+        motherName: String | undefined,
+        motherOccupation: String | undefined,
+        motherHigherEducation: String | undefined,
+        localGurdian: String | undefined,
+        gurdianContactNumber: String | undefined,
+        primaryConactNumber: String,
+        localAddress: String | undefined,
+        PermenantAddress: String | undefined,
+        emailId: String,
+        familyYearlyIcome: Number | null,
+        gurdianProfile: String
     },
     previousAcademicDetails: {
-        lastClassDetails: string | undefined,
-        schoolName: string | undefined,
-        lastAcedamicPercentage: string | undefined,
-        transferCertificate: string | undefined
+        lastClassDetails: String | undefined,
+        schoolName: String | undefined,
+        lastAcedamicPercentage: String | undefined,
+        transferCertificate: String | undefined
     },
     others:
     {
-        transportationMode: string,
-        paymentOptions: string
+        transportationMode: String | undefined,
+        studentType: String
     }
 }
