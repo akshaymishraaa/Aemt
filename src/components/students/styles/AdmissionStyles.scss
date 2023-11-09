@@ -39,13 +39,13 @@
                         font-size: 0.8rem;
                         font-weight: 400;
                         width: 100%;
-                        padding-left: 10px;
+                        padding-left: 12px;
                         margin: 0px !important;
                     }
 
                     .form-control {
                         width: 100%;
-                        padding: 3px !important;
+                        padding: 4px !important;
                         margin: 3px 10px;
                         font-size: 1rem;
 
@@ -79,6 +79,28 @@
 
                     input[type=file] {
                         font-size: 0.8rem;
+                    }
+                }
+
+                .field.date_field {
+                    .MuiStack-root {
+                        scale: 0.7;
+                        width: 142%;
+                        transform: translate(-20%, -25%);
+
+                        .MuiFormControl-root {
+                            width: 100%;
+
+                            .MuiInputBase-root {
+                                input {
+                                    padding: 12px 14px !important;
+                                }
+                            }
+                        }
+                    }
+
+                    .error {
+                        transform: translate(0px, -10px);
                     }
                 }
             }

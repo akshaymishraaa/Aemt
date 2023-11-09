@@ -9,7 +9,13 @@ export const studentAdmissionDetails: studentAdmissionFrom = {
         classJoining: '',
         dateOfAdmission: '',
         emailId: '',
-        contactNumber: ''
+        contactNumber: '',
+        studentProfile: '',
+        MotherTongue: '',
+        religion: '',
+        bloodGroup: '',
+        birthCertificate: ''
+
     },
     parentsInfo: {
         fatherName: undefined,
@@ -23,7 +29,11 @@ export const studentAdmissionDetails: studentAdmissionFrom = {
         primaryConactNumber: ' ',
         localAddress: undefined,
         PermenantAddress: undefined,
-        emailId: ''
+        emailId: '',
+        familyYearlyIcome: null,
+        gurdianProfile: ''
+
+
     },
     previousAcademicDetails: {
         lastClassDetails: undefined,
