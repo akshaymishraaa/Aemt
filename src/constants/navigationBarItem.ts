@@ -59,4 +59,11 @@ export const navigationItem = [
     icon: lazy(() => import("@mui/icons-material/NoteAlt")),
     renderChild: true,  
   },
+  {
+    name: "Management",
+    pathName: "/managements",
+    component: lazy(() => import("../components/managements/Managements")),
+    navigateTo: "/managements",
+    icon: lazy(() => import("@mui/icons-material/ManageHistory"))
+  },
 ];
