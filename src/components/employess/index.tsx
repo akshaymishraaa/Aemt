@@ -1,21 +1,101 @@
-import React from "react";
+// import React from "react";
 import CommonCard from "../../common/CommonCard";
 import CommonSearchField from "../../common/CommonSearchField";
 import EmployeesDashboard from "./components/EmployeesDashboard";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export default function Employees() {
-  const navigate = useNavigate()
+// export default function Employees() {
+//   const navigate = useNavigate()
+//   return (
+// <div>
+//   <CommonCard title={"Employees"}>
+//     <div className='d-flex justify-content-end'>
+//       <CommonSearchField placeholder={'Search employees here...'} />
+//       <button className='btn btn-primary p-2 m-3' onClick={(e: any) => { navigate('/employee/addEmployee') }}>Add New Employee</button>
+//     </div>
+//     <EmployeesDashboard />
+//   </CommonCard>
+// </div>
+//   );
+// }
+import * as React from 'react';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function CustomTabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
   return (
-    <div>
-      <CommonCard title={"Employees"}>
-        <div className='d-flex justify-content-end'>
-          <CommonSearchField placeholder={'Search employees here...'} />
-          <button className='btn btn-primary p-2 m-3' onClick={(e: any) => { navigate('/employee/addEmployee') }}>Add New Employee</button>
-        </div>
-        <EmployeesDashboard />
-      </CommonCard>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
     </div>
+  );
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
+
+export default function Employees() {
+  const [value, setValue] = React.useState(0);
+  const navigate = useNavigate()
+
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <Tab label="Employee details" {...a11yProps(0)} />
+          <Tab label="Class scheduling" {...a11yProps(1)} />
+          <Tab label="Attendance & Leave" {...a11yProps(2)} />
+          <Tab label="Salary" {...a11yProps(3)} />
+        </Tabs>
+      </Box>
+      <CustomTabPanel value={value} index={0}>
+        <div>
+          <CommonCard title={"Employees"}>
+            <div className='d-flex justify-content-end'>
+              <CommonSearchField placeholder={'Search employees here...'} />
+              <button className='btn btn-primary p-2 m-3' onClick={(e: any) => { navigate('/employee/addEmployee') }}>Add Employee</button>
+            </div>
+            <EmployeesDashboard />
+          </CommonCard>
+        </div>
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        Class scheduling
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+      Attendane & leave
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={3}>
+        Salary
+      </CustomTabPanel>
+    </Box>
   );
 }

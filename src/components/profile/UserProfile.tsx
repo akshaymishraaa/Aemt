@@ -21,11 +21,7 @@ function UserProfile() {
   console.log("line 18 data ............",userDetails)
 
   React.useEffect(() => {
-    dispatch(
-      getAllUserDetails((data: any) => {
-        dispatch({ type: Actiontypes.GET_ALL_USER_DATA, payload: data });
-      })
-    );
+   
   }, [])
 
   const handleChange = (event:any) => {
@@ -42,7 +38,7 @@ function UserProfile() {
       </CommonCard> */}
       <div className='d-flex mt-4'>
         <Formik
-          initialValues={userData}
+          initialValues={userDetails}
           validationSchema={UserProfileValidation}
           onSubmit={() => {
 
