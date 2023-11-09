@@ -1,3 +1,7 @@
-.fld-style {
+.fld-container {
+  display: flex;
+  .fld-width {
+    margin-left: 1em;
     width: 30%;
+  }
 }
