@@ -7,6 +7,46 @@
         margin-top: 5px;
     }
 
+    .stepers {
+        div {
+
+            width: 25%;
+            background-color: grey;
+            border-top-right-radius: 50px;
+            border-top-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            color: white;
+
+            .labelContainer {
+                display: flex;
+                justify-content: space-around;
+
+                .StepLabel {
+                    width: 85%;
+                }
+
+                .errorIcon {
+                    width: 10%;
+                    border-radius: 50%;
+                    background-color: red;
+                }
+
+                .no-errors {
+                    width: 10%;
+                    border-radius: 50%;
+                    background: green;
+                }
+            }
+        }
+
+        .activesStep {
+            background-color: lightblue;
+            box-shadow: 3px 3px 3px grey;
+            color: black;
+            font-weight: 700;
+        }
+    }
+
     .studentTypeDef {
         text-align: end;
         margin: 0px 40px;
