@@ -14,7 +14,7 @@ function Students() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<StudentSubTabs />}> </Route>
+        <Route path='/' element={<StudentDetails />}> </Route>
         <Route path='addStudent' element={<AddEditNewStudentDetails />} />
       </Routes>
     </>

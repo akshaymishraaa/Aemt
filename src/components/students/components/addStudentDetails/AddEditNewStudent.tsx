@@ -3,17 +3,52 @@ import { Field, Formik, Form, ErrorMessage } from 'formik';
 import { useSelector } from 'react-redux';
 import { CustomCom } from '../../constants/addStudent/CustomComponents';
 import '../../styles/AdmissionStyles.scss'
-import DatePick from '../../../../common/Datepicker/Datepicker';
-import moment from 'moment';
-import dayjs from 'dayjs';
 import { validateAdmissionForm } from '../../constants/addStudent/validationSchema';
 import StudentPersonalDetails from './PersonalDeatils';
 import ParentsDetails from './ParentsDetails';
 import PreviousAcademicDetails from './PreviousEducationDetails';
 import { useNavigate } from 'react-router-dom';
+import FormsStepper from './FormsStepper';
 const AddEditNewStudentDetails = (props: any) => {
     const navigate = useNavigate()
+    const [activeStep, setActiveStep] = useState(0)
     const { studenAdmissiontData } = useSelector((state: any) => state.studentsModule)
+    const renderFetchForms = (values: any, setFieldValue: any) => {
+        switch (activeStep) {
+            case 0:
+                return (
+                    <>
+                        <StudentPersonalDetails values={values} setFieldValue={setFieldValue} />
+                    </>
+                )
+                break;
+            case 1:
+                return (
+                    <>
+                        <ParentsDetails values={values} setFieldValue={setFieldValue} />
+                    </>
+                )
+                break;
+            case 2:
+                return (
+                    <>
+                        <PreviousAcademicDetails values={values} setFieldValue={setFieldValue} />
+                    </>
+                )
+                break;
+            case 3:
+                return (
+                    <>
+                        <ParentsDetails values={values} setFieldValue={setFieldValue} />
+                    </>
+                )
+                break
+            default:
+                return (
+                    <><span></span></>
+                )
+        }
+    }
     return (
         <>
             <Formik
@@ -34,6 +69,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                 
                             </CustomCom.fieldsDiv> */}
                             <div className='formHeading'> Student Admission Form</div>
+                            <FormsStepper activeStep={activeStep} setActiveStep={setActiveStep} errors={errors} />
                             <div>
                                 <div className="studentTypeDef">
                                     <label htmlFor='others.studentType'> Admission Type</label>
@@ -54,7 +90,7 @@ const AddEditNewStudentDetails = (props: any) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='SectionsContainer'>
+                            {/* <div className='SectionsContainer'>
                                 <StudentPersonalDetails
                                     values={values}
                                     setFieldValue={setFieldValue}
@@ -110,7 +146,17 @@ const AddEditNewStudentDetails = (props: any) => {
                                     <button type='submit' className='btn btn-primary'> Submit</button>
                                     <button type='button' className='btn btn-secondary' onClick={(e: any) => { navigate('/students') }}> Cancel</button>
                                 </div>
+                            </div> */}
+                            <div className='SectionsContainer'>
+                                <>{console.log(values, errors, "129....")}</>
+                                {renderFetchForms(values, setFieldValue)}
+                                <div className='submissonContainer'>
+
+                                    <button type='submit' className='btn btn-primary'> Submit</button>
+                                    <button type='button' className='btn btn-secondary' onClick={(e: any) => { navigate('/students') }}> Cancel</button>
+                                </div>
                             </div>
+
                         </Form>
 
                     )
