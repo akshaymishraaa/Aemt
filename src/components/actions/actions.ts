@@ -189,4 +189,3 @@ export const findUserById: any = (payload: any,callback:any) => {
       });
   };
 };
-

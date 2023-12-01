@@ -16,24 +16,22 @@ function UserProfile() {
 
   const[userDetailss,setUserDetailss]=useState(userDetails)
   
- console.log("bsdfgbdsgbkdsjh",userDetailss.contactNo)
-  console.log("line 17 userdata........",userData)
+ 
+  //console.log("line 17 userdata........",userData)
   console.log("line 18 data ............",userDetails)
 
-  React.useEffect(() => {
-    dispatch(
-      getAllUserDetails((data: any) => {
-        dispatch({ type: Actiontypes.GET_ALL_USER_DATA, payload: data });
-      })
-    );
-  }, [])
+  
+
 
   const handleChange = (event:any) => {
     const name = event.target.name;
     const value = event.target.value;
     setUserDetailss((previousData:any )=>({...previousData, [name]: value}) )
+  
 
 }
+    const abc=userDetailss.role[0]
+    const pqr=abc.charAt(0).toUpperCase() + abc.slice(1).toLowerCase();
 
 
   return (
@@ -145,7 +143,7 @@ function UserProfile() {
                         id="role"
                         placeHolder={"Enter role"}
                         className="form-control ms-3 input-sm "
-                        value={userDetailss.role}
+                        value={pqr}
                         onChange={(event:any) => handleChange(event)}
                       />
                       </div>
@@ -174,9 +172,6 @@ function UserProfile() {
                 </div>
             </div>
 
-              
-            
-
             <div className='formSubmission d-flex  mt-4 ms-4 align-items-center justify-content-center'>
               <Button variant="contained" className='ms-4' type={'submit'}>Update</Button>
             </div>
@@ -189,7 +184,6 @@ function UserProfile() {
           <img src={userprofileimage} height={400} width={400}/>
         </div>
         
-
       </div>
 
 

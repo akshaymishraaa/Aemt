@@ -18,7 +18,7 @@ function CommonCard(props: any) {
                         {props.children}
                     </div>
                 </div>
-            </div>
+            </div> 
         </React.Fragment>
     )
 }
