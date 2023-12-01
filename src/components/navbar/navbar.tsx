@@ -16,6 +16,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Root from '../../routes/Routes';
+import { createUser} from '../actions/actions';
 
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { navigationItem } from '../../constants/navigationBarItem';
@@ -118,8 +119,18 @@ export default function Navbar() {
         } else {
             navigate('/')
         }
-
     }, [])
+
+    const {userDetails} = useSelector((state: any) => state.application);
+   // console.log(userDetails)
+
+    // React.useEffect(() => {
+    //     dispatch(
+    //         createUser((data: any) => {
+    //         dispatch({ type: Actiontypes.GET_ALL_USER_DATA, payload: data });
+    //       })
+    //     );
+    //   }, [])
     return (
         <Box sx={{ display: 'flex' }}>
             {/* <CssBaseline /> */}
@@ -147,8 +158,8 @@ export default function Navbar() {
             </AppBar>}
             {isAuthenticated && <Drawer variant="permanent" open={open}>
                 <DrawerHeader sx={{ bgcolor: '#0d6efd' }}>
-                    <Typography variant="h6" noWrap component="div">
-                        St. Xavier school
+                    <Typography variant="h6" noWrap component="div">  
+                        {userDetails.organization} 
                     </Typography>
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
