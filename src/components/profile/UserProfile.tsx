@@ -22,6 +22,9 @@ function UserProfile() {
 
   
 
+  React.useEffect(() => {
+   
+  }, [])
 
   const handleChange = (event:any) => {
     const name = event.target.name;
@@ -40,7 +43,7 @@ function UserProfile() {
       </CommonCard> */}
       <div className='d-flex mt-4'>
         <Formik
-          initialValues={userData}
+          initialValues={userDetails}
           validationSchema={UserProfileValidation}
           onSubmit={() => {
 

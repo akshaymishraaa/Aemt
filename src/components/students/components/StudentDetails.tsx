@@ -11,7 +11,7 @@ import '../styles/Styles.scss'
 
 
 export default function StudentDetails() {
-    const [products, setProducts] = useState([]);
+
     const navigate = useNavigate()
 
     const studentData: any = [
@@ -56,7 +56,7 @@ export default function StudentDetails() {
                     <DataTable value={studentData}
                         showGridlines
                         stripedRows
-                        tableStyle={{ minWidth: '50rem' }}
+                    // tableStyle={{ minWidth: '50rem' }}
                     >
                         <Column body={stdIdTemplate} header={'Student UID'} />
                         <Column field={'studentName'} header={'Student name'} />

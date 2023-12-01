@@ -37,7 +37,6 @@ export const ValidateUser: any = (props: any, callback: any) => {
         if (callback) {
           callback(res.data);
         }
-        
       })
       .catch((error: any) => console.log("Error...", error));
   };
@@ -122,17 +121,21 @@ export const getCountries: any = (callback: any) => {
       data: "",
     })
       .then((res: any) => {
-        dispatch({ type: Actiontypes.ALL_COUNTRIES, payload: res.data })
+        dispatch({ type: Actiontypes.ALL_COUNTRIES, payload: res.data });
         if (res?.data) {
-          if (callback) { callback(res.data.sort((a: any, b: any) => a.name.localeCompare(b.name))) }
-        }
-        else {
-          if (callback) { callback([]) }
+          if (callback) {
+            callback(
+              res.data.sort((a: any, b: any) => a.name.localeCompare(b.name))
+            );
+          }
+        } else {
+          if (callback) {
+            callback([]);
+          }
         }
         console.log("122....res.data", res?.data);
       })
       .catch((err: any) => {
-
         console.log("error...", err);
       });
   };
@@ -146,7 +149,11 @@ export const getStates: any = (paylaod: any, callback: any) => {
       data: paylaod,
     })
       .then((res: any) => {
-        if (callback) { callback(res.data.sort((a: any, b: any) => a.name.localeCompare(b.name))) }
+        if (callback) {
+          callback(
+            res.data.sort((a: any, b: any) => a.name.localeCompare(b.name))
+          );
+        }
       })
       .catch((err: any) => {
         console.log("error...", err);
@@ -172,7 +179,7 @@ export const getCities: any = (paylaod: any, callback: any) => {
 
 // api for find user details as per email id
 
-export const findUserById: any = (payload: any,callback:any) => {
+export const findUserById: any = (payload: any, callback: any) => {
   const url = `${baseurl}/findUserById/${payload}`;
   return (dispatch: any) => {
     fetch({
@@ -182,10 +189,29 @@ export const findUserById: any = (payload: any,callback:any) => {
     })
       .then((res: any) => {
         console.log("122....", res.data);
-        if (callback) { callback(res.data) }
+        if (callback) {
+          callback(res.data);
+        }
       })
       .catch((err: any) => {
         console.log("error...", err);
       });
+  };
+};
+
+//update user by id
+
+export const updateUserById: any = (params: any, payload: any) => {
+  const url = `${baseurl}/updateUserById/${params.id}`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "PATCH",
+      data: payload,
+    }).then((res: any) => {
+      console.log("212....", res.data);
+    }).catch((err:any)=>{
+      console.log('Error....',err)
+    })
   };
 };

@@ -41,3 +41,28 @@
  // margin-bottom:30px;
   margin-left: 70px;
 }
+.MuiTabs-root{
+  background-color: rgba(0, 0, 0, 0.12);
+}
+.Mui-selected{
+  background: #46799a !important;
+  color: white !important;
+}
+// .date_field{
+//   .MuiInputBase-root{
+//     font-size: 13px !important;
+//     padding: 0px 8px 0px 0px;
+//   }
+//   input{
+//     min-height:15px !important;
+//     padding: 0px 8px 0px 8px !important;
+//   }
+//   svg{
+//     font-size: 18px !important;
+//   }
+// }
+.navlink {
+  text-decoration: none;
+  font-size: 14px;
+  color: black;
+}

@@ -1,40 +1,50 @@
 import { studentAdmissionFrom } from "./AddStudentTypes"
 export const studentAdmissionDetails: studentAdmissionFrom = {
     studentInfo: {
-        studentFullName: ' ',
-        dateOfBirth: ' ',
-        gender: ' ',
-        adharNumber: ' ',
-        categorgy: ' ',
-        classJoining: ' ',
-        dateOfAdmission: ' ',
-        emailId: ' ',
-        contactNumber: ' '
+        studentFullName: undefined,
+        dateOfBirth: '',
+        gender: '',
+        adharNumber: '',
+        categorgy: '',
+        classJoining: '',
+        dateOfAdmission: '',
+        emailId: '',
+        contactNumber: '',
+        studentProfile: '',
+        MotherTongue: undefined,
+        religion: undefined,
+        bloodGroup: '',
+        birthCertificate: ''
+
     },
     parentsInfo: {
-        fatherName: ' ',
-        fatherOccupation: ' ',
-        fatherHigherEducation: ' ',
-        motherName: ' ',
-        motherOccupation: ' ',
-        motherHigherEducation: ' ',
-        localGurdian: ' ',
+        fatherName: undefined,
+        fatherOccupation: undefined,
+        fatherHigherEducation: undefined,
+        motherName: undefined,
+        motherOccupation: undefined,
+        motherHigherEducation: undefined,
+        localGurdian: undefined,
         gurdianContactNumber: ' ',
         primaryConactNumber: ' ',
-        SecondaryContactNumber: ' ',
-        localAddress: ' ',
-        PermenantAddres: ' '
+        localAddress: undefined,
+        PermenantAddress: undefined,
+        emailId: '',
+        familyYearlyIcome: null,
+        gurdianProfile: ''
+
+
     },
     previousAcademicDetails: {
-        lastClassDetails: ' ',
-        schoolName: ' ',
-        lastAcedamicPercentage: ' ',
-        transferCertificate: ' '
+        lastClassDetails: undefined,
+        schoolName: undefined,
+        lastAcedamicPercentage: undefined,
+        transferCertificate: ''
     },
     others:
     {
-        transportationMode: ' ',
-        paymentOptions: ' '
+        transportationMode: undefined,
+        studentType:"NEW"
     }
 
 }

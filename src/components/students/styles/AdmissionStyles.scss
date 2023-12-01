@@ -1,0 +1,170 @@
+.admissionForm {
+    .formHeading {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        font-weight: 900;
+        margin-top: 5px;
+    }
+
+    .stepers {
+        div {
+
+            width: 25%;
+            background-color: grey;
+            border-top-right-radius: 50px;
+            border-top-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            color: white;
+
+            .labelContainer {
+                display: flex;
+                justify-content: space-around;
+
+                .StepLabel {
+                    width: 85%;
+                }
+
+                .errorIcon {
+                    width: 10%;
+                    border-radius: 50%;
+                    background-color: red;
+                }
+
+                .no-errors {
+                    width: 10%;
+                    border-radius: 50%;
+                    background: green;
+                }
+            }
+        }
+
+        .activesStep {
+            background-color: lightblue;
+            box-shadow: 3px 3px 3px grey;
+            color: black;
+            font-weight: 700;
+        }
+    }
+
+    .studentTypeDef {
+        text-align: end;
+        margin: 0px 40px;
+
+        div {
+            label {
+                margin-left: 15px;
+            }
+        }
+    }
+
+    .SectionsContainer {
+        width: 93%;
+        height: 100%;
+        // border: 2px solid grey;
+        box-shadow: 1px 3px 3px grey;
+        margin: 0.5rem 2rem;
+        height: auto;
+
+        .SectionContainer {
+
+            .SectionHeader {
+                width: 100%;
+                text-align: left;
+                padding-left: 10px;
+                font-weight: 600px;
+            }
+
+            .fieldsContainer {
+                width: 97%;
+                flex-wrap: wrap;
+                display: flex;
+                justify-content: start;
+
+                .field {
+                    width: 33%;
+                    padding: 0px 1rem;
+
+
+                    .form-label {
+                        font-size: 0.8rem;
+                        font-weight: 400;
+                        width: 100%;
+                        padding-left: 12px;
+                        margin: 0px !important;
+                    }
+
+                    .form-control {
+                        width: 100%;
+                        padding: 4px !important;
+                        margin: 3px 10px;
+                        font-size: 1rem;
+
+                        &:focus {
+                            box-shadow: none !important;
+                        }
+
+                    }
+
+                    .error {
+
+                        font-size: 0.8rem;
+                        padding-left: 10px;
+                    }
+
+                    .radioContainer {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: start;
+                        // align-items: center;
+                        padding-left: 10px;
+                    }
+
+                    input[type=number]::-webkit-inner-spin-button,
+                    input[type=number]::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        appearance: none;
+                        margin: 0;
+                    }
+
+                    input[type=file] {
+                        font-size: 0.8rem;
+                    }
+                }
+
+                .field.date_field {
+                    .MuiStack-root {
+                        scale: 0.7;
+                        width: 142%;
+                        transform: translate(-20%, -25%);
+
+                        .MuiFormControl-root {
+                            width: 100%;
+
+                            .MuiInputBase-root {
+                                input {
+                                    padding: 12px 14px !important;
+                                }
+                            }
+                        }
+                    }
+
+                    .error {
+                        transform: translate(0px, -10px);
+                    }
+                }
+            }
+
+        }
+
+        .submissonContainer {
+            display: flex;
+            justify-content: end;
+
+            button {
+                margin: 5px 10px;
+            }
+        }
+    }
+}

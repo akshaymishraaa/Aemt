@@ -2,12 +2,12 @@ import { Alert, Button } from "@mui/material";
 import React, { useEffect } from "react";
 import CustomDialog from "../../common/dialogBox/CustomDialog";
 import '../../common/dialogBox/Dialogbox.scss';
-import { Formik, Field, Form, ErrorMessage } from "formik";
+  import { Formik, Field, Form, ErrorMessage } from "formik";
 import ReactSelect from "../../common/selectBox/ReactSelect";
 import { rolesOption, tabOptions } from "./SelectStaticOption";
 import { useDispatch, useSelector } from "react-redux";
 import LockResetIcon from '@mui/icons-material/LockReset';
-import Select, { StylesConfig } from 'react-select';
+// import Select, { StylesConfig } from 'react-select';
 import {
   createUser,
   fetchAllTabs,
@@ -26,7 +26,7 @@ function CreateUser() {
     setOpen(false);
     setError(false);
   };
-
+console.log(tabs,"29---")
   const tabOptions = tabs[0]?.tabs?.map((item: any, index: any) => {
     let optionObject = { label: "", value: "" };
     optionObject.label = item;
@@ -34,7 +34,7 @@ function CreateUser() {
     return optionObject;
   });
 
-  const  openDialog = () => {
+  const openDialog = () => {
     setOpen(true);
   };
   useEffect(() => {
@@ -50,7 +50,6 @@ function CreateUser() {
     // console.log("17...", values);
     dispatch(
       createUser(values, (data: any) => {
-        console.log("24......", data);
         if (data.status === "success") {
           onClose();
 
@@ -73,10 +72,10 @@ function CreateUser() {
       </div> */}
       <div className="d-flex justify-content-end">
         <div>
-        <CommonSearchField placeholder={"Search users here..."} />
+          <CommonSearchField placeholder={"Search users here..."} />
         </div>
-        <div style={{padding: "0px 6px",margin: "1rem"}}>
-        <button type="button" className="btn btn-primary " onClick={openDialog}>Create User</button>
+        <div style={{ padding: "0px 6px", margin: "1rem" }}>
+          <button type="button" className="btn btn-primary " onClick={openDialog}>Create User</button>
         </div>
       </div>
       <CustomDialog
@@ -87,7 +86,7 @@ function CreateUser() {
         maxWidth="md"
         fullWidth={true}
         form={"createUser"}
-        onSubmitHandler={() => {}}
+        onSubmitHandler={() => { }}
       >
         <div>
           {error && (
@@ -102,9 +101,9 @@ function CreateUser() {
               email: "",
               contactNo: "",
               password: "",
-              org_name:"",
+              org_name: "",
               role: "",
-              allowedModule: "",
+              allowedModule: [],
             }}
             validationSchema={validateUserSchema}
             onSubmit={(values: any) => submitHandler(values)}
@@ -113,8 +112,27 @@ function CreateUser() {
               return (
                 <Form id="createUser">
                   <div className="row ">
-                    <>{console.log("101....", errors)}</>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                      <label htmlFor="firstName">Organization Name:<span className="text-danger">*</span></label>
+                      <div>
+                        {/* <span> <LockResetIcon/></span> */}
+                        <Field
+                          id="org_name"
+                          name="org_name"
+                          placeholder="Enter Your Org_name"
+                          value={values.org_name}
+                          disabled
+                          // className={((touched?.password && errors.password) ? "inputerror" : "")}
+                          className="form-control form-control-md text-field"
+                        />
+                        {/* <ErrorMessage
+                          name="role"
+                          component="div"
+                          className="text-danger"
+                        /> */}
+                      </div>
+                    </div>
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">First Name:<span className="text-danger">*</span></label>
                       <div>
                         <Field
@@ -132,7 +150,7 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Last Name:</label>
                       <div>
                         <Field
@@ -150,7 +168,10 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                  </div>
+                  <div className="row ">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Email:<span className="text-danger">*</span></label>
                       <div>
                         <Field
@@ -168,9 +189,7 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                  </div>
-                  <div className="row ">
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Phone no:<span className="text-danger">*</span></label>
                       <div>
                         <Field
@@ -189,10 +208,10 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Pasword:<span className="text-danger">*</span></label>
                       <div>
-                      {/* <span> <LockResetIcon/></span> */}
+                        {/* <span> <LockResetIcon/></span> */}
                         <Field
                           id="password"
                           name="password"
@@ -209,42 +228,25 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                      <label htmlFor="firstName">Organization Name:<span className="text-danger">*</span></label>
-                      <div>
-                      {/* <span> <LockResetIcon/></span> */}
-                        <Field
-                          id="org_name"
-                          name="org_name"
-                          placeholder="Enter Your Org_name"
-                          value={values.org_name}
-                          // className={((touched?.password && errors.password) ? "inputerror" : "")}
-                          className="form-control form-control-md text-field"
-                        />
-                        <ErrorMessage
-                          name="role"
-                          component="div"
-                          className="text-danger"
-                        />
-                      </div>
-                    </div>
-                    
+
+
                   </div>
                   <div className="row ">
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Allowed Module:<span className="text-danger">*</span></label>
                       <div>
-                        <Select
+                        <ReactSelect
                           name={"allowedModule"}
                           id={"module"}
-                          // placeHolder={"Allowed module"}
+                          placeHolder={"Allowed module"}
                           value={values.allowedModule}
                           options={tabOptions}
-                          isMulti
+                          isMulti={true}
+                          
                           onChange={(e: any) =>
                             setFieldValue("allowedModule", e.value)
                           }
-                          // className={((touched?.allowedModule && errors.allowedModule) ? "selecterror" : "")}
+                        // className={((touched?.allowedModule && errors.allowedModule) ? "selecterror" : "")}
                         />
                         <ErrorMessage
                           name="allowedModule"
@@ -253,7 +255,7 @@ function CreateUser() {
                         />
                       </div>
                     </div>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                       <label htmlFor="firstName">Role:<span className="text-danger">*</span></label>
                       <div>
                         <ReactSelect
@@ -263,7 +265,7 @@ function CreateUser() {
                           options={rolesOption}
                           value={values.role}
                           onChange={(e: any) => setFieldValue("role", e.value)}
-                          // className={((touched?.role && errors.role) ? "selecterror" : "")}
+                        // className={((touched?.role && errors.role) ? "selecterror" : "")}
                         />
                         <ErrorMessage name="role" component="div" className="text-danger" />
                       </div>
