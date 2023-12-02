@@ -1,7 +1,11 @@
 import { ErrorMessage, Field } from 'formik'
-import React from 'react'
+import React, { useEffect } from 'react'
 const ParentsDetails = (props: any) => {
-    const { values, setFieldValue } = props
+    const { values, setFieldValue, activeStep } = props
+    console.log(activeStep, "activeStep")
+    useEffect(()=>{
+
+    },[activeStep])
 
     return (
         <>
@@ -22,8 +26,10 @@ const ParentsDetails = (props: any) => {
                         >
 
                         </Field>
-                        <div className='text-danger error'><ErrorMessage name={'parentsInfo.fatherName'} /></div>
+                        {
+                            (activeStep?.stepNO === 1 && activeStep?.submited === true) ? <div className='text-danger error'><ErrorMessage name={'parentsInfo.fatherName'} /></div> : ''
 
+                        }
 
                     </div>
                     <div className='field'>
