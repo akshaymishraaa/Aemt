@@ -1,7 +1,14 @@
 import { ErrorMessage, Field } from 'formik'
-import React from 'react'
+import React, { useEffect } from 'react'
 const OthersDetails = (props: any) => {
-    const { values, setFieldValue } = props
+    const { values, setFieldValue, touched } = props
+    useEffect(() => {
+        delete touched.others
+        delete touched.studentInfo
+        delete touched.previousAcademicDetails
+        delete touched.parentsInfo
+    }, [])
+
     return (
         <div className='SectionContainer mt-3'>
             <h6 className='SectionHeader'> Others:</h6>

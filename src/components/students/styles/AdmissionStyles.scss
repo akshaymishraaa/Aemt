@@ -8,8 +8,7 @@
     }
 
     .stepers {
-        div {
-
+        button {
             width: 15%;
             background-color: grey;
             border-top-right-radius: 50px;
@@ -26,15 +25,17 @@
                 }
 
                 .errorIcon {
-                    width: 10%;
+                    width: fit-content;
                     border-radius: 50%;
                     background-color: red;
+                    color: white;
                 }
 
                 .no-errors {
-                    width: 10%;
+                    width: fit-content;
                     border-radius: 50%;
                     background: green;
+                    color: white;
                 }
             }
         }

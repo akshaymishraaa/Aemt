@@ -1,7 +1,14 @@
 import { Field } from 'formik'
-import React from 'react'
+import React, { useEffect } from 'react'
 const PreviousAcademicDetails = (props: any) => {
-    const { values, setFieldValue } = props
+    const { values, setFieldValue, touched } = props
+    useEffect(() => {
+        delete touched.others
+        delete touched.studentInfo
+        delete touched.previousAcademicDetails
+        delete touched.parentsInfo
+    }, [])
+
 
     return (
         <>
@@ -72,7 +79,7 @@ const PreviousAcademicDetails = (props: any) => {
                     </div>
                 </div>
             </div>
-        
+
         </>
     )
 }

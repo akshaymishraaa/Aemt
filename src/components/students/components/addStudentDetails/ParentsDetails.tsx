@@ -1,20 +1,25 @@
 import { ErrorMessage, Field } from 'formik'
 import React, { useEffect } from 'react'
 const ParentsDetails = (props: any) => {
-    const { values, setFieldValue, activeStep } = props
+    const { values, setFieldValue, activeStep, touched } = props
     console.log(activeStep, "activeStep")
-    useEffect(()=>{
+    useEffect(() => {
+        delete touched.parentsInfo
+        delete touched.studentInfo
+        delete touched.others
+        delete touched.previousAcademicDetails
+        console.log(touched, "touched")
 
-    },[activeStep])
+    }, [])
 
     return (
         <>
             <div className='SectionContainer mt-3 mb-2'>
+                <>{console.log(values, "18..parentsinfo")}</>
                 <h6 className='SectionHeader'>Parents Information :</h6>
                 <hr className='m-0' />
                 <div className='fieldsContainer'>
                     <div className='field'>
-
                         <label htmlFor='parentsInfo.fatherName' className='form-label'> Father Full Name<span className={'text-danger'}>*</span> :  </label>
                         <Field
                             type={"text"}
@@ -26,10 +31,9 @@ const ParentsDetails = (props: any) => {
                         >
 
                         </Field>
-                        {
-                            (activeStep?.stepNO === 1 && activeStep?.submited === true) ? <div className='text-danger error'><ErrorMessage name={'parentsInfo.fatherName'} /></div> : ''
+                        <div className='text-danger error'><ErrorMessage name={'parentsInfo.fatherName'} /></div>
 
-                        }
+
 
                     </div>
                     <div className='field'>
@@ -171,6 +175,9 @@ const ParentsDetails = (props: any) => {
                             value={values.parentsInfo.PermenantAddress}
                             className={'form-control'}
                             cols={5}
+                            onChange={(e: any) => {
+                                setFieldValue('parentsInfo.PermenantAddress', e.target.value)
+                            }}
 
 
                         />
@@ -184,6 +191,9 @@ const ParentsDetails = (props: any) => {
                             id="parentsInfo.localAddress"
                             placeholder={'local Address'}
                             value={values.parentsInfo.localAddress}
+                            onChange={(e: any) => {
+                                setFieldValue('parentsInfo.localAddress', e.target.value)
+                            }}
                             className={'form-control'}
                             cols={5}
                         />
@@ -191,7 +201,6 @@ const ParentsDetails = (props: any) => {
 
                     </div>
                     <div className='field'>
-
                         <label htmlFor='parentsInfo.emailId' className='form-label'>Primary Mail Id<span className={'text-danger'}>*</span> :  </label>
                         <Field
                             type="email"
