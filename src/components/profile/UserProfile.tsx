@@ -12,6 +12,7 @@ import userprofileimage from '../../assets/userpic.png'
 import "../../../src/App.scss";
 function UserProfile() {
   const dispatch = useDispatch();
+  
   const { userData,userDetails } = useSelector((state: any) => state.application);
 
   const[userDetailss,setUserDetailss]=useState(userDetails)
@@ -33,8 +34,8 @@ function UserProfile() {
   
 
 }
-    const abc=userDetailss.role[0]
-    const pqr=abc.charAt(0).toUpperCase() + abc.slice(1).toLowerCase();
+    const role=userDetailss?.role[0]
+    const newrole=role.charAt(0).toUpperCase() + role.slice(1).toLowerCase();
 
 
   return (
@@ -146,7 +147,7 @@ function UserProfile() {
                         id="role"
                         placeHolder={"Enter role"}
                         className="form-control ms-3 input-sm "
-                        value={pqr}
+                        value={newrole}
                         onChange={(event:any) => handleChange(event)}
                       />
                       </div>
@@ -160,16 +161,12 @@ function UserProfile() {
 
                 <label className='form-label  user-profile-label' htmlFor='firstName'>Allowed Module </label>
                 <div>
+                
                   <div className='user-profile-input'>
-                      <Field type={"text"}
-                        name="allowedModule"
-                        id="allowedModule"
-                        placeHolder={"Enter allowed module Name"}
-                        className="form-control ms-3 input-sm "
-                        value={userDetailss.module}
-                        onChange={(event:any) => handleChange(event)}
-                      />
-                      </div>
+                   
+                   <div>{userDetailss.module.map((item:any)=><span>{item.label} , </span>)}</div>
+                     
+                  </div>
                 </div>
                       <div className='text-danger ms-4'><ErrorMessage name="allowedModule"></ErrorMessage></div>
                 </div>

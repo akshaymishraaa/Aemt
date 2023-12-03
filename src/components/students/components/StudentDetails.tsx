@@ -7,6 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Link, useNavigate } from 'react-router-dom';
 import CommonCard from '../../../common/CommonCard';
 import CommonSearchField from '../../../common/CommonSearchField';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import '../styles/Styles.scss'
 
 
@@ -29,7 +30,10 @@ export default function StudentDetails() {
             <React.Fragment>
                 <div>
                     <DeleteIcon /> |  &nbsp;
-                    <EditIcon />
+                    <EditIcon />   |  &nbsp;
+                    <span><MoreVertIcon/></span>
+                    
+
                 </div>
             </React.Fragment>
         )
