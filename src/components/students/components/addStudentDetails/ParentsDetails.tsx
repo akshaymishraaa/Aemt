@@ -4,11 +4,6 @@ const ParentsDetails = (props: any) => {
     const { values, setFieldValue, activeStep, touched } = props
     console.log(activeStep, "activeStep")
     useEffect(() => {
-        delete touched.parentsInfo
-        delete touched.studentInfo
-        delete touched.others
-        delete touched.previousAcademicDetails
-        console.log(touched, "touched")
 
     }, [])
 

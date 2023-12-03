@@ -17,11 +17,13 @@
             color: white;
 
             .labelContainer {
-                display: flex;
+                display: flex !important;
                 justify-content: space-around;
-
-                .StepLabel {
+                .stepLabel {
                     width: 85%;
+                        white-space: nowrap;
+                        overflow: hidden !important;
+                        text-overflow: ellipsis;
                 }
 
                 .errorIcon {

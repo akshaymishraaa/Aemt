@@ -11,7 +11,7 @@ export default function FormsStepper(props: any) {
                 formsSteps?.map((item: any, index: number) => {
                     return (
                         <>
-                            <button className={(activeStep?.stepNo === index) ? 'w-20 text-center p-1 activesStep' : 'w-20 text-center p-1'} type='button' onClick={(e: any) => intiateSubmitHandler(touched, errors, values)}>
+                            <button className={(activeStep?.stepNo === index) ? 'w-20 text-center p-1 activesStep' : 'w-20 text-center p-1'} type='button' onClick={(e: any) => intiateSubmitHandler(touched, errors, values, item)}>
                                 <p className='p-0 m-0 d-flex justifu-content-around labelContainer'>
                                     <span className='stepLabel'>{item?.name}</span>
                                     {

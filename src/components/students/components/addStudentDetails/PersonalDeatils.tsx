@@ -12,10 +12,7 @@ const StudentPersonalDetails = (props: any) => {
         }
     }
     useEffect(()=>{
-        delete touched.others
-        delete touched.studentInfo
-        delete touched.previousAcademicDetails
-        delete touched.parentsInfo
+
 
     },[])
 
