@@ -1,6 +1,7 @@
 import { lazy } from "react";
 
-export const privateRoutes = [
+export const 
+privateRoutes = [
   {
     name: "*",
     pathName: "*",

@@ -13,6 +13,7 @@ function App() {
     <React.Fragment>
       <div className="container-fluid p-0">
         <React.Suspense fallback={<div>Loading....</div>}>
+          
           <Navbar />
         </React.Suspense>
       </div>

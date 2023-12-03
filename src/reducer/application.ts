@@ -10,7 +10,13 @@ const initialState = {
   userData: UserProfileModal,
   tabs: [],
   recentOrganizationName: {},
-  Countries_List:[]
+  Countries_List:[],
+  /*OAST ALERT MODal
+  summary:titleof alert box
+  severity:success/error/warn/info
+  details:message to show
+  */
+  modal: { summary: '', detail: '', severity :'',show:false}
 };
 
 
@@ -33,6 +39,8 @@ export const application = (state: object = initialState, action: any) => {
       return { ...state, recentOrganizationName: action.payload };
     case Actiontypes.ALL_COUNTRIES:
       return { ...state, Countries_List :action.payload}
+    case Actiontypes.TOAST_ENALBLED:
+      return { ...state, modal:action.payload}
     default:
       return state;
   }

@@ -1,18 +1,21 @@
 import { ErrorMessage, Field } from 'formik'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DatePick from '../../../../common/Datepicker/Datepicker'
 import moment from 'moment'
 import dayjs from 'dayjs'
 const StudentPersonalDetails = (props: any) => {
-    const { values, setFieldValue } = props
-    const [gender, setGender] = useState<string>('')
+    const { values, setFieldValue, touched } = props
 
     const HandleGenderChange = (e: any, setFieldValue: any) => {
         if (e.target.checked) {
-            setGender(e.target.value)
             setFieldValue('studentInfo.gender', e.target.value)
         }
     }
+    useEffect(()=>{
+
+
+    },[])
+
     return (
         <>
             <div className='SectionContainer'>
@@ -99,7 +102,7 @@ const StudentPersonalDetails = (props: any) => {
                         </Field>
 
                     </div>
-                    <div className='field date_field'>
+                    {/* <div className='field date_field'>
 
                         <label htmlFor='studentInfo.dateOfBirth' className='form-label'> Birth Date<span className={'text-danger'}>*</span> :  </label>
                         <DatePick
@@ -126,7 +129,7 @@ const StudentPersonalDetails = (props: any) => {
                         />
                         <div className='text-danger error'><ErrorMessage name={'studentInfo.dateOfAdmission'} /></div>
 
-                    </div>
+                    </div> */}
                     <div className='field'>
 
                         <label htmlFor='studentInfo.gender' className='form-label'> Gender<span className={'text-danger'}>*</span> :  </label>
@@ -135,8 +138,7 @@ const StudentPersonalDetails = (props: any) => {
                                 name={'studentInfo.gender'}
                                 id={"studentInfo.gender"}
                                 value={'male'}
-                                checked={(gender === 'male') ? true : false}
-
+                                checked={(values?.studentInfo?.gender === 'male') ? true : false}
                                 onChange={(e: any) => {
                                     HandleGenderChange(e, setFieldValue)
                                 }
@@ -146,7 +148,7 @@ const StudentPersonalDetails = (props: any) => {
                                     name={'studentInfo.gender'}
                                     id={"studentInfo.gender"}
                                     value={'female'}
-                                    checked={(gender === 'female') ? true : false}
+                                    checked={(values?.studentInfo?.gender === 'female') ? true : false}
                                     onChange={(e: any) => {
                                         HandleGenderChange(e, setFieldValue)
                                     }}
@@ -158,7 +160,7 @@ const StudentPersonalDetails = (props: any) => {
                                     type={'radio'}
                                     name={'studentInfo.gender'}
                                     id={"studentInfo.gender"}
-                                    checked={(gender === 'others') ? true : false}
+                                    checked={(values?.studentInfo?.gender === 'others') ? true : false}
                                     value={'others'}
                                     onChange={(e: any) => {
                                         HandleGenderChange(e, setFieldValue)
