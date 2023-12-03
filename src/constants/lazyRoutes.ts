@@ -16,6 +16,13 @@ privateRoutes = [
     icon: lazy(() => import("@mui/icons-material/Dashboard")),
   },
   {
+    name: "Home",
+    pathName: "/",
+    component: lazy(() => import("../components/dashboard/index")),
+    navigateTo: "/home",
+    icon: lazy(() => import("@mui/icons-material/Dashboard")),
+  },
+  {
     name: "User management",
     pathName: "/userManagement",
     component: lazy(() => import("../components/roles/index")),
