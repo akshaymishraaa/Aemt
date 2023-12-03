@@ -3,10 +3,7 @@ import React, { useEffect } from 'react'
 const PreviousAcademicDetails = (props: any) => {
     const { values, setFieldValue, touched } = props
     useEffect(() => {
-        delete touched.others
-        delete touched.studentInfo
-        delete touched.previousAcademicDetails
-        delete touched.parentsInfo
+        
     }, [])
 
 

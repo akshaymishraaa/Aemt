@@ -12,11 +12,13 @@ import PrivateRoute from "./PrivateRoute";
 // import Dashboard from "../components/dashboard";
 import { privateRoutes } from "../constants/lazyRoutes";
 import CreateSuperUser from "../components/registration/CreateSuperUser";
+import ToastAlert from "../common/toaster/ToastAlert";
 function Root() {
   const { isAuthenticated } = useSelector((state: any) => state.application);
   return (
     // <BrowserRouter>
     <Suspense fallback={<LoadingScreen />}>
+      <ToastAlert/>
       <Routing>
         <Route
           path="/"  
