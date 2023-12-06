@@ -13,35 +13,36 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import OthersDetails from './OtherDeatails';
 import { studentTypes } from '../../reducer/types';
 import { Actiontypes } from '../../../../types/ActionTypes';
+import { toastEnabled } from '../../../../actions/Action';
 const AddEditNewStudentDetails = (props: any) => {
     const navigate = useNavigate()
     const { studenAdmissiontData, formsSubmisionSteps } = useSelector((state: any) => state.studentsModule)
     const [activeStep, setActiveStep] = useState<any>({})
     const dispatch = useDispatch()
-    const renderFetchForms = (values: any, setFieldValue: any, touched: any) => {
+    const renderFetchForms = (StepDataSubmisonController: any, activesStep: any) => {
         switch (activeStep?.name) {
             case 'studentInfo':
                 return (
                     <>
-                        <StudentPersonalDetails values={values} setFieldValue={setFieldValue} activeStep={activeStep} touched={touched} />
+                        <StudentPersonalDetails StepDataSubmisonController={StepDataSubmisonController} activeStep={activeStep} />
                     </>
                 )
             case 'parentsInfo':
                 return (
                     <>
-                        <ParentsDetails values={values} setFieldValue={setFieldValue} activeStep={activeStep} touched={touched} />
+                        <ParentsDetails StepDataSubmisonController={StepDataSubmisonController} activeStep={activeStep} />
                     </>
                 )
             case 'previousAcademicDetails':
                 return (
                     <>
-                        <PreviousAcademicDetails values={values} setFieldValue={setFieldValue} touched={touched} />
+                        <PreviousAcademicDetails StepDataSubmisonController={StepDataSubmisonController} activeStep={activeStep} />
                     </>
                 )
             case 'others':
                 return (
                     <>
-                        <OthersDetails values={values} setFieldValue={setFieldValue} touched={touched} />
+                        <OthersDetails StepDataSubmisonController={StepDataSubmisonController} activeStep={activeStep} />
                     </>
                 )
             default:
@@ -64,89 +65,67 @@ const AddEditNewStudentDetails = (props: any) => {
 
 
     }, [])
+    // this Method used to move next step if there is no issues in the current Step
+    const StepDataSubmisonController = (values: any, errors: any, touched: any) => {
+        console.log("69.....", errors, touched, values, formsSubmisionSteps)
+        if (Object.keys(touched)?.length === 0 && activeStep?.submited === null) {
 
-    const onSubmitHandler = (values: any, item: any) => {
-        let current_Tab = { ...activeStep, submited: true }
-
-        if (activeStep.stepNo < (formsSubmisionSteps?.length - 1)) {
-            // this is to execute to move the form to next step 
-
-            setActiveStep(item)
+            formsSubmisionSteps[activeStep.stepNo] = { ...activeStep, submited: false }
+            // console.log(payload,"73.....payload")
+            console.log(formsSubmisionSteps, "73....")
+            dispatch({ type: studentTypes.ADMISSION_STEPS, payload: formsSubmisionSteps })
+            dispatch(toastEnabled({ summary: 'Error', detail: 'Please fill Fields To Intiate Step Submission', severity: 'info', show: true }))
         }
-        else {
-            // this is final step to submit values to api 
+        else if (Object.keys(touched)?.length > 0 && Object.keys(errors)?.length > 0) {
+            dispatch(toastEnabled({ summary: 'Error', detail: 'Please fill All Mandatory Fields To Complete Step Submission', severity: 'error', show: true }))
 
         }
-        let payload = [...formsSubmisionSteps]
-        payload[activeStep?.stepNo] = { ...current_Tab }
-        dispatch({ type: studentTypes.ADMISSION_STEPS, payload: payload })
-    }
-    const handleCanclePre = (e: any) => {
-        if (activeStep?.stepNo === 0) {
-            { navigate('/students') }
-        }
-        else {
-            let previous_tab = formsSubmisionSteps[(activeStep?.stepNo - 1)]
-            setActiveStep(previous_tab)
-        }
-    }
-    const intiateSubmitHandler = (touched: any, errors: any, values: any, item: any) => {
-        console.log("errors", touched, errors, item)
-        if (Object.keys(errors)?.length === 0 && Object.keys(touched)?.length > 0) {
-            let next_tab = {}
-            if (item) {
-                next_tab = { ...item }
+        else if (Object.keys(touched)?.length > 0 && Object.keys(errors)?.length === 0) {
+            console.log("values84", values)
+            formsSubmisionSteps[activeStep.stepNo] = { ...activeStep, submited: true }
+            let data = studenAdmissiontData[activeStep.stepNo][`${activeStep?.name}`] = values
+            let payload = studenAdmissiontData
+            payload[activeStep.stepNo] = data
+            dispatch({ type: studentTypes.ADMISSION_STEPS, payload: formsSubmisionSteps })
+            dispatch({ type: studentTypes.ADD_EDIT_STUDENT_ADMISSIONDETAILS, payload: payload })
+            if (activeStep.stepNo < (formsSubmisionSteps?.length - 1)) {
+                let next_Step = formsSubmisionSteps[activeStep.stepNo + 1]
+                setActiveStep(next_Step)
             }
             else {
-
-                next_tab = { ...formsSubmisionSteps[(activeStep?.stepNo + 1)] }
+                // this is called to intiate the admisssion submission at final step
+                initateSFormSubmission(values)
             }
-            onSubmitHandler(values, next_tab)
+
         }
-        else {
-            let payload = [...formsSubmisionSteps]
-            payload[activeStep?.stepNo] = { ...activeStep, submited: false }
-            dispatch({ type: studentTypes.ADMISSION_STEPS, payload: payload })
-            dispatch({
-                type: Actiontypes.TOAST_ENALBLED, payload: {
-                    summary: 'Error',
-                    detail: 'Please Fill All Mandatory Fields Of Current Step To Move Forward ',
-                    severity: 'error',
-                    show: true
-                }
-            })
+        else if (Object.keys(touched)?.length === 0 && activeStep?.submited !== true) {
         }
-        delete touched.parentsInfo
-        delete touched.studentInfo
-        delete touched.others
-        delete touched.previousAcademicDetails
-        console.log(touched, "touched")
-        
+    }
+
+    const initateSFormSubmission = (values: any) => {
+        let validateSubmission = true
+        // formsSubmisionSteps?.map((item: any, index: number) => {
+        //     if (!item.submited) {
+                
+        //     }
+        // })
 
     }
+
     return (
         <>
-            <Formik
-                initialValues={studenAdmissiontData}
-                onSubmit={(values: any) => {
-                    // onSubmitHandler(values)
-                }}
-                validationSchema={(activeStep?.validate)}
-            >
-                {({ errors, touched, setFieldValue, values, isSubmitting }) => {
-                    return (
-                        <Form className='admissionForm'>
-                            <>{console.log(touched, "128...touched")}</>
-                            <div className='formHeading'> Student Admission Form</div>
-                            <FormsStepper activeStep={activeStep} setActiveStep={setActiveStep} errors={errors} formsSteps={formsSubmisionSteps} values={values} touched={touched} intiateSubmitHandler={intiateSubmitHandler} />
-                            <div className='w-100 justify-content-end'>
-                                <div className="studentTypeDef d-flex  ">
-                                    <NavLink to='./' className='d-flex justify-content-end navlink mx-3'>
-                                        <ArrowBackIcon
-                                        />
-                                        Go back</NavLink>
-                                    <label htmlFor='others.studentType'> Admission Type</label>
-                                    <div>
+
+            <div className='admissionForm'>
+                <div className='formHeading'> Student Admission Form</div>
+                <FormsStepper activeStep={activeStep} setActiveStep={setActiveStep} formsSteps={formsSubmisionSteps} />
+                <div className='w-100 justify-content-end'>
+                    <div className="studentTypeDef d-flex  ">
+                        <NavLink to='./' className='d-flex justify-content-end navlink mx-3'>
+                            <ArrowBackIcon
+                            />
+                            Go back</NavLink>
+                        <label htmlFor='others.studentType'> Admission Type</label>
+                        {/* <div>
 
                                         <label > <Field
                                             type="radio"
@@ -160,25 +139,17 @@ const AddEditNewStudentDetails = (props: any) => {
                                             value="OLD"
                                             checked={(values.others.studentType === 'OLD') ? true : false}
                                         />Old </label>
-                                    </div>
+                                    </div> */}
 
 
-                                </div>
-                            </div>
-                            <div className='SectionsContainer'>
-                                {renderFetchForms(values, setFieldValue, touched)}
-                                <div className='submissonContainer'>
-                                    <button type='button' className='btn btn-secondary' onClick={(e: any) => { handleCanclePre(e) }}> {(activeStep?.stepNo === 0) ? 'Cancel' : 'Previous'}</button>
-                                    <button type='submit' className='btn btn-primary' onClick={(e: any) => { intiateSubmitHandler(touched, errors, values, null) }} > {(activeStep?.stepNo !== (formsSubmisionSteps?.length - 1)) ? 'Next' : 'Submit Admission'}</button>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div className='SectionsContainer'>
+                    {renderFetchForms(StepDataSubmisonController, activeStep)}
 
-                        </Form>
+                </div>
 
-                    )
-                }}
-
-            </Formik >
+            </div>
 
         </>
     )

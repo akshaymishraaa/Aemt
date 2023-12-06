@@ -1,54 +1,73 @@
-import { ErrorMessage, Field } from 'formik'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import SubmisonDiv from './SubmissionContainer'
 const OthersDetails = (props: any) => {
-    const { values, setFieldValue, touched } = props
-    useEffect(() => {
-        delete touched.others
-        delete touched.studentInfo
-        delete touched.previousAcademicDetails
-        delete touched.parentsInfo
-    }, [])
+    const { StepDataSubmisonController, activeStep } = props
+    const { studenAdmissiontData, formsSubmisionSteps } = useSelector((state: any) => state.studentsModule)
+    const transfortationChangeHandler=(e:any,setFieldValue:any)=>{
+        setFieldValue('others.transportationMode', e.target.value)
+
+    }
+   
 
     return (
-        <div className='SectionContainer mt-3'>
-            <h6 className='SectionHeader'> Others:</h6>
-            <hr className='m-0' />
-            <div className='fieldsContainer pb-3'>
-                <div className='field'>
-                    <label htmlFor='others.transportationMode' className='form-label'> Transportation Mode<span className={'text-danger'}>*</span> :  </label>
-                    <div className='radioContainer'>
-                        <label> <Field type={'radio'}
-                            name={'others.transportationMode'}
-                            id={"others.transportationMode"}
-                            value={'self-Transport'}
-                            checked={(values?.others?.transportationMode === 'self-Transport') ? true : false}
+        <Formik
+            initialValues={studenAdmissiontData[3]}
+            validationSchema={formsSubmisionSteps[3]?.validate}
+            onSubmit={(values: any) => {
 
-                            onChange={(e: any) => {
-                                setFieldValue('others.transportationMode', 'self-Transport')
+            }}>
+            {({ errors, touched, setFieldValue, values }) => {
+                return (
+                    <Form>
+                        <div className='SectionContainer mt-3'>
+                            <h6 className='SectionHeader'> Others:</h6>
+                            <hr className='m-0' />
+                            <div className='fieldsContainer pb-3'>
+                                <div className='field'>
+                                    <label htmlFor='others.transportationMode' className='form-label'> Transportation Mode<span className={'text-danger'}>*</span> :  </label>
+                                    <div className='radioContainer'>
+                                        <label> <Field type={'radio'}
+                                            name={'others.transportationMode'}
+                                            id={"others.transportationMode"}
+                                            value={'self-Transport'}
+                                            checked={(values?.others?.transportationMode === 'self-Transport') ? true : false}
 
-                            }
-                            } /> <span> Self Transportation </span></label>
-                        <label>
-                            <Field type={'radio'}
-                                name={'others.transportationMode'}
-                                id={"others.transportationMode"}
-                                value={'school-transport'}
-                                checked={(values?.others?.transportationMode === 'school-transport') ? true : false}
-                                onChange={(e: any) => {
-                                    setFieldValue('others.transportationMode', 'school-transport')
-                                }}
-                            />
-                            <span> School Transportation </span></label>
-                    </div>
-                    <div className='text-danger error'><ErrorMessage name={'others.transportationMode'} /></div>
+                                            onChange={(e: any) => {
+                                                transfortationChangeHandler(e,setFieldValue)
 
-                </div>
+                                            }
+                                            } /> <span> Self Transportation </span></label>
+                                        <label>
+                                            <Field type={'radio'}
+                                                name={'others.transportationMode'}
+                                                id={"others.transportationMode"}
+                                                value={'school-transport'}
+                                                checked={(values?.others?.transportationMode === 'school-transport') ? true : false}
+                                                onChange={(e: any) => {
+                                                    transfortationChangeHandler(e, setFieldValue)
+                                                }}
+                                            />
+                                            <span> School Transportation </span></label>
+                                    </div>
+                                    <div className='text-danger error'><ErrorMessage name={'others.transportationMode'} /></div>
+
+                                </div>
 
 
 
-            </div>
 
-        </div>
+                            </div>
+                            <SubmisonDiv values={values} errors={errors} touched={touched} StepDataSubmisonController={StepDataSubmisonController} activeStep={activeStep} />
+
+
+                        </div>
+                    </Form>
+                )
+            }}
+        </Formik>
+
     )
 
 }

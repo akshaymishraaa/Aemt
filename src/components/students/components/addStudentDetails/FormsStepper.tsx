@@ -3,15 +3,18 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 
 export default function FormsStepper(props: any) {
-    const { activeStep, setActiveStep, errors, formsSteps, intiateSubmitHandler, touched, values } = props
-
+    const { activeStep, setActiveStep,  formsSteps } = props
+    const handleTabChange=(item:any)=>{
+        console.log("33",item)
+        setActiveStep(item)
+    }
     return (
         <div className='d-flex justify-content-center align-items-center mx-5 my-3 w-90 stepers'>
             {
                 formsSteps?.map((item: any, index: number) => {
                     return (
                         <>
-                            <button className={(activeStep?.stepNo === index) ? 'w-20 text-center p-1 activesStep' : 'w-20 text-center p-1'} type='button' onClick={(e: any) => intiateSubmitHandler(touched, errors, values, item)}>
+                            <button className={(activeStep?.stepNo === index) ? 'w-20 text-center p-1 activesStep' : 'w-20 text-center p-1'} type='button' onClick={(e: any) =>{handleTabChange(item)}}>
                                 <p className='p-0 m-0 d-flex justifu-content-around labelContainer'>
                                     <span className='stepLabel'>{item?.name}</span>
                                     {
