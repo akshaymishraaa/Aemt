@@ -18,31 +18,42 @@ const AddEditNewStudentDetails = (props: any) => {
     const navigate = useNavigate()
     const { studenAdmissiontData, formsSubmisionSteps } = useSelector((state: any) => state.studentsModule)
     const [activeStep, setActiveStep] = useState<any>({})
+    const [touched,setToched]=useState()
+    const [errors,setErrors]=useState()
     const dispatch = useDispatch()
-    const renderFetchForms = (StepDataSubmisonController: any, activesStep: any) => {
+
+
+
+
+    const checkErrosOnTabChange=(errors:any,touched:any)=>{
+        console.log("rerer",errors,touched)
+        setErrors(errors)
+        setToched(touched)
+    }
+    const renderFetchForms = (DataValidation: any, activesStep: any, checkErrosOnTabChange:any) => {
         switch (activeStep?.name) {
             case 'studentInfo':
                 return (
                     <>
-                        <StudentPersonalDetails StepDataSubmisonController={StepDataSubmisonController} activeStep={activeStep} />
+                        <StudentPersonalDetails DataValidation={DataValidation} activeStep={activeStep} checkErrosOnTabChange={checkErrosOnTabChange} />
                     </>
                 )
             case 'parentsInfo':
                 return (
                     <>
-                        <ParentsDetails StepDataSubmisonController={StepDataSubmisonController} activeStep={activeStep} />
+                        <ParentsDetails DataValidation={DataValidation} activeStep={activeStep} checkErrosOnTabChange={checkErrosOnTabChange}/>
                     </>
                 )
             case 'previousAcademicDetails':
                 return (
                     <>
-                        <PreviousAcademicDetails StepDataSubmisonController={StepDataSubmisonController} activeStep={activeStep} />
+                        <PreviousAcademicDetails DataValidation={DataValidation} activeStep={activeStep} checkErrosOnTabChange={checkErrosOnTabChange} />
                     </>
                 )
             case 'others':
                 return (
                     <>
-                        <OthersDetails StepDataSubmisonController={StepDataSubmisonController} activeStep={activeStep} />
+                        <OthersDetails DataValidation={DataValidation} activeStep={activeStep} checkErrosOnTabChange={checkErrosOnTabChange} />
                     </>
                 )
             default:
@@ -66,10 +77,10 @@ const AddEditNewStudentDetails = (props: any) => {
 
     }, [])
     // this Method used to move next step if there is no issues in the current Step
-    const StepDataSubmisonController = (values: any, errors: any, touched: any) => {
+    const DataValidation = (values: any, errors: any, touched: any) => {
         console.log("69.....", errors, touched, values, formsSubmisionSteps)
         if (Object.keys(touched)?.length === 0 && activeStep?.submited === null) {
-
+            alert("if")
             formsSubmisionSteps[activeStep.stepNo] = { ...activeStep, submited: false }
             // console.log(payload,"73.....payload")
             console.log(formsSubmisionSteps, "73....")
@@ -77,33 +88,39 @@ const AddEditNewStudentDetails = (props: any) => {
             dispatch(toastEnabled({ summary: 'Error', detail: 'Please fill Fields To Intiate Step Submission', severity: 'info', show: true }))
         }
         else if (Object.keys(touched)?.length > 0 && Object.keys(errors)?.length > 0) {
+            alert("elseif81")
             dispatch(toastEnabled({ summary: 'Error', detail: 'Please fill All Mandatory Fields To Complete Step Submission', severity: 'error', show: true }))
 
         }
         else if (Object.keys(touched)?.length > 0 && Object.keys(errors)?.length === 0) {
-            console.log("values84", values)
-            formsSubmisionSteps[activeStep.stepNo] = { ...activeStep, submited: true }
-            let data = studenAdmissiontData[activeStep.stepNo][`${activeStep?.name}`] = values
-            let payload = studenAdmissiontData
-            payload[activeStep.stepNo] = data
-            dispatch({ type: studentTypes.ADMISSION_STEPS, payload: formsSubmisionSteps })
-            dispatch({ type: studentTypes.ADD_EDIT_STUDENT_ADMISSIONDETAILS, payload: payload })
-            if (activeStep.stepNo < (formsSubmisionSteps?.length - 1)) {
+            console.log("84.....",activeStep)
+            
+            if (activeStep.stepNo < (formsSubmisionSteps?.length - 1) && (!activeStep.submited)) {
                 let next_Step = formsSubmisionSteps[activeStep.stepNo + 1]
                 setActiveStep(next_Step)
+                formsSubmisionSteps[activeStep.stepNo] = { ...activeStep, submited: true }
+                let data = studenAdmissiontData[activeStep.stepNo][`${activeStep?.name}`] = values
+                let payload = studenAdmissiontData
+                payload[activeStep.stepNo] = data
+                dispatch({ type: studentTypes.ADMISSION_STEPS, payload: formsSubmisionSteps })
+                dispatch({ type: studentTypes.ADD_EDIT_STUDENT_ADMISSIONDETAILS, payload: payload })
             }
             else {
+                alert("97...")
                 // this is called to intiate the admisssion submission at final step
                 initateSFormSubmission(values)
             }
 
         }
         else if (Object.keys(touched)?.length === 0 && activeStep?.submited !== true) {
+            alert("hiii")
         }
     }
+    
 
     const initateSFormSubmission = (values: any) => {
         let validateSubmission = true
+        console.log("values",values)
         // formsSubmisionSteps?.map((item: any, index: number) => {
         //     if (!item.submited) {
                 
@@ -145,7 +162,7 @@ const AddEditNewStudentDetails = (props: any) => {
                     </div>
                 </div>
                 <div className='SectionsContainer'>
-                    {renderFetchForms(StepDataSubmisonController, activeStep)}
+                    {renderFetchForms(DataValidation, activeStep, checkErrosOnTabChange)}
 
                 </div>
 

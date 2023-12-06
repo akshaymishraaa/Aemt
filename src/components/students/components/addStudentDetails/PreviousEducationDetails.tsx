@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import SubmisonDiv from './SubmissionContainer'
 const PreviousAcademicDetails = (props: any) => {
-    const { StepDataSubmisonController, activeStep } = props
+    const { DataValidation, activeStep, checkErrosOnTabChange } = props
     const { studenAdmissiontData, formsSubmisionSteps } = useSelector((state: any) => state.studentsModule)
 
 
@@ -18,7 +18,11 @@ const PreviousAcademicDetails = (props: any) => {
                 }}>
                 {({ errors, touched, setFieldValue, values, isSubmitting, setTouched, setErrors }) => {
                     return (
-                        <Form>
+                        <Form
+                            onBlur={(e: any) => {
+                                checkErrosOnTabChange(errors, touched)
+                            }}
+                        >
                             <div className='SectionContainer mt-3 mb-2'>
                                 <h6 className='SectionHeader'>Previous Academic Details :</h6>
                                 <hr className='m-0' />
@@ -85,7 +89,7 @@ const PreviousAcademicDetails = (props: any) => {
 
                                     </div>
                                 </div>
-                                <SubmisonDiv values={values} errors={errors} touched={touched} StepDataSubmisonController={StepDataSubmisonController} activeStep={activeStep} />
+                                <SubmisonDiv values={values} errors={errors} touched={touched} DataValidation={DataValidation} activeStep={activeStep} />
                             </div>
                         </Form>
                     )

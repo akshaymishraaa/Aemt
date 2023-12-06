@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 import { useSelector } from 'react-redux'
 import SubmisonDiv from './SubmissionContainer'
 const StudentPersonalDetails = (props: any) => {
-    const { StepDataSubmisonController, activeStep } = props
+    const { DataValidation, activeStep, checkErrosOnTabChange } = props
     const { studenAdmissiontData, formsSubmisionSteps } = useSelector((state: any) => state.studentsModule)
 
 
@@ -27,7 +27,7 @@ const StudentPersonalDetails = (props: any) => {
                 }}>
                 {({ errors, touched, setFieldValue, values }) => {
                     return (
-                        <Form>
+                        <Form onBlur={(e: any) => { checkErrosOnTabChange(errors,touched) }}>
                             <div className='SectionContainer'>
                                 <h6 className='SectionHeader'>Student Info :</h6>
                                 <hr className='m-0' />
@@ -326,7 +326,7 @@ const StudentPersonalDetails = (props: any) => {
                                         />
                                     </div>
                                 </div>
-                                <SubmisonDiv values={values} errors={errors} touched={touched} StepDataSubmisonController={StepDataSubmisonController} activeStep={activeStep}/>
+                                <SubmisonDiv values={values} errors={errors} touched={touched} DataValidation={DataValidation} activeStep={activeStep}/>
 
                             </div>
 
