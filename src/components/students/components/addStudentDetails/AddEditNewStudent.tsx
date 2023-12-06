@@ -161,8 +161,6 @@ const AddEditNewStudentDetails = (props: any) => {
                                             checked={(values.others.studentType === 'OLD') ? true : false}
                                         />Old </label>
                                     </div>
-
-
                                 </div>
                             </div>
                             <div className='SectionsContainer'>
