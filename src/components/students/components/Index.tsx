@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import StudentDetails from './StudentDetails';
 import CertificationIndex from './certifications/CertificationIndex';
-import StationaryDetails from './stationary/StationaryDetails';
 import PendingFeeIndex from './pendingFee/PendingFeeIndex';
 
 interface TabPanelProps {
@@ -65,9 +64,7 @@ export default function StudentMotduleTabs() {
             <CustomTabPanel value={value} index={1}>
                 <CertificationIndex />
             </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-                <StationaryDetails />
-            </CustomTabPanel>
+            
             <CustomTabPanel value={value} index={3}>
                 <PendingFeeIndex />
             </CustomTabPanel>

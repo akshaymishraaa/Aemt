@@ -72,7 +72,7 @@ const AddEditNewStudentDetails = (props: any) => {
     const DataValidation = (values: any, errors: any, touched: any) => {
 
         console.log("69.....", values, formsSubmisionSteps)
-        if (Object.keys(touched)?.length !== 0) {
+        if (Object.keys(touched)?.length !== 0 ) {
             if (Object.keys(errors)?.length === 0) {
                 if (activeStep.stepNo < (formsSubmisionSteps?.length - 1)) {
                     let next_Step = formsSubmisionSteps[activeStep.stepNo + 1]
