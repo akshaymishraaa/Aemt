@@ -25,7 +25,7 @@ const StudentPersonalDetails = (props: any) => {
                 onSubmit={(valuez: any) => {
 
                 }}>
-                {({ errors, touched, setFieldValue, values }) => {
+                {({ errors, touched, setFieldValue, values ,isValidating}) => {
                     return (
                         <Form>
                             <div className='SectionContainer'>
@@ -326,7 +326,7 @@ const StudentPersonalDetails = (props: any) => {
                                         />
                                     </div>
                                 </div>
-                                <SubmisonDiv values={values} errors={errors} touched={touched} DataValidation={DataValidation} activeStep={activeStep} setActiveStep={setActiveStep}/>
+                                <SubmisonDiv values={values} errors={errors} touched={touched} DataValidation={DataValidation} activeStep={activeStep} isValidating={isValidating} setActiveStep={setActiveStep}/>
 
                             </div>
 

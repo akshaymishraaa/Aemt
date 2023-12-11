@@ -9,6 +9,8 @@ import CommonCard from '../../../common/CommonCard';
 import CommonSearchField from '../../../common/CommonSearchField';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import '../styles/Styles.scss'
+import LongMenu from '../../../common/kababmenu/kababMenu';
+import { MenuAction } from '../constants/kababMemuList';
 
 
 export default function StudentDetails() {
@@ -28,11 +30,11 @@ export default function StudentDetails() {
     const actionBody = (rowData: any) => {
         return (
             <React.Fragment>
-                <div>
+                <div className='d-flex'>
                     <DeleteIcon /> |  &nbsp;
                     <EditIcon />   |  &nbsp;
-                    <span><MoreVertIcon/></span>
-                    
+                    <span><LongMenu rowData={rowData} options={MenuAction}/></span>
+
 
                 </div>
             </React.Fragment>

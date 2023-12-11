@@ -11,11 +11,7 @@ export const ModuleList = [
         value: "certificates",
         component: lazy(() => import('../components/certifications/CertificationIndex'))
     },
-    {
-        name: "Stationary",
-        value: "stationary",
-        component: lazy(() => import('../components/stationary/StationaryDetails'))
-    },
+   
     {
         name: "Pending Fees",
         value: "feeDetails",
