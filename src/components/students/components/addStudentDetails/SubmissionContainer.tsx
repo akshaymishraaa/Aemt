@@ -31,11 +31,7 @@ const SubmisonDiv = (props: any) => {
                 >  {(activeStep?.stepNo === 0) ? '  Cancel' : 'Previous'}</button>
                 <button type='submit' className='btn btn-primary'
                     onClick={(e: any) => { 
-                        setTimeout(()=>{
-                            console.log("errorsonsubmisiion", errors, isValidating)
-
                             DataValidation(values, errors, touched)
-                        },1000)
                      }}>
                     {(activeStep?.stepNo !== (formsSubmisionSteps?.length - 1)) ? 'Next' : 'Submit Admission'}
 
