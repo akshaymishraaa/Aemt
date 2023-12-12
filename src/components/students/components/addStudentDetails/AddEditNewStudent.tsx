@@ -22,30 +22,30 @@ const AddEditNewStudentDetails = (props: any) => {
     const dispatch = useDispatch()
 
 
-    const renderFetchForms = (DataValidation: any, activesStep: any,setActiveStep:any) => {
+    const renderFetchForms = (DataValidation: any, activesStep: any, setActiveStep: any, dispatchFormVlaues:any) => {
         switch (activeStep?.name) {
             case 'studentInfo':
                 return (
                     <>
-                        <StudentPersonalDetails DataValidation={DataValidation} activeStep={activeStep} setActiveStep={setActiveStep}/>
+                        <StudentPersonalDetails DataValidation={DataValidation} activeStep={activeStep} setActiveStep={setActiveStep} dispatchFormVlaues={dispatchFormVlaues}/>
                     </>
                 )
             case 'parentsInfo':
                 return (
                     <>
-                        <ParentsDetails DataValidation={DataValidation} activeStep={activeStep} setActiveStep={setActiveStep}/>
+                        <ParentsDetails DataValidation={DataValidation} activeStep={activeStep} setActiveStep={setActiveStep} dispatchFormVlaues={dispatchFormVlaues}/>
                     </>
                 )
             case 'previousAcademicDetails':
                 return (
                     <>
-                        <PreviousAcademicDetails DataValidation={DataValidation} activeStep={activeStep} setActiveStep={setActiveStep} />
+                        <PreviousAcademicDetails DataValidation={DataValidation} activeStep={activeStep} setActiveStep={setActiveStep} dispatchFormVlaues={dispatchFormVlaues} />
                     </>
                 )
             case 'others':
                 return (
                     <>
-                        <OthersDetails DataValidation={DataValidation} activeStep={activeStep} setActiveStep={setActiveStep} />
+                        <OthersDetails DataValidation={DataValidation} activeStep={activeStep} setActiveStep={setActiveStep} dispatchFormVlaues={dispatchFormVlaues} />
                     </>
                 )
             default:
@@ -68,75 +68,80 @@ const AddEditNewStudentDetails = (props: any) => {
 
 
     }, [])
+
+
+    // DispatchFormVlaues 
+    const dispatchFormVlaues=(values:any)=>{
+        let data = studenAdmissiontData[activeStep?.stepNo]= values
+        let payload = studenAdmissiontData
+        payload[activeStep?.stepNo] = data
+        dispatch({ type: studentTypes.ADD_EDIT_STUDENT_ADMISSIONDETAILS, payload: payload })        
+    }
+
+    // intialStepMovetoNextStep
+    const advanceToNextStepValiDated=()=>{
+        let next_Step = formsSubmisionSteps[activeStep.stepNo + 1]
+        setActiveStep(next_Step)
+        formsSubmisionSteps[activeStep.stepNo] = { ...activeStep, submited: true }
+        dispatch({ type: studentTypes.ADMISSION_STEPS, payload: formsSubmisionSteps })
+
+    }
+
+    // finalStepValidatoion
+    const formSubmisionValidation=()=>{
+        let validateCompleteSubmission = formsSubmisionSteps?.filter((item: any) => item.submited !== true)
+        if (validateCompleteSubmission?.length === 0) {
+            dispatch(toastEnabled({ summary: 'Admission Completed', detail: 'Student Enrolled success fully', severity: 'success', show: true }))
+        }
+        else {
+            dispatch(toastEnabled({ summary: 'Incomplete Steps', detail: 'Completed Every Step To Process Admission', severity: 'error', show: true }))
+        }
+    }
+
+// Throw Errors When step is Validated 
+
+    const stepHasErrorsToValidate=()=>{
+        formsSubmisionSteps[activeStep.stepNo] = { ...activeStep, submited: false }
+        dispatch({ type: studentTypes.ADMISSION_STEPS, payload: formsSubmisionSteps })
+        dispatch(toastEnabled({ summary: 'Error', detail: 'Please fill Madatory fields ToComplete the step', severity: 'error', show: true }))
+
+    }
+
     // this Method used to move next step if there is no issues in the current Step
     const DataValidation = (values: any, errors: any, touched: any) => {
-
-        console.log("69.....", values, formsSubmisionSteps)
         if (Object.keys(touched)?.length !== 0 ) {
             if (Object.keys(errors)?.length === 0) {
                 if (activeStep.stepNo < (formsSubmisionSteps?.length - 1)) {
-                    let next_Step = formsSubmisionSteps[activeStep.stepNo + 1]
-                    setActiveStep(next_Step)
-                    formsSubmisionSteps[activeStep.stepNo] = { ...activeStep, submited: true }
-                    let data = studenAdmissiontData[activeStep.stepNo][`${activeStep?.name}`] = values
-                    let payload = studenAdmissiontData
-                    payload[activeStep.stepNo] = data
-                    dispatch({ type: studentTypes.ADMISSION_STEPS, payload: formsSubmisionSteps })
-                    dispatch({ type: studentTypes.ADD_EDIT_STUDENT_ADMISSIONDETAILS, payload: payload })
+                    advanceToNextStepValiDated()
                 }
                 else {
                     // let validateCompleteSubmission=false
                     if (!formsSubmisionSteps[activeStep.stepNo].submited) {
                         formsSubmisionSteps[activeStep.stepNo] = { ...activeStep, submited: true }
                         dispatch({ type: studentTypes.ADMISSION_STEPS, payload: formsSubmisionSteps })
-                        let data = studenAdmissiontData[activeStep.stepNo][`${activeStep?.name}`] = values
-                        let payload = studenAdmissiontData
-                        payload[activeStep.stepNo] = data
-                        dispatch({ type: studentTypes.ADD_EDIT_STUDENT_ADMISSIONDETAILS, payload: payload })
-                        
                     }
-                    let validateCompleteSubmission = formsSubmisionSteps?.filter((item: any) => item.submited !== true)
-                    if (validateCompleteSubmission?.length ===0){
-                        dispatch(toastEnabled({ summary: 'Admission Completed', detail: 'Student Enrolled success fully', severity: 'success', show: true }))
-                    }
-                    else{
-                        dispatch(toastEnabled({ summary: 'Incomplete Steps', detail: 'Completed Every Step To Process Admission', severity: 'error', show: true }))
-
-
-                    }
-
-                    console.log("complete Submision", validateCompleteSubmission, activeStep)
-
-                    // validateCompleteSubmission = formsSubmisionSteps?.every((item: any) => item.submitted === true)
+                    formSubmisionValidation()
                 }
-
             }
             else {
-                
-                    formsSubmisionSteps[activeStep.stepNo] = { ...activeStep, submited: false }
-                    // let data = studenAdmissiontData[activeStep.stepNo][`${activeStep?.name}`] = values
-                    // let payload = studenAdmissiontData
-                    // payload[activeStep.stepNo] = data
-                    // dispatch({ type: studentTypes.ADD_EDIT_STUDENT_ADMISSIONDETAILS, payload: payload })
-                    dispatch({ type: studentTypes.ADMISSION_STEPS, payload: formsSubmisionSteps })
-                dispatch(toastEnabled({ summary: 'Error', detail: 'Please fill Madatory fields ToComplete the step', severity: 'error', show: true }))
+                stepHasErrorsToValidate()
+                   
 
             }
 
         }
         else {
-            if (activeStep?.submited === null) {
-                formsSubmisionSteps[activeStep.stepNo] = { ...activeStep, submited: false }
-                dispatch({ type: studentTypes.ADMISSION_STEPS, payload: formsSubmisionSteps })
-                dispatch(toastEnabled({ summary: 'Error', detail: 'Please fill Fields To Intiate Step Submission', severity: 'info', show: true }))
-            }
-            else if (activeStep?.submited === false) {
-                dispatch(toastEnabled({ summary: 'Error', detail: 'Please fill Fields To Intiate Step Submission', severity: 'error', show: true }))
+            if (activeStep?.submited === null || activeStep?.submited === false) {
+                stepHasErrorsToValidate()
+                
             }
             else {
                 if(activeStep?.stepNo !== 3){
                     let next_Step = formsSubmisionSteps[activeStep.stepNo + 1]
                     setActiveStep(next_Step)
+                }
+                else{
+                    formSubmisionValidation()
                 }
 
             }
@@ -176,7 +181,7 @@ const AddEditNewStudentDetails = (props: any) => {
                     </div>
                 </div>
                 <div className='SectionsContainer'>
-                    {renderFetchForms(DataValidation, activeStep,setActiveStep)}
+                    {renderFetchForms(DataValidation, activeStep, setActiveStep, dispatchFormVlaues)}
 
                 </div>
 

@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 import { useSelector } from 'react-redux'
 import SubmisonDiv from './SubmissionContainer'
 const StudentPersonalDetails = (props: any) => {
-    const { DataValidation, activeStep, setActiveStep } = props
+    const { DataValidation, activeStep, setActiveStep, dispatchFormVlaues } = props
     const { studenAdmissiontData, formsSubmisionSteps } = useSelector((state: any) => state.studentsModule)
 
 
@@ -15,6 +15,7 @@ const StudentPersonalDetails = (props: any) => {
             setFieldValue('studentInfo.gender', e.target.value)
         }
     }
+
     
 
     return (
@@ -24,10 +25,11 @@ const StudentPersonalDetails = (props: any) => {
                 validationSchema={activeStep?.validate}
                 onSubmit={(valuez: any) => {
 
-                }}>
+                }}
+                >
                 {({ errors, touched, setFieldValue, values ,isValidating}) => {
                     return (
-                        <Form>
+                        <Form onBlur={(e: any) => { dispatchFormVlaues (values)}}>
                             <div className='SectionContainer'>
                                 <h6 className='SectionHeader'>Student Info :</h6>
                                 <hr className='m-0' />
