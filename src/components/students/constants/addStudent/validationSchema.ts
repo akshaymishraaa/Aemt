@@ -27,8 +27,16 @@ export const validateParentsInfo = Yup.object().shape({
     })
 })
 export const ValidateOthers = Yup.object().shape({
-    others:Yup.object().shape({
+    others: Yup.object().shape({
         transportationMode: Yup.string().required('Please Select Transportation Mode.')
 
     })
+})
+export const validatePreviousAcedemicDetails = Yup.object().shape({
+    previousAcademicDetails: Yup.object().shape({
+        schoolName: Yup.string().required('Enter School Name Or N/A'),
+        lastAcedamicPercentage: Yup.string().required('Enter last percentage or N/A'),
+        lastClassDetails: Yup.string().required('Last Class Completed or N/A')
+    })
+
 })

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import SubmisonDiv from './SubmissionContainer'
 const OthersDetails = (props: any) => {
-    const { DataValidation, activeStep, setActiveStep } = props
+    const { DataValidation, activeStep, setActiveStep, dispatchFormVlaues, admissionData } = props
     const { studenAdmissiontData, formsSubmisionSteps } = useSelector((state: any) => state.studentsModule)
     const transfortationChangeHandler=(e:any,setFieldValue:any)=>{
         setFieldValue('others.transportationMode', e.target.value)
@@ -13,14 +13,14 @@ const OthersDetails = (props: any) => {
 
     return (
         <Formik
-            initialValues={studenAdmissiontData[3]}
+            initialValues={admissionData[3]}
             validationSchema={formsSubmisionSteps[3]?.validate}
             onSubmit={(values: any) => {
                 console.log('19....val',values)
             }}>
             {({ errors, touched, setFieldValue, values }) => {
                 return (
-                    <Form>
+                    <Form onBlur={(e: any) => { dispatchFormVlaues(values) }}>
                         <div className='SectionContainer mt-3'>
                             <h6 className='SectionHeader'> Others:</h6>
                             <hr className='m-0' />
