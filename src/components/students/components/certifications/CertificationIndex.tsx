@@ -16,23 +16,27 @@ export default function CertificationIndex(props: any) {
   }
   return (
     <>
-    <div className='d-flex' onClick={openCertificateGenratoe}>
-      <ReceiptLongIcon className='mx-2' />
-      <p> Generate/IssueCertificate</p>
-    </div>
-     <CustomDialog
+      <div className='d-flex' onClick={openCertificateGenratoe}>
+        <ReceiptLongIcon className='mx-2' />
+        <p> Generate/IssueCertificate</p>
+      </div>
+      <CustomDialog
         title={"Generate/IssueCertificate"}
         open={open}
         onClose={onClose}
         actionType={"Submit"}
-        maxWidth="md"
+        maxWidth="sm"
         fullWidth={true}
         form={"Generate IssueCertificate"}
         onSubmitHandler={() => { }}
-        >
-        <p>Generate/IssueCertificate</p>
+      >
+        <div>
+          <p>Generate Acedemic Certicates</p>
+          <p>Issue Certicates</p>
+          <p>Extra Circular Certicates</p>
+        </div>
 
       </CustomDialog>
-        </>
+    </>
   )
 }

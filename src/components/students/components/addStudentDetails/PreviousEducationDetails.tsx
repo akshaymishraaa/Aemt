@@ -1,4 +1,4 @@
-import { Field, Form, Formik } from 'formik'
+import { ErrorMessage, Field, Form, Formik } from 'formik'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import SubmisonDiv from './SubmissionContainer'
@@ -18,13 +18,12 @@ const PreviousAcademicDetails = (props: any) => {
                 }}>
                 {({ errors, touched, setFieldValue, values, isSubmitting, setTouched, setErrors }) => {
                     return (
-                        <Form onBlur={(e: any) => { dispatchFormVlaues (values)}}>
+                        <Form onBlur={(e: any) => { dispatchFormVlaues(values) }}>
                             <div className='SectionContainer mt-3 mb-2'>
                                 <h6 className='SectionHeader'>Previous Academic Details :</h6>
                                 <hr className='m-0' />
                                 <div className='fieldsContainer'>
                                     <div className='field'>
-
                                         <label htmlFor='previousAcademicDetails.lastClassDetails' className='form-label'> Last Class Completed:  </label>
                                         <Field
                                             type="text"
@@ -35,6 +34,8 @@ const PreviousAcademicDetails = (props: any) => {
                                             placeholder={"Last Class Completed"}
                                         >
                                         </Field>
+                                        <div className='text-danger error'><ErrorMessage name={'previousAcademicDetails.lastClassDetails'} /></div>
+
 
                                     </div>
                                     <div className='field'>
@@ -43,7 +44,7 @@ const PreviousAcademicDetails = (props: any) => {
                                         <Field
                                             type="text"
                                             name="previousAcademicDetails.schoolName"
-                                            id="previousAcademicDetails.schoolNamer"
+                                            id="previousAcademicDetails.schoolName"
                                             value={values.previousAcademicDetails.schoolName}
                                             className={'form-control'}
                                             placeholder={"School Name"}
@@ -51,6 +52,8 @@ const PreviousAcademicDetails = (props: any) => {
                                         >
 
                                         </Field>
+                                        <div className='text-danger error'><ErrorMessage name={'previousAcademicDetails.schoolName'} /></div>
+
 
                                     </div>
                                     <div className='field'>
@@ -66,6 +69,8 @@ const PreviousAcademicDetails = (props: any) => {
                                         >
 
                                         </Field>
+                                        <div className='text-danger error'><ErrorMessage name={'previousAcademicDetails.lastAcedamicPercentage'} /></div>
+
 
                                     </div>
                                     <div className='field'>
@@ -80,7 +85,6 @@ const PreviousAcademicDetails = (props: any) => {
 
                                             className={'form-control'}
                                         />
-
                                         {/* </Field> */}
 
                                     </div>

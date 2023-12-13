@@ -92,6 +92,7 @@ const AddEditNewStudentDetails = (props: any) => {
         let validateCompleteSubmission = formsSubmisionSteps?.filter((item: any) => item.submited !== true)
         if (validateCompleteSubmission?.length === 0) {
             dispatch(toastEnabled({ summary: 'Admission Completed', detail: 'Student Enrolled success fully', severity: 'success', show: true }))
+
         }
         else {
             dispatch(toastEnabled({ summary: 'Incomplete Steps', detail: 'Completed Every Step To Process Admission', severity: 'error', show: true }))
@@ -109,7 +110,7 @@ const AddEditNewStudentDetails = (props: any) => {
 
     // this Method used to move next step if there is no issues in the current Step
     const DataValidation = (values: any, errors: any, touched: any) => {
-        if (Object.keys(touched)?.length !== 0 ) {
+        // if (Object.keys(touched)?.length !== 0 ) {
             if (Object.keys(errors)?.length === 0) {
                 if (activeStep.stepNo < (formsSubmisionSteps?.length - 1)) {
                     advanceToNextStepValiDated()
@@ -129,23 +130,23 @@ const AddEditNewStudentDetails = (props: any) => {
 
             }
 
-        }
-        else {
-            if (activeStep?.submited === null || activeStep?.submited === false) {
-                stepHasErrorsToValidate()
+        // }
+        // else {
+        //     if (activeStep?.submited === null || activeStep?.submited === false) {
+        //         stepHasErrorsToValidate()
                 
-            }
-            else {
-                if(activeStep?.stepNo !== 3){
-                    let next_Step = formsSubmisionSteps[activeStep.stepNo + 1]
-                    setActiveStep(next_Step)
-                }
-                else{
-                    formSubmisionValidation()
-                }
+        //     }
+        //     else {
+        //         if(activeStep?.stepNo !== 3){
+        //             let next_Step = formsSubmisionSteps[activeStep.stepNo + 1]
+        //             setActiveStep(next_Step)
+        //         }
+        //         else{
+        //             formSubmisionValidation()
+        //         }
 
-            }
-        }
+        //     }
+        // }
     }
 
     return (
@@ -156,28 +157,10 @@ const AddEditNewStudentDetails = (props: any) => {
                 <FormsStepper activeStep={activeStep} setActiveStep={setActiveStep}/>
                 <div className='w-100 justify-content-end'>
                     <div className="studentTypeDef d-flex  ">
-                        <NavLink to='./' className='d-flex justify-content-end navlink mx-3'>
+                        <NavLink to='/students' className='d-flex justify-content-end navlink mx-3'>
                             <ArrowBackIcon
                             />
                             Go back</NavLink>
-                        <label htmlFor='others.studentType'> Admission Type</label>
-                        {/* <div>
-
-                                        <label > <Field
-                                            type="radio"
-                                            name="others.studentType"
-                                            value="NEW"
-                                            checked={(values.others.studentType === 'NEW') ? true : false}
-                                        />New </label>
-                                        <label ><Field
-                                            type="radio"
-                                            name="others.studentType"
-                                            value="OLD"
-                                            checked={(values.others.studentType === 'OLD') ? true : false}
-                                        />Old </label>
-                                    </div> */}
-
-
                     </div>
                 </div>
                 <div className='SectionsContainer'>

@@ -32,7 +32,9 @@ const SubmisonDiv = (props: any) => {
                 <button type='submit' className='btn btn-primary'
                     onClick={(e: any) => { 
                             DataValidation(values, errors, touched)
-                     }}>
+                     }}
+                     disabled={(Object.keys(touched)?.length ===0? true:false )}
+                     >
                     {(activeStep?.stepNo !== (formsSubmisionSteps?.length - 1)) ? 'Next' : 'Submit Admission'}
 
                 </button>

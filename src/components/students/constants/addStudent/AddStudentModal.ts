@@ -1,5 +1,6 @@
 import { studentAdmissionFrom } from "./AddStudentTypes"
-export const studentAdmissionDetails: studentAdmissionFrom = [
+export const studentAdmissionDetails: studentAdmissionFrom =
+ [
     {
 
         studentInfo: {
@@ -16,7 +17,8 @@ export const studentAdmissionDetails: studentAdmissionFrom = [
         MotherTongue: undefined,
         religion: undefined,
         bloodGroup: '',
-        birthCertificate: ''
+        birthCertificate: '',
+            studentType: "NEW"
         
     },
 },
@@ -55,27 +57,8 @@ export const studentAdmissionDetails: studentAdmissionFrom = [
     others:
     {
         transportationMode: undefined,
-        studentType: "NEW"
+       
     }
 }
 
 ]
-export const personalData = {
-    studentInfo: {
-        studentFullName: undefined,
-        dateOfBirth: '',
-        gender: '',
-        adharNumber: '',
-        categorgy: '',
-        classJoining: '',
-        dateOfAdmission: '',
-        emailId: '',
-        contactNumber: '',
-        studentProfile: '',
-        MotherTongue: undefined,
-        religion: undefined,
-        bloodGroup: '',
-        birthCertificate: ''
-
-    }
-}

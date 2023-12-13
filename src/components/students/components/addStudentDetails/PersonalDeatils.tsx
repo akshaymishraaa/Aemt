@@ -16,7 +16,7 @@ const StudentPersonalDetails = (props: any) => {
         }
     }
 
-    
+
 
     return (
         <>
@@ -26,13 +26,32 @@ const StudentPersonalDetails = (props: any) => {
                 onSubmit={(valuez: any) => {
 
                 }}
-                >
-                {({ errors, touched, setFieldValue, values ,isValidating}) => {
+            >
+                {({ errors, touched, setFieldValue, values, isValidating }) => {
                     return (
-                        <Form onBlur={(e: any) => { dispatchFormVlaues (values)}}>
+                        <Form onBlur={(e: any) => { dispatchFormVlaues(values) }}>
                             <div className='SectionContainer'>
                                 <h6 className='SectionHeader'>Student Info :</h6>
                                 <hr className='m-0' />
+                                <div className='d-flex justify-content-end mx-5'>
+                                    <label htmlFor='studentInfo.studentType' className='mx-1' > Admission Type</label>
+                                    <div>
+
+                                        <label className='mx-2' > <Field
+                                            type="radio"
+                                            name="studentInfo.studentType"
+                                            value="NEW"
+                                            checked={(values.studentInfo.studentType === 'NEW') ? true : false}
+                                        />New </label>
+                                        <label ><Field
+                                            type="radio"
+                                            name="studentInfo.studentType"
+                                            value="OLD"
+                                            checked={(values.studentInfo.studentType === 'OLD') ? true : false}
+                                        />Old </label>
+                                    </div>
+
+                                </div>
                                 <div className='fieldsContainer'>
                                     <div className='field'>
 
@@ -328,7 +347,7 @@ const StudentPersonalDetails = (props: any) => {
                                         />
                                     </div>
                                 </div>
-                                <SubmisonDiv values={values} errors={errors} touched={touched} DataValidation={DataValidation} activeStep={activeStep} isValidating={isValidating} setActiveStep={setActiveStep}/>
+                                <SubmisonDiv values={values} errors={errors} touched={touched} DataValidation={DataValidation} activeStep={activeStep} isValidating={isValidating} setActiveStep={setActiveStep} />
 
                             </div>
 
