@@ -88,6 +88,13 @@ privateRoutes = [
     navigateTo: "/managements",
     icon: lazy(() => import("@mui/icons-material/EventNote"))
   },
+  {
+    name: "Store",
+    pathName: "/store",
+    component: lazy(() => import("../components/sales_inventory/index")),
+    navigateTo: "/store",
+    icon: lazy(() => import("@mui/icons-material/Storefront"))
+  },
 
   // //Note:------Just a example for how to write routes who have childrens change according tp your needs
   // {
