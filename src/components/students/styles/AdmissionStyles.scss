@@ -19,11 +19,12 @@
             .labelContainer {
                 display: flex !important;
                 justify-content: space-around;
+
                 .stepLabel {
                     width: 85%;
-                        white-space: nowrap;
-                        overflow: hidden !important;
-                        text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden !important;
+                    text-overflow: ellipsis;
                 }
 
                 .errorIcon {
@@ -167,7 +168,12 @@
 
             button {
                 margin: 5px 10px;
+
+                &:disabled {
+                    background: darkgrey;
+                }
             }
+
         }
     }
 }

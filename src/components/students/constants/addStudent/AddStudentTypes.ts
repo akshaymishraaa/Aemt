@@ -1,4 +1,5 @@
-export type studentAdmissionFrom = [
+export type studentAdmissionFrom =
+ [
     {
 
         studentInfo: {
@@ -15,7 +16,9 @@ export type studentAdmissionFrom = [
             religion: String | undefined,
             birthCertificate: String | null,
             studentProfile: String,
-            MotherTongue: String | undefined
+            MotherTongue: String | undefined,
+            studentType: String
+
 
         },
     },
@@ -52,7 +55,6 @@ export type studentAdmissionFrom = [
         others:
         {
             transportationMode: String | undefined,
-            studentType: String
         }
     }
 ]
