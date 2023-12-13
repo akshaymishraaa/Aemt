@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 import { useSelector } from 'react-redux'
 import SubmisonDiv from './SubmissionContainer'
 const StudentPersonalDetails = (props: any) => {
-    const { DataValidation, activeStep, setActiveStep, dispatchFormVlaues } = props
+    const { DataValidation, activeStep, setActiveStep, dispatchFormVlaues, admissionData } = props
     const { studenAdmissiontData, formsSubmisionSteps } = useSelector((state: any) => state.studentsModule)
 
 
@@ -21,7 +21,7 @@ const StudentPersonalDetails = (props: any) => {
     return (
         <>
             <Formik
-                initialValues={studenAdmissiontData[0]}
+                initialValues={admissionData[0]}
                 validationSchema={activeStep?.validate}
                 onSubmit={(valuez: any) => {
 

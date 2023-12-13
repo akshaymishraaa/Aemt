@@ -3,15 +3,15 @@ import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import SubmisonDiv from './SubmissionContainer'
 const PreviousAcademicDetails = (props: any) => {
-    const { DataValidation, activeStep, setActiveStep, dispatchFormVlaues } = props
-    const { studenAdmissiontData, formsSubmisionSteps } = useSelector((state: any) => state.studentsModule)
+    const { DataValidation, activeStep, setActiveStep, dispatchFormVlaues, admissionData } = props
+    const {  formsSubmisionSteps } = useSelector((state: any) => state.studentsModule)
 
 
 
     return (
         <>
             <Formik
-                initialValues={studenAdmissiontData[2]}
+                initialValues={admissionData[2]}
                 validationSchema={formsSubmisionSteps[2]?.validate}
                 onSubmit={(values: any) => {
 
