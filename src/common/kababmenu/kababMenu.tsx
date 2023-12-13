@@ -8,9 +8,10 @@ import RecievedCertificationsList from '../../components/students/components/lis
 import StudentFeeDetails from '../../components/students/components/studentFeeRecord/StudentFeeRecordDetails';
 
 const ITEM_HEIGHT = 48;
-interface MenuPorps{
-    options?:any,
-    rowData?:any
+interface MenuPorps {
+    options?: any,
+    rowData?: any,
+    onClick?: any
 }
 
 
@@ -54,10 +55,14 @@ export default function LongMenu(props: MenuPorps) {
                 }}
             >
                 {
-                    props?.options?.map((option:any,index:number)=>{
-                        return(
-                            <MenuItem>
-                                <option.element Data={props?.rowData} setAnchorEl={setAnchorEl}/>
+                    props?.options?.map((option: any, index: number) => {
+                        return (
+                            <MenuItem key={index} >
+                                <div onClick={(e:any)=>{props?.onClick(option?.actionType, setAnchorEl)}}>
+
+                                    <option.icon />
+                                    <span>{option?.name}</span>
+                                </div>
                             </MenuItem>
                         )
 

@@ -22,7 +22,7 @@ const StudentPersonalDetails = (props: any) => {
         <>
             <Formik
                 initialValues={admissionData[0]}
-                validationSchema={activeStep?.validate}
+                validationSchema={formsSubmisionSteps[0]?.validate}
                 onSubmit={(valuez: any) => {
 
                 }}

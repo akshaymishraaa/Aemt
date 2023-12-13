@@ -15,8 +15,6 @@ import { studentTypes } from '../../reducer/types';
 import { Actiontypes } from '../../../../types/ActionTypes';
 import { toastEnabled } from '../../../../actions/Action';
 import { studentAdmissionDetails } from '../../constants/addStudent/AddStudentModal';
-import { studentAdmissionFrom } from "../../constants/addStudent/AddStudentTypes"
-
 
 const AddEditNewStudentDetails = (props: any) => {
     const navigate = useNavigate()
@@ -25,7 +23,6 @@ const AddEditNewStudentDetails = (props: any) => {
     const current = useRef(false)
     const dispatch = useDispatch()
     const [admissionData,setAdmissionData]=useState<any>()
-
 
     const renderFetchForms = (DataValidation: any, dispatchFormVlaues: any) => {
         switch (activeStep?.name) {
@@ -68,7 +65,6 @@ const AddEditNewStudentDetails = (props: any) => {
             setAdmissionData({...studentAdmissionDetails})
             return item
         })
-        console.log(payload, "60....payload")
         dispatch({ type: studentTypes.ADMISSION_STEPS, payload: payload })
         setActiveStep(formsSubmisionSteps[0])
     }, [])
@@ -80,7 +76,6 @@ const AddEditNewStudentDetails = (props: any) => {
         let payload = admissionData
         payload[activeStep?.stepNo] = data
         setAdmissionData(payload)
-        console.log(payload,studentAdmissionDetails,"84....data")
        
     }
 
@@ -136,27 +131,7 @@ const AddEditNewStudentDetails = (props: any) => {
         }
         else {
             stepHasErrorsToValidate()
-
-
         }
-
-        // }
-        // else {
-        //     if (activeStep?.submited === null || activeStep?.submited === false) {
-        //         stepHasErrorsToValidate()
-
-        //     }
-        //     else {
-        //         if(activeStep?.stepNo !== 3){
-        //             let next_Step = formsSubmisionSteps[activeStep.stepNo + 1]
-        //             setActiveStep(next_Step)
-        //         }
-        //         else{
-        //             formSubmisionValidation()
-        //         }
-
-        //     }
-        // }
     }
 
     return (

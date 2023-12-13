@@ -11,11 +11,16 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import '../styles/Styles.scss'
 import LongMenu from '../../../common/kababmenu/kababMenu';
 import { MenuAction } from '../constants/kababMemuList';
+import CertificationIndex from './certifications/CertificationIndex';
+import PendingFeeIndex from './pendingFee/PendingFeeIndex';
+import RecievedCertificationsList from './listOfReceivedCertificates/RecivedCertifications';
+import StudentFeeDetails from './studentFeeRecord/StudentFeeRecordDetails';
 
 
 export default function StudentDetails() {
 
     const navigate = useNavigate()
+    const [actionType, setActionType] = useState()
 
     const studentData: any = [
         { id: 'STX1', studentName: 'Amar pratap', rollNo: 12, class: '10th', section: 'D', parentContact: 99858348484 },
@@ -26,6 +31,16 @@ export default function StudentDetails() {
         { id: 'STX3', studentName: 'Robert', rollNo: 6, class: '10th', section: 'D', parentContact: 99858348484 },
 
     ]
+    const SelectedMenuAction = (actionType: any, setAnchorEl: any) => {
+        setActionType(actionType)
+        // return (
+        //     <>
+        //         {actionType === 'generateCertifications'?<CertificationIndex />:''}
+        //     </>
+        // )
+        // setAnchorEl(null);
+
+    }
 
     const actionBody = (rowData: any) => {
         return (
@@ -33,9 +48,7 @@ export default function StudentDetails() {
                 <div className='d-flex'>
                     <DeleteIcon /> |  &nbsp;
                     <EditIcon />   |  &nbsp;
-                    <span><LongMenu rowData={rowData} options={MenuAction}/></span>
-
-
+                    <span><LongMenu rowData={rowData} options={MenuAction} onClick={SelectedMenuAction} /></span>
                 </div>
             </React.Fragment>
         )
@@ -73,6 +86,11 @@ export default function StudentDetails() {
                         <Column body={actionBody} header={'Actions'} />
                     </DataTable>
                 </div>
+                {
+                    actionType === 'generateCertifications' && <CertificationIndex /> }
+                  {  actionType === 'feeRecord'&&<StudentFeeDetails/>}
+                {actionType ==='cetificateList'&& <RecievedCertificationsList/>
+                }
 
             </div>
         </CommonCard>

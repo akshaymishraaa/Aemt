@@ -2,16 +2,19 @@ import { lazy } from "react";
 
 export const MenuAction = [
     {
-        name: "generateCertifications",
-        element: lazy(() => import('../components/certifications/CertificationIndex'))
+        name: "Generate Certifications",
+        icon: lazy(() => import('@mui/icons-material/ReceiptLong')),
+        actionType:'generateCertifications'
     },
     {
-        name: 'cetificateList',
-        element: lazy(() => import('../components/listOfReceivedCertificates/RecivedCertifications'))
+        actionType: 'cetificateList',
+        icon: lazy(() => import('@mui/icons-material/ListAlt')),
+        name:"Issued CetificateList"
     },
     {
-        name: "studentFeeDetails",
-        element: lazy(() => import('../components/studentFeeRecord/StudentFeeRecordDetails'))
+        name: "Student Fee Details",
+        icon: lazy(() => import('@mui/icons-material/DynamicFeed')),
+        actionType:"feeRecord"
 
     }
 ]
