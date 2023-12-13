@@ -16,7 +16,7 @@ const OthersDetails = (props: any) => {
             initialValues={admissionData[3]}
             validationSchema={formsSubmisionSteps[3]?.validate}
             onSubmit={(values: any) => {
-
+                console.log('19....val',values)
             }}>
             {({ errors, touched, setFieldValue, values }) => {
                 return (
