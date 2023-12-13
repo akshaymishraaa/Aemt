@@ -69,7 +69,7 @@ const AddEditNewStudentDetails = (props: any) => {
             setAdmissionData({...studentAdmissionDetails})
             return item
         })
-        console.log(payload, "60....payload")
+        // console.log(payload, "60....payload")
         dispatch({ type: studentTypes.ADMISSION_STEPS, payload: payload })
         setActiveStep(formsSubmisionSteps[0])
     }, [])
