@@ -232,7 +232,6 @@ export const Addnewstudent: any = (props: any, callback: any) => {
         if (callback) {
           callback(res.data);
         }
-        // dispatch({ type: Actiontypes.organization, payload: res?.data })
       })
       .catch((err: any) => {
         console.log(err);
