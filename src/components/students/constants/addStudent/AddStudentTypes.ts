@@ -37,7 +37,7 @@ export type studentAdmissionFrom =
             localAddress: String | undefined,
             PermenantAddress: String | undefined,
             emailId: String,
-            familyYearlyIcome: Number | null,
+            familyYearlyIcome: string | null,
             gurdianProfile: String
         },
     },

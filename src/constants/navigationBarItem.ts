@@ -66,4 +66,11 @@ export const navigationItem = [
     navigateTo: "/managements",
     icon: lazy(() => import("@mui/icons-material/ManageHistory"))
   },
+  {
+    name: "Store",
+    pathName: "/store",
+    component: lazy(() => import("../components/sales_inventory/index")),
+    navigateTo: "/store",
+    icon: lazy(() => import("@mui/icons-material/Storefront"))
+  },
 ];

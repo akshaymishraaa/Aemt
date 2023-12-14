@@ -15,6 +15,8 @@ import { studentTypes } from '../../reducer/types';
 import { Actiontypes } from '../../../../types/ActionTypes';
 import { toastEnabled } from '../../../../actions/Action';
 import { studentAdmissionDetails } from '../../constants/addStudent/AddStudentModal';
+import { Addnewstudent } from '../../../actions/actions';
+
 
 const AddEditNewStudentDetails = (props: any) => {
     const navigate = useNavigate()
@@ -65,6 +67,7 @@ const AddEditNewStudentDetails = (props: any) => {
             setAdmissionData({...studentAdmissionDetails})
             return item
         })
+        // console.log(payload, "60....payload")
         dispatch({ type: studentTypes.ADMISSION_STEPS, payload: payload })
         setActiveStep(formsSubmisionSteps[0])
     }, [])
@@ -76,6 +79,9 @@ const AddEditNewStudentDetails = (props: any) => {
         let payload = admissionData
         payload[activeStep?.stepNo] = data
         setAdmissionData(payload)
+       
+       
+
        
     }
 
@@ -92,9 +98,16 @@ const AddEditNewStudentDetails = (props: any) => {
     const formSubmisionValidation = () => {
         let validateCompleteSubmission = formsSubmisionSteps?.filter((item: any) => item.submited !== true)
         if (validateCompleteSubmission?.length === 0) {
-            let payload= studentAdmissionDetails
+            let payload:any= []
+            Object.keys(admissionData).map((item:any)=>{
+                payload.push(admissionData[item])
+
+            })
+            console.log('sdata....',payload)
+            dispatch(Addnewstudent(payload,(data:any)=>{
+                dispatch(toastEnabled({ summary: data.message, detail: data.message, severity: 'success', show: true }))
+            }))
             console.log(Object.keys(payload)?.map((item:any)=>console.log(Object.keys(item),"67..objects")),"45")
-            dispatch(toastEnabled({ summary: 'Admission Completed', detail: 'Student Enrolled success fully', severity: 'success', show: true }))
             // navigate('/students')
 
         }

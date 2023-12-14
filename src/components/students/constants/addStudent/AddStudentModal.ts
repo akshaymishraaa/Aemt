@@ -18,7 +18,7 @@ export const studentAdmissionDetails: studentAdmissionFrom =
         religion: undefined,
         bloodGroup: '',
         birthCertificate: '',
-            studentType: "NEW"
+        studentType: "NEW"
         
     },
 },
@@ -37,7 +37,7 @@ export const studentAdmissionDetails: studentAdmissionFrom =
         localAddress: undefined,
         PermenantAddress: undefined,
         emailId: '',
-        familyYearlyIcome: null,
+        familyYearlyIcome: '',
         gurdianProfile: ''
 
 

@@ -215,3 +215,26 @@ export const updateUserById: any = (params: any, payload: any) => {
     })
   };
 };
+
+// Add new student
+
+export const Addnewstudent: any = (props: any, callback: any) => {
+  console.log(props, "5....");
+  const url = `${baseurl}/addStudent`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "POST",
+      data: props,
+    })
+      .then((res: any) => {
+        console.log("res...99", res);
+        if (callback) {
+          callback(res.data);
+        }
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  };
+};

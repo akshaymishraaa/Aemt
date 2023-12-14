@@ -102,7 +102,7 @@ console.log(tabs,"29---")
               email: "",
               contactNo: "",
               password: "",
-              org_name: userDetails.organization,
+              orgName: userDetails.organization,
               role: "",
               allowedModule: [],
             }}
@@ -122,7 +122,7 @@ console.log(tabs,"29---")
                           id="org_name"
                           name="org_name"
                           placeholder="Enter Your Org_name"
-                          value={values.org_name}
+                          value={values.orgName}
                           disabled
                           // className={((touched?.password && errors.password) ? "inputerror" : "")}
                           className="form-control form-control-md text-field"
