@@ -15,7 +15,6 @@ import { studentTypes } from '../../reducer/types';
 import { Actiontypes } from '../../../../types/ActionTypes';
 import { toastEnabled } from '../../../../actions/Action';
 import { studentAdmissionDetails } from '../../constants/addStudent/AddStudentModal';
-import { studentAdmissionFrom } from "../../constants/addStudent/AddStudentTypes"
 import { Addnewstudent } from '../../../actions/actions';
 
 
@@ -26,7 +25,6 @@ const AddEditNewStudentDetails = (props: any) => {
     const current = useRef(false)
     const dispatch = useDispatch()
     const [admissionData,setAdmissionData]=useState<any>()
-
 
     const renderFetchForms = (DataValidation: any, dispatchFormVlaues: any) => {
         switch (activeStep?.name) {
@@ -82,7 +80,7 @@ const AddEditNewStudentDetails = (props: any) => {
         payload[activeStep?.stepNo] = data
         setAdmissionData(payload)
        
-        console.log(payload,studentAdmissionDetails,"84....data")
+       
 
        
     }
@@ -100,9 +98,13 @@ const AddEditNewStudentDetails = (props: any) => {
     const formSubmisionValidation = () => {
         let validateCompleteSubmission = formsSubmisionSteps?.filter((item: any) => item.submited !== true)
         if (validateCompleteSubmission?.length === 0) {
-            let payload= studentAdmissionDetails
+            let payload:any= []
+            Object.keys(admissionData).map((item:any)=>{
+                payload.push(admissionData[item])
+
+            })
+            console.log('sdata....',payload)
             dispatch(Addnewstudent(payload,(data:any)=>{
-                console.log('sdata....',data)
                 dispatch(toastEnabled({ summary: data.message, detail: data.message, severity: 'success', show: true }))
             }))
             console.log(Object.keys(payload)?.map((item:any)=>console.log(Object.keys(item),"67..objects")),"45")
@@ -142,27 +144,7 @@ const AddEditNewStudentDetails = (props: any) => {
         }
         else {
             stepHasErrorsToValidate()
-
-
         }
-
-        // }
-        // else {
-        //     if (activeStep?.submited === null || activeStep?.submited === false) {
-        //         stepHasErrorsToValidate()
-
-        //     }
-        //     else {
-        //         if(activeStep?.stepNo !== 3){
-        //             let next_Step = formsSubmisionSteps[activeStep.stepNo + 1]
-        //             setActiveStep(next_Step)
-        //         }
-        //         else{
-        //             formSubmisionValidation()
-        //         }
-
-        //     }
-        // }
     }
 
     return (
