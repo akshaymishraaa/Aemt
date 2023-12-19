@@ -1,5 +1,5 @@
 .RegistrationPageMain {
-    background-color: rgba(42, 42, 104, 255);
+    background-color: #ffffff;
     min-height: 100vh;
     width: 100%;
     color: aliceblue;
@@ -23,17 +23,25 @@
         overflow: auto;
 
         .form {
-            background-color: rgba(191, 181, 153);
+            background-color: rgb(154, 201, 201);
             margin: 5px;
             padding: 10px 15px;
+            border-radius: 22px;
 
             .formSubmission {
                 display: flex;
                 justify-content: center;
                 margin-bottom: 15px;
 
-                button {
-                    margin-left: 20px;
+                .register {
+                    display: flex;
+                    justify-content: center;
+                }
+                .back-btn {
+                    // background-color: rgb(128, 229, 148);
+                    // border: 1px solid gray;
+                    margin-top: 5px;
+                    width: 30vw;
                 }
             }
 

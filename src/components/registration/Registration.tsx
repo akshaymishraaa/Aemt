@@ -156,11 +156,9 @@ function Registration() {
 
   return (
     <div className=' row RegistrationPageMain col-12 p-0 m-0'>
-      <p className='mainHeading'>ORGANIZATION REGISTRATION</p>
 
       {/* <p className='backToSighnIn' onClick={() => { handleBackToSighnIn() }}><ArrowBackOutlinedIcon />Back To SighnIn </p> */}
-      <div className='formContainer ' >
-
+      <div className='formContainer' >
         <Formik
           initialValues={RegistrationModal}
           validationSchema={ValidateRegistration}
@@ -391,8 +389,12 @@ function Registration() {
                   </div> */}
                 </div>
                 <div className='formSubmission'>
-                  <Button variant="contained" type={'submit'} onClick={(e: any) => { setformStates({ ...formStates, formSubmitted: true }) }}>Register</Button>
-                  <Button variant="contained" color="error" type={'button'} onClick={(e: any) => { handleBackToSighnIn() }}> <ArrowBackOutlinedIcon />Back To Sighn In</Button>
+                  <div>
+                    <div className='register'>
+                      <Button variant="contained" type={'submit'} onClick={(e: any) => { setformStates({ ...formStates, formSubmitted: true }) }}>Register organization</Button>
+                    </div>
+                    <Button variant="outlined" className="back-btn" color="success" type={'button'} onClick={(e: any) => { handleBackToSighnIn() }}>Go back to sign in</Button>
+                  </div>
                 </div>
               </Form>
 
