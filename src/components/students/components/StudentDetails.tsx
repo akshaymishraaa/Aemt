@@ -15,13 +15,19 @@ import CertificationIndex from './certifications/CertificationIndex';
 import PendingFeeIndex from './pendingFee/PendingFeeIndex';
 import RecievedCertificationsList from './listOfReceivedCertificates/RecivedCertifications';
 import StudentFeeDetails from './studentFeeRecord/StudentFeeRecordDetails';
+import { useDispatch } from 'react-redux';
+import { getAllStudentDetails } from '../../actions/actions';
 
 
 export default function StudentDetails() {
 
     const navigate = useNavigate()
-    const [actionType, setActionType] = useState()
+    const [actionType, setActionType] = useState();
+    const dispatch = useDispatch();
 
+    useEffect(()=>{
+        dispatch(getAllStudentDetails())
+    },[])
     const studentData: any = [
         { id: 'STX1', studentName: 'Amar pratap', rollNo: 12, class: '10th', section: 'D', parentContact: 99858348484 },
         { id: 'STX2', studentName: 'Akshay', rollNo: 2, class: '10th', section: 'A', parentContact: 99858348484 },
