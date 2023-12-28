@@ -238,3 +238,22 @@ export const Addnewstudent: any = (props: any, callback: any) => {
       });
   };
 };
+
+// Get all student details 
+
+export const getAllStudentDetails: any = (paylaod: any, callback: any) => {
+  const url = `${baseurl}/getAllStudentDetails`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "GET",
+      data: '',
+    })
+      .then((res: any) => {
+        console.log("122....", res.data);
+      })
+      .catch((err: any) => {
+        console.log("error...", err);
+      });
+  };
+};
