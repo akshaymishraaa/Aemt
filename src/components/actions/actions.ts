@@ -134,6 +134,7 @@ export const getCountries: any = (callback: any) => {
           }
         }
         console.log("122....res.data", res?.data);
+        sessionStorage.setItem("key","res")
       })
       .catch((err: any) => {
         console.log("error...", err);

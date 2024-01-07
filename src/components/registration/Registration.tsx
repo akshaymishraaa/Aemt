@@ -92,6 +92,7 @@ function Registration() {
 
   }
   const dispatch = useDispatch()
+  
   const renderTooltip = (err: any, name: string, touched: any) => {
     return (
       <>
@@ -104,6 +105,8 @@ function Registration() {
   const userReg = (values: any) => {
     dispatch(registerOrganization(values, (data: any) => {
       dispatch({ type: Actiontypes.RECENT_REGISTERED_ORG, payload: data })
+      sessionStorage.setItem("data",JSON.stringify(data))
+
       navigate('/createUser')
     }))
 
@@ -164,6 +167,7 @@ function Registration() {
           validationSchema={ValidateRegistration}
           onSubmit={(values: any) => {
             userReg(values)
+
           }}>
           {({ errors, touched, setFieldValue, values, handleBlur, isSubmitting, setFieldTouched }) => {
             { console.log(values, errors, touched, "30....") }

@@ -143,8 +143,8 @@ function UserProfile() {
                 <div>
                   <div className='user-profile-input'>
                       <Field type={"text"}
-                        name="role"
-                        id="role"
+                        name="newrole"
+                        id="newrole"
                         placeHolder={"Enter role"}
                         className="form-control ms-3 input-sm "
                         value={newrole}
@@ -152,7 +152,8 @@ function UserProfile() {
                       />
                       </div>
                 </div>
-                      <div className='text-danger ms-4'><ErrorMessage name="role"></ErrorMessage></div>
+                      <div className='text-danger ms-4'>
+                        <ErrorMessage name="newrole"></ErrorMessage></div>
                 </div>
             </div>
 

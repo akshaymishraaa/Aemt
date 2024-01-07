@@ -10,23 +10,31 @@ import {
 import { Actiontypes } from "../../types/ActionTypes";
 import { validateUserSchema } from "../roles/helpers/validate";
 import CommonCard from '../../common/CommonCard';
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 
 function CreateSuperUser() {
     const [error, setError] = React.useState(false);
     const { tabs, recentOrganizationName } = useSelector((state: any) => state.application);
     const dispatch = useDispatch();
+    const location = useLocation();
+    const navigate = useNavigate();
 
-    const tabOptions = recentOrganizationName.modules
-    // ?.map((item: any, index: any) => {
-    //     let optionObject = { label: "", value: "" };
-    //     optionObject.label = item.name;
-    //     optionObject.value = item.name;
 
-    //     return optionObject;
-    // });
-    const rolesOption = recentOrganizationName?.role.map((item: any, index: any) => {
+    const data: any = sessionStorage.getItem("data")
+
+    JSON.parse(data)
+    let orgDeatils: any = recentOrganizationName.organization ? recentOrganizationName : data
+    console.log('23...', orgDeatils)
+    const tabOptions = orgDeatils?.modules
+        ?.map((item: any, index: any) => {
+            let optionObject = { label: "", value: "" };
+            optionObject.label = item.name;
+            optionObject.value = item.name;
+
+            return optionObject;
+        });
+    const rolesOption = orgDeatils?.role?.map((item: any, index: any) => {
         let optionObject = { label: '', value: '' }
         optionObject.label = item.label;
         optionObject.value = item.value;
@@ -40,6 +48,7 @@ function CreateSuperUser() {
                 dispatch({ type: Actiontypes.GET_ALL_TABS, payload: data });
             })
         );
+        navigate(`${location.pathname}`)
 
     }, []);
 
@@ -65,13 +74,13 @@ function CreateSuperUser() {
 
     return (
         <div className="container-fluid d-flex justify-content-center mt-5" >
-             <CommonCard  title={'Create super user for access application'}>
-            {/* <div className="border border-1 p-5" > */}
+            <CommonCard title={'Create super user for access application'}>
+                {/* <div className="border border-1 p-5" > */}
                 {/* <h3>Create super user for access application</h3> */}
                 {/* <hr /> */}
                 <Formik
                     initialValues={{
-                        orgName: recentOrganizationName.organization,
+                        orgName: orgDeatils?.organization,
                         firstName: "",
                         lastName: "",
                         email: "",
@@ -233,10 +242,10 @@ function CreateSuperUser() {
                                                 }
                                                 className="w-100"
                                                 isMulti={true}
-                                                defaultValue={recentOrganizationName.modules.filter((item: any) => item.status && item)}
+                                                defaultValue={orgDeatils?.modules?.filter((item: any) => item.status && item)}
                                             />
                                             <>
-                                                {console.log('228...', recentOrganizationName.modules.filter((item: any) => item.status && item))}
+                                                {console.log('228...', orgDeatils?.modules?.filter((item: any) => item.status && item))}
                                             </>
                                             <ErrorMessage
                                                 name="allowedModule"
@@ -253,7 +262,7 @@ function CreateSuperUser() {
                         );
                     }}
                 </Formik>
-            {/* </div> */}
+                {/* </div> */}
             </CommonCard>
         </div>
     )

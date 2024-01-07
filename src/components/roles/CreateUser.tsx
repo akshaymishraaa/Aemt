@@ -27,12 +27,12 @@ function CreateUser() {
     setError(false);
   };
 console.log(tabs,"29---")
-  const tabOptions = tabs[0]?.tabs?.map((item: any, index: any) => {
-    let optionObject = { label: "", value: "" };
-    optionObject.label = item;
-    optionObject.value = item;
-    return optionObject;
-  });
+  // const tabOptions = tabs[0]?.tabs?.map((item: any, index: any) => {
+  //   let optionObject = { label: "", value: "" };
+  //   optionObject.label = item;
+  //   optionObject.value = item;
+  //   return optionObject;
+  // });
 
   const openDialog = () => {
     setOpen(true);
@@ -52,7 +52,6 @@ console.log(tabs,"29---")
       createUser(values, (data: any) => {
         if (data.status === "success") {
           onClose();
-
           dispatch(
             getAllUserDetails((data: any) => {
               
@@ -64,8 +63,10 @@ console.log(tabs,"29---")
         }
       })
     );
+    sessionStorage.getItem("values")
   };
 
+  console.log("lineeeeee 69",sessionStorage.getItem)
   return (
     <>
       {/* <div className="d-flex justify-content-end my-2">
@@ -102,7 +103,7 @@ console.log(tabs,"29---")
               email: "",
               contactNo: "",
               password: "",
-              orgName: userDetails.organization,
+              org_name: userDetails.organization,
               role: "",
               allowedModule: [],
             }}
@@ -122,7 +123,7 @@ console.log(tabs,"29---")
                           id="org_name"
                           name="org_name"
                           placeholder="Enter Your Org_name"
-                          value={values.orgName}
+                          value={values.org_name}
                           disabled
                           // className={((touched?.password && errors.password) ? "inputerror" : "")}
                           className="form-control form-control-md text-field"
