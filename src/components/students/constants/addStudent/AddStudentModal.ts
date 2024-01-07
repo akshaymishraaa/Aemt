@@ -1,9 +1,12 @@
 import { studentAdmissionFrom } from "./AddStudentTypes"
-export const studentAdmissionDetails: studentAdmissionFrom = {
-    studentInfo: {
-        studentFullName: undefined,
-        dateOfBirth: '',
-        gender: '',
+export const studentAdmissionDetails: studentAdmissionFrom =
+ [
+    {
+
+        studentInfo: {
+            studentFullName: undefined,
+            dateOfBirth: '',
+            gender: '',
         adharNumber: '',
         categorgy: '',
         classJoining: '',
@@ -14,9 +17,13 @@ export const studentAdmissionDetails: studentAdmissionFrom = {
         MotherTongue: undefined,
         religion: undefined,
         bloodGroup: '',
-        birthCertificate: ''
-
+        birthCertificate: '',
+        studentType: "NEW"
+        
     },
+},
+{
+
     parentsInfo: {
         fatherName: undefined,
         fatherOccupation: undefined,
@@ -30,21 +37,28 @@ export const studentAdmissionDetails: studentAdmissionFrom = {
         localAddress: undefined,
         PermenantAddress: undefined,
         emailId: '',
-        familyYearlyIcome: null,
+        familyYearlyIcome: '',
         gurdianProfile: ''
 
 
     },
+},
+{
+    
     previousAcademicDetails: {
         lastClassDetails: undefined,
         schoolName: undefined,
         lastAcedamicPercentage: undefined,
         transferCertificate: ''
     },
+},
+{
+
     others:
     {
         transportationMode: undefined,
-        studentType:"NEW"
+       
     }
-
 }
+
+]

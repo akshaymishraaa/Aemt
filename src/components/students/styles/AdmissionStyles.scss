@@ -8,9 +8,8 @@
     }
 
     .stepers {
-        div {
-
-            width: 25%;
+        button {
+            width: 15%;
             background-color: grey;
             border-top-right-radius: 50px;
             border-top-left-radius: 50px;
@@ -18,23 +17,28 @@
             color: white;
 
             .labelContainer {
-                display: flex;
+                display: flex !important;
                 justify-content: space-around;
 
-                .StepLabel {
+                .stepLabel {
                     width: 85%;
+                    white-space: nowrap;
+                    overflow: hidden !important;
+                    text-overflow: ellipsis;
                 }
 
                 .errorIcon {
-                    width: 10%;
+                    width: fit-content;
                     border-radius: 50%;
                     background-color: red;
+                    color: white;
                 }
 
                 .no-errors {
-                    width: 10%;
+                    width: fit-content;
                     border-radius: 50%;
                     background: green;
+                    color: white;
                 }
             }
         }
@@ -49,7 +53,7 @@
 
     .studentTypeDef {
         text-align: end;
-        margin: 0px 40px;
+        margin: 0px 5rem;
 
         div {
             label {
@@ -164,7 +168,12 @@
 
             button {
                 margin: 5px 10px;
+
+                &:disabled {
+                    background: darkgrey;
+                }
             }
+
         }
     }
 }

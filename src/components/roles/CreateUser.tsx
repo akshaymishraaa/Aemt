@@ -20,19 +20,19 @@ import CommonSearchField from "../../common/CommonSearchField";
 function CreateUser() {
   const [open, setOpen] = React.useState(false);
   const [error, setError] = React.useState(false);
-  const { tabs } = useSelector((state: any) => state.application);
+  const { tabs,userDetails } = useSelector((state: any) => state.application);
   const dispatch = useDispatch();
   const onClose = () => {
     setOpen(false);
     setError(false);
   };
 console.log(tabs,"29---")
-  const tabOptions = tabs[0]?.tabs?.map((item: any, index: any) => {
-    let optionObject = { label: "", value: "" };
-    optionObject.label = item;
-    optionObject.value = item;
-    return optionObject;
-  });
+  // const tabOptions = tabs[0]?.tabs?.map((item: any, index: any) => {
+  //   let optionObject = { label: "", value: "" };
+  //   optionObject.label = item;
+  //   optionObject.value = item;
+  //   return optionObject;
+  // });
 
   const openDialog = () => {
     setOpen(true);
@@ -47,14 +47,14 @@ console.log(tabs,"29---")
   }, []);
 
   const submitHandler = (values: any) => {
-    // console.log("17...", values);
+    console.log("17...", values);
     dispatch(
       createUser(values, (data: any) => {
         if (data.status === "success") {
           onClose();
-
           dispatch(
             getAllUserDetails((data: any) => {
+              
               dispatch({ type: Actiontypes.GET_ALL_USER_DATA, payload: data });
             })
           );
@@ -63,8 +63,10 @@ console.log(tabs,"29---")
         }
       })
     );
+    sessionStorage.getItem("values")
   };
 
+  console.log("lineeeeee 69",sessionStorage.getItem)
   return (
     <>
       {/* <div className="d-flex justify-content-end my-2">
@@ -101,7 +103,7 @@ console.log(tabs,"29---")
               email: "",
               contactNo: "",
               password: "",
-              org_name: "",
+              org_name: userDetails.organization,
               role: "",
               allowedModule: [],
             }}
@@ -109,6 +111,7 @@ console.log(tabs,"29---")
             onSubmit={(values: any) => submitHandler(values)}
           >
             {({ values, errors, touched, setFieldValue }) => {
+              console.log('113....',values)
               return (
                 <Form id="createUser">
                   <div className="row ">
@@ -244,7 +247,8 @@ console.log(tabs,"29---")
                           isMulti={true}
                           
                           onChange={(e: any) =>
-                            setFieldValue("allowedModule", e.value)
+                            {console.log('249...',e)
+                            setFieldValue("allowedModule", e)}
                           }
                         // className={((touched?.allowedModule && errors.allowedModule) ? "selecterror" : "")}
                         />

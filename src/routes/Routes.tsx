@@ -12,36 +12,43 @@ import PrivateRoute from "./PrivateRoute";
 // import Dashboard from "../components/dashboard";
 import { privateRoutes } from "../constants/lazyRoutes";
 import CreateSuperUser from "../components/registration/CreateSuperUser";
+import ToastAlert from "../common/toaster/ToastAlert";
 function Root() {
   const { isAuthenticated } = useSelector((state: any) => state.application);
   return (
     // <BrowserRouter>
     <Suspense fallback={<LoadingScreen />}>
+      <ToastAlert />
       <Routing>
-        <Route
-          path="/"  
-          element={
-            <PublicRoute to="/home">
-              <Login />
-            </PublicRoute>
-          }
-        ></Route>
-        <Route
-          path="/registration"
-          element={
-            <PublicRoute to="/register">
-              <Registration />
-            </PublicRoute>
-          }
-        ></Route>
-        <Route
-          path="/createUser"
-          element={
-            <PublicRoute to="/createUser">
-              <CreateSuperUser />
-            </PublicRoute>
-          }
-        ></Route>
+        {
+          !isAuthenticated && <>
+            <Route
+              path="/"
+              element={
+                <PublicRoute to="/home">
+                  <Login />
+                </PublicRoute>
+              }
+            ></Route>
+            <Route
+              path="/registration"
+              element={
+                <PublicRoute to="/register">
+                  <Registration />
+                </PublicRoute>
+              }
+            ></Route>
+            <Route
+              path="/createUser"
+              element={
+                <PublicRoute to="/createUser">
+                  <CreateSuperUser />
+                </PublicRoute>
+              }
+            ></Route>
+          </>
+        }
+
         <>
           {privateRoutes?.map((item: any, index: number) => {
             return (

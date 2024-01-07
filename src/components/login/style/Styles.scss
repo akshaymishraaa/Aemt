@@ -2,3 +2,21 @@ $primaryColor: rgb(90, 214, 241);
 container {
   background-color: $primaryColor;
 }
+.img-container {
+  background-size: cover;
+  background-color: #a8bfaf;
+  height: 100vh;
+  overflow: hidden;
+}
+img{
+  width: 80%;
+  height: auto;
+}
+
+.field-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+

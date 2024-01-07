@@ -13,11 +13,25 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import LongMenu from '../../../common/kababmenu/kababMenu';
+import { MenuAction } from '../constants/kababMemuList';
+import CertificationIndex from './certifications/CertificationIndex';
+import PendingFeeIndex from './pendingFee/PendingFeeIndex';
+import RecievedCertificationsList from './listOfReceivedCertificates/RecivedCertifications';
+import StudentFeeDetails from './studentFeeRecord/StudentFeeRecordDetails';
+import { useDispatch } from 'react-redux';
+import { getAllStudentDetails } from '../../actions/actions';
+
 
 export default function StudentDetails() {
 
     const navigate = useNavigate()
+    const [actionType, setActionType] = useState();
+    const dispatch = useDispatch();
 
+    useEffect(()=>{
+        dispatch(getAllStudentDetails())
+    },[])
     const studentData: any = [
         { id: 'STX1', studentName: 'Amar pratap', rollNo: 12, class: '10th', section: 'D', parentContact: 99858348484 },
         { id: 'STX2', studentName: 'Akshay', rollNo: 2, class: '10th', section: 'A', parentContact: 99858348484 },
@@ -27,6 +41,16 @@ export default function StudentDetails() {
         { id: 'STX3', studentName: 'Robert', rollNo: 6, class: '10th', section: 'D', parentContact: 99858348484 },
 
     ]
+    const SelectedMenuAction = (actionType: any, setAnchorEl: any) => {
+        setActionType(actionType)
+        // return (
+        //     <>
+        //         {actionType === 'generateCertifications'?<CertificationIndex />:''}
+        //     </>
+        // )
+        // setAnchorEl(null);
+
+    }
 
 
     const style = {
@@ -50,7 +74,7 @@ export default function StudentDetails() {
     const actionBody = (rowData: any) => {
         return (
             <React.Fragment>
-                <div>
+                <div className='d-flex'>
                     <DeleteIcon /> |  &nbsp;
                     <EditIcon />   |  &nbsp;
                     <span onClick={handleOpen}><MoreVertIcon /></span>
@@ -72,6 +96,7 @@ export default function StudentDetails() {
                     </Modal>
 
 
+                    <span><LongMenu rowData={rowData} options={MenuAction} onClick={SelectedMenuAction} /></span>
                 </div>
             </React.Fragment>
         )
@@ -110,6 +135,11 @@ export default function StudentDetails() {
                     </DataTable>
 
                 </div>
+                {
+                    actionType === 'generateCertifications' && <CertificationIndex /> }
+                  {  actionType === 'feeRecord'&&<StudentFeeDetails/>}
+                {actionType ==='cetificateList'&& <RecievedCertificationsList/>
+                }
 
             </div>
         </CommonCard>

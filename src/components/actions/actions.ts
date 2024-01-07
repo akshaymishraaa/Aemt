@@ -134,6 +134,7 @@ export const getCountries: any = (callback: any) => {
           }
         }
         console.log("122....res.data", res?.data);
+        sessionStorage.setItem("key","res")
       })
       .catch((err: any) => {
         console.log("error...", err);
@@ -213,5 +214,47 @@ export const updateUserById: any = (params: any, payload: any) => {
     }).catch((err:any)=>{
       console.log('Error....',err)
     })
+  };
+};
+
+// Add new student
+
+export const Addnewstudent: any = (props: any, callback: any) => {
+  console.log(props, "5....");
+  const url = `${baseurl}/addStudent`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "POST",
+      data: props,
+    })
+      .then((res: any) => {
+        console.log("res...99", res);
+        if (callback) {
+          callback(res.data);
+        }
+      })
+      .catch((err: any) => {
+        console.log(err);
+      });
+  };
+};
+
+// Get all student details 
+
+export const getAllStudentDetails: any = (paylaod: any, callback: any) => {
+  const url = `${baseurl}/getAllStudentDetails`;
+  return (dispatch: any) => {
+    fetch({
+      url: url,
+      method: "GET",
+      data: '',
+    })
+      .then((res: any) => {
+        console.log("122....", res.data);
+      })
+      .catch((err: any) => {
+        console.log("error...", err);
+      });
   };
 };

@@ -92,6 +92,7 @@ function Registration() {
 
   }
   const dispatch = useDispatch()
+  
   const renderTooltip = (err: any, name: string, touched: any) => {
     return (
       <>
@@ -104,6 +105,8 @@ function Registration() {
   const userReg = (values: any) => {
     dispatch(registerOrganization(values, (data: any) => {
       dispatch({ type: Actiontypes.RECENT_REGISTERED_ORG, payload: data })
+      sessionStorage.setItem("data",JSON.stringify(data))
+
       navigate('/createUser')
     }))
 
@@ -156,16 +159,15 @@ function Registration() {
 
   return (
     <div className=' row RegistrationPageMain col-12 p-0 m-0'>
-      <p className='mainHeading'>ORGANIZATION REGISTRATION</p>
 
       {/* <p className='backToSighnIn' onClick={() => { handleBackToSighnIn() }}><ArrowBackOutlinedIcon />Back To SighnIn </p> */}
-      <div className='formContainer ' >
-
+      <div className='formContainer' >
         <Formik
           initialValues={RegistrationModal}
           validationSchema={ValidateRegistration}
           onSubmit={(values: any) => {
             userReg(values)
+
           }}>
           {({ errors, touched, setFieldValue, values, handleBlur, isSubmitting, setFieldTouched }) => {
             { console.log(values, errors, touched, "30....") }
@@ -391,8 +393,12 @@ function Registration() {
                   </div> */}
                 </div>
                 <div className='formSubmission'>
-                  <Button variant="contained" type={'submit'} onClick={(e: any) => { setformStates({ ...formStates, formSubmitted: true }) }}>Register</Button>
-                  <Button variant="contained" color="error" type={'button'} onClick={(e: any) => { handleBackToSighnIn() }}> <ArrowBackOutlinedIcon />Back To Sighn In</Button>
+                  <div>
+                    <div className='register'>
+                      <Button variant="contained" type={'submit'} onClick={(e: any) => { setformStates({ ...formStates, formSubmitted: true }) }}>Register organization</Button>
+                    </div>
+                    <Button variant="outlined" className="back-btn" color="success" type={'button'} onClick={(e: any) => { handleBackToSighnIn() }}>Go back to sign in</Button>
+                  </div>
                 </div>
               </Form>
 

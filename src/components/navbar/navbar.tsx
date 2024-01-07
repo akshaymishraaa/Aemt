@@ -115,7 +115,7 @@ export default function Navbar() {
     React.useEffect(() => {
         if (sessionStorage.getItem('userData')) {
             dispatch({ type: Actiontypes.IS_USER_AUTHINTCATED, payload: true })
-            navigate('/home')
+            navigate(`${location.pathname}`)
         } else {
             navigate('/')
         }
@@ -152,7 +152,7 @@ export default function Navbar() {
                         Educational Enterprise Management
                     </Typography>
                     <div className=''>
-                        <UserMenu/>
+                        <UserMenu />
                     </div>
                 </Toolbar>
             </AppBar>}
