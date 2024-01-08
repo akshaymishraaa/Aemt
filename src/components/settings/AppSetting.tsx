@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CommonCard from '../../common/CommonCard';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
@@ -27,19 +27,43 @@ const MenuProps = {
 function AppSetting() {
   const { roles } = useSelector((state: any) => state.application);
   const [personName, setPersonName] = React.useState<string[]>([]);
+  
+  const[formData,setFormData]=useState({
+      organiZationName:'',
+    organisationType:'',
+    organisationDetails:'',
+    notificationPermission:[],
+    primaryColor:'',
+    secondaryColor:"",
+    accentColor:'',
+    headerColor:'',
+   backgroundColor:""
+
+ 
+  })
+
+  function handleInputChange(e:any){
+    setFormData((prevValue)=>{
+     const {name,value,checked,type}=e.target;
+     return {
+         ...prevValue,[name]:type==="checkbox"?checked:value
+     }
+    })
+ }
+
+
   const navigate = useNavigate()
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
-  };
+  // const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+  //   const {target: { value },} = event;
+  //   setPersonName(
+  //     // On autofill we get a stringified value.
+  //     typeof value === 'string' ? value.split(',') : value,
+  //   );
+  // };
   const handleSubmit = () => {
-    navigate('/home')
+    console.log(formData)
+   // navigate('/home')
   }
   return (
     <div>
@@ -48,11 +72,11 @@ function AppSetting() {
           <div className='col-6 org-details-section'>
             <div className="form-group mt-2">
               <label>Organization Name</label>
-              <input type="text" className="form-control w-75" id="formGroupExampleInput" placeholder="Organization name" />
+              <input type="text" className="form-control w-75" name='organiZationName' onChange={handleInputChange} id="formGroupExampleInput" placeholder="Organization name" />
             </div>
             <div className="form-group mt-2">
               <label >Organization type</label>
-              <input type="text" className="form-control w-75" id="formGroupExampleInput2" placeholder="Organization Type" />
+              <input type="text" className="form-control w-75" name='organisationType' onChange={handleInputChange}  id="formGroupExampleInput2" placeholder="Organization Type" />
             </div>
             <div className="form-group mt-2">
               <label >Organization Logo</label>
@@ -60,7 +84,7 @@ function AppSetting() {
             </div>
             <div className="form-group mt-2">
               <label >Organization Details</label>
-              <input type="textarea" className="form-control w-75" id="formGroupExampleInput2" placeholder="Organization Type" />
+              <input type="textarea" className="form-control w-75" name='organisationDetails'  onChange={handleInputChange}  id="formGroupExampleInput2" placeholder="Organization Type" />
             </div>
             <div className="form-group mt-2">
               <Tooltip title="Notification permission as per role">
@@ -70,10 +94,10 @@ function AppSetting() {
                 {/* <InputLabel id="demo-multiple-name-label">Permission</InputLabel> */}
                 <Select
                   labelId="demo-multiple-name-label"
-                  id="demo-multiple-name"
+                  id="notificationPermission" 
                   multiple
                   value={personName}
-                  onChange={handleChange}
+                  onChange={handleInputChange}
                   input={<OutlinedInput />}
                   MenuProps={MenuProps}
                   placeholder='Select roles'
@@ -86,35 +110,36 @@ function AppSetting() {
                       value={role.roleName}
                     // style={getStyles(name, personName, theme)}
                     >
-                      <Checkbox checked={personName.indexOf(role.roleName) > -1} />
+                      <Checkbox checked={personName.indexOf(role.roleName) > -1} /> 
                       {role.roleName}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
 
+
             </div>
           </div>
           <div className='col-6'>
             <div className="form-group mt-2">
               <label >Primary color</label>
-              <input type="color" className="form-control w-75" id="formGroupExampleInput2" value="#5891ed" />
+              <input type="color" name="primaryColor" onChange={handleInputChange} className="form-control w-75" id="formGroupExampleInput2"  />
             </div>
             <div className="form-group mt-2">
               <label >Secondary color</label>
-              <input type="color" className="form-control w-75" id="formGroupExampleInput2" value="#b1b3b5" />
+              <input type="color" name="secondaryColor" onChange={handleInputChange} className="form-control w-75" id="formGroupExampleInput2"  />
             </div>
             <div className="form-group mt-2">
               <label >Accent color</label>
-              <input type="color" className="form-control w-75" id="formGroupExampleInput2" value="#bdfcfa" />
+              <input type="color" name="accentColor" onChange={handleInputChange} className="form-control w-75" id="formGroupExampleInput2"  />
             </div>
             <div className="form-group mt-2">
               <label >Header color</label>
-              <input type="color" className="form-control w-75" id="formGroupExampleInput2" value="#bad1d0" />
+              <input type="color" name="headerColor" onChange={handleInputChange} className="form-control w-75" id="formGroupExampleInput2"  />
             </div>
             <div className="form-group mt-2 ">
               <label >Background color</label>
-              <input type="color" className="form-control w-75 color-field" id="formGroupExampleInput2" value="#f0ebed" />
+              <input type="color" name="backgroundColor" onChange={handleInputChange} className="form-control w-75 color-field" id="formGroupExampleInput2"  />
             </div>
           </div>
           <div className='d-flex justify-content-end mt-5 me-5'>

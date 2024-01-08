@@ -11,7 +11,9 @@ const initialState = {
   tabs: [],
   recentOrganizationName: {},
   Countries_List:[],
-  /*OAST ALERT MODal
+  color:'',
+  /*
+   ALERT MODal
   summary:titleof alert box
   severity:success/error/warn/info
   details:message to show
