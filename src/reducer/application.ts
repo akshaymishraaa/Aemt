@@ -3,7 +3,7 @@ import { RolesData } from "../constants/roleModel";
 import { Actiontypes } from "../types/ActionTypes";
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: true,
   userDetails: {},
   organization: [],
   roles: RolesData,
